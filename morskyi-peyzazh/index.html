@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Швидкий морський пейзаж — міні-курс Олени Кулик Діріл</title>
+<meta name="description" content="Напиши свою першу картину олійними фарбами за 2 години — навіть якщо востаннє тримала пензель у школі. Міні-курс, 4 уроки.">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&family=Marck+Script&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/painting.avif" type="image/avif" fetchpriority="high">
+<script>document.documentElement.className+=" js"</script>
+<style>
+:root{
+  --ink:#0C2E47; --ink2:#1B4B69;
+  --sea:#1E7C96; --sea-l:#2E9DB4;
+  --aqua:#66C2BF; --aqua-d:#3FA5A2; --aqua-sh:#2E8A87;
+  --foam:#D6ECE9; --paper:#FBF9F6; --paper2:#F2EFE9; --mint:#E9F3F1;
+  --gray:#66788A; --line:#E4DFD5; --coral:#E0653C;
+  --font:'Jost',-apple-system,'SF Pro Display','Helvetica Neue',Arial,sans-serif;
+  --script:'Marck Script',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:var(--font);background:#E7E3DB;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:17px}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sea-l);outline-offset:3px;border-radius:6px}
+.phone{max-width:480px;margin:0 auto;background:var(--paper);position:relative;overflow:hidden}
+@media(min-width:520px){.phone{box-shadow:0 0 60px rgba(0,0,0,.08)}}
+
+.hl{background:linear-gradient(180deg,transparent 58%,rgba(102,194,191,.5) 58%);padding:0 3px;margin:0 -3px}
+.hl-c{background:linear-gradient(180deg,transparent 58%,rgba(224,101,60,.28) 58%);padding:0 3px;margin:0 -3px}
+
+/* ---------- paint strokes ---------- */
+.ps{position:absolute;display:block;pointer-events:none;background-repeat:no-repeat;background-size:100% 100%;z-index:1}
+.ps-deep{background-image:url(assets/stroke-deep.webp)}
+.ps-blue{background-image:url(assets/stroke-blue.webp)}
+.ps-teal{background-image:url(assets/stroke-teal.webp)}
+.ps-sky{background-image:url(assets/stroke-sky.webp)}
+.ps-short{background-image:url(assets/stroke-short.webp)}
+.divider{position:relative;height:56px;overflow:hidden}
+.divider .ps{left:-14%;right:-14%;width:128%;top:50%;height:44px;transform:translateY(-50%) rotate(-1.4deg);opacity:.75}
+.divider.alt .ps{transform:translateY(-50%) rotate(1.6deg)}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:11px 0;position:relative;z-index:4}
+.marquee div{display:flex;width:max-content;animation:run 26s linear infinite}
+.marquee span{padding:0 22px;font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.marquee i{font-style:normal;color:var(--aqua)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;padding:26px 0 34px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg .wall{position:absolute;inset:0;background:repeating-linear-gradient(180deg,rgba(12,46,71,.05) 0 1px,transparent 1px 46px),linear-gradient(180deg,#FFFFFF 0%,#F7FAFA 48%,var(--paper) 100%)}
+.hero-bg .bokeh{position:absolute;inset:-8%;background:radial-gradient(30% 22% at 6% 16%,rgba(46,157,180,.3),transparent 70%),radial-gradient(34% 24% at 96% 40%,rgba(102,194,191,.34),transparent 70%),radial-gradient(40% 26% at 20% 88%,rgba(30,124,150,.24),transparent 72%),radial-gradient(28% 20% at 84% 92%,rgba(214,236,233,.9),transparent 72%);filter:blur(24px)}
+.hero-bg .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.2) 40%,rgba(251,249,246,.75) 86%,var(--paper) 100%)}
+.hero-in{position:relative;z-index:3;padding:0 20px}
+
+.eyebrow{display:block;text-align:center;font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:16px}
+.eyebrow b{color:var(--coral);font-weight:800;letter-spacing:.1em;white-space:nowrap}
+
+h1{margin:0;position:relative;text-align:center}
+.h1-script{display:block;font-family:var(--script);font-size:clamp(1.95rem,8.8vw,2.6rem);line-height:1.02;color:var(--sea-l);transform:rotate(-1.6deg);margin:0 0 8px}
+.h1-big{display:block;font-weight:900;text-transform:uppercase;font-size:clamp(2.75rem,12.9vw,3.9rem);line-height:.86;letter-spacing:-.045em;color:var(--ink)}
+.h1-big .l2{display:block;position:relative}
+.pill{display:inline-block;position:relative;z-index:4;margin:-11px 14px 0 auto;float:right;clear:both;background:#fff;color:var(--ink);font-size:1.02rem;font-weight:700;letter-spacing:-.01em;padding:8px 17px;border-radius:999px;transform:rotate(-2.4deg);box-shadow:0 8px 20px rgba(22,28,34,.16)}
+.h1-tail{display:block;clear:both;margin:20px auto 0;max-width:20em;text-align:center;font-size:1rem;line-height:1.4;font-weight:500;color:var(--ink2)}
+.h1-stroke{position:relative;display:block;width:78%;max-width:300px;height:26px;margin:14px auto 0;opacity:.85}
+.lede{margin:20px 0 0;font-size:1.02rem;line-height:1.6;color:#3D5568}
+
+.showcase{position:relative;margin:30px -20px 0;padding:0 0 8px}
+.print{position:relative;margin-left:16px;margin-right:-26px;background:#fff;padding:10px 10px 12px;border-radius:6px;box-shadow:0 24px 46px rgba(22,28,34,.22);transform:rotate(-2.6deg)}
+.print img{width:100%;aspect-ratio:1400/988;object-fit:cover;border-radius:2px}
+
+.checks{list-style:none;margin:34px 0 0;display:flex;flex-direction:column;gap:11px}
+.checks li{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:16px;padding:14px 15px;box-shadow:0 8px 20px rgba(22,28,34,.07)}
+.checks .ic{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--foam);display:grid;place-items:center;margin-top:1px;font-size:1rem}
+.checks .tx{font-size:.97rem;line-height:1.48;color:var(--ink2)}
+.checks b{font-weight:700;color:var(--ink)}
+
+.pricerow{display:flex;align-items:flex-end;gap:12px;justify-content:center;margin:32px 0 0}
+.p-now{font-size:3rem;font-weight:900;letter-spacing:-.045em;line-height:.88}
+.p-now sup{font-size:1rem;font-weight:500;vertical-align:super;color:var(--gray);margin-left:2px;letter-spacing:0}
+.p-old{font-size:1.1rem;color:var(--gray);text-decoration:line-through;padding-bottom:6px}
+.p-off{background:var(--coral);color:#fff;font-size:.86rem;font-weight:800;padding:6px 10px;border-radius:9px;margin-bottom:6px;transform:rotate(-3deg);box-shadow:0 6px 14px rgba(22,28,34,.2)}
+
+.cta{display:block;width:100%;margin-top:22px;padding:20px 22px 21px;border:none;cursor:pointer;background:linear-gradient(180deg,#7FCDCA 0%,#4FB0AD 100%);color:#fff;border-radius:24px;font-family:var(--font);text-align:center;font-size:1.06rem;font-weight:800;line-height:1.28;letter-spacing:.01em;text-wrap:balance;box-shadow:0 7px 0 var(--aqua-sh),0 18px 30px rgba(22,28,34,.2),inset 0 2px 0 rgba(255,255,255,.4);position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s}
+.cta::before{content:'';position:absolute;top:0;left:-110%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .9s ease}
+.cta:hover{transform:translateY(3px);box-shadow:0 4px 0 var(--aqua-sh),0 12px 22px rgba(22,28,34,.2),inset 0 2px 0 rgba(255,255,255,.4)}
+.cta:hover::before{left:140%}
+.cta.coral{background:linear-gradient(180deg,#EE7C51 0%,#D75A31 100%);box-shadow:0 7px 0 #A8401D,0 18px 30px rgba(22,28,34,.2),inset 0 2px 0 rgba(255,255,255,.35)}
+.cta.coral:hover{box-shadow:0 4px 0 #A8401D,0 12px 22px rgba(22,28,34,.2),inset 0 2px 0 rgba(255,255,255,.35)}
+.micro{margin-top:15px;font-size:.88rem;line-height:1.5;color:var(--gray);text-align:center}
+
+.timer{display:inline-flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 22px;box-shadow:0 10px 24px rgba(22,28,34,.08)}
+.timer svg{flex:0 0 22px;color:var(--coral)}
+.timer .val{font-size:1.9rem;font-weight:900;letter-spacing:-.03em;color:var(--coral);font-variant-numeric:tabular-nums;line-height:1}
+.timer-wrap{display:flex;justify-content:center;margin-top:24px}
+
+/* ===================== SECTIONS ===================== */
+.sec{position:relative;padding:50px 20px 54px;overflow:hidden}
+.sec>*{position:relative;z-index:2}
+.sec-mint{background:var(--mint)}
+.sec-paper{background:var(--paper2)}
+.sec-white{background:var(--paper)}
+.sec-deep{background:linear-gradient(160deg,#0C2E47,#12506B);color:#EAF3F4}
+
+h2{margin:0 0 16px;text-align:center}
+.h2-kicker{display:block;font-size:1rem;font-weight:600;line-height:1.35;color:var(--gray);margin-bottom:10px;text-wrap:balance}
+.h2-script{display:block;font-family:var(--script);font-size:clamp(1.85rem,8vw,2.35rem);line-height:1;color:var(--sea-l);transform:rotate(-1.6deg);margin-bottom:2px}
+.h2-big{display:block;font-weight:900;text-transform:uppercase;font-size:clamp(1.7rem,7.3vw,2.15rem);line-height:.98;letter-spacing:-.035em;color:var(--ink);text-wrap:balance}
+.sec-deep .h2-big{color:#fff}
+.sec-deep .h2-script{color:var(--foam)}
+.lead{font-size:1rem;line-height:1.62;color:#3D5568}
+.sec-deep .lead{color:#C3DAE0}
+.lead+.lead{margin-top:14px}
+.turn{font-family:var(--script);font-size:1.95rem;line-height:1.2;color:var(--sea-l);margin:26px 0 4px;transform:rotate(-1deg);text-align:center}
+.note{margin-top:24px;font-size:1rem;line-height:1.55;color:var(--ink2);text-align:center;font-weight:600;text-wrap:balance}
+.emoji-rail{display:flex;justify-content:center;gap:14px;font-size:1.5rem;margin:0 0 14px;line-height:1}
+.emoji-rail span{animation:bob 4.5s ease-in-out infinite}
+.emoji-rail span:nth-child(2){animation-delay:.5s}
+.emoji-rail span:nth-child(3){animation-delay:1s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-7px) rotate(4deg)}}
+
+/* chips + callout */
+.chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:20px 0 0}
+.chips span b{font-weight:400;font-size:1.05rem;line-height:1}
+.chips span{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-size:.94rem;font-weight:700;color:var(--ink2);box-shadow:0 6px 14px rgba(22,28,34,.06)}
+.chips span:nth-child(odd){transform:rotate(-1.6deg)}
+.chips span:nth-child(even){transform:rotate(1.4deg)}
+.callout{margin-top:24px;position:relative;background:#fff;border:2px solid var(--ink);border-radius:20px;padding:22px 18px 20px;font-size:.98rem;line-height:1.55;color:var(--ink2);box-shadow:6px 7px 0 rgba(12,46,71,.13)}
+.callout .tag{position:absolute;top:-16px;left:16px;background:var(--coral);color:#fff;font-size:1.1rem;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;box-shadow:0 6px 14px rgba(22,28,34,.2)}
+
+/* generic card list */
+.tlist{list-style:none;margin:24px 0 0;display:flex;flex-direction:column;gap:13px}
+.tlist li{position:relative;background:#fff;border-radius:20px;padding:18px;box-shadow:0 12px 28px rgba(22,28,34,.08)}
+.tlist h3{font-size:1.1rem;font-weight:800;letter-spacing:-.025em;margin-bottom:7px;line-height:1.25}
+.tlist p{font-size:.95rem;line-height:1.56;color:#4E6274}
+.tlist .emj{display:block;font-size:1.6rem;line-height:1;margin-bottom:10px}
+
+.closebox{margin-top:28px;background:linear-gradient(140deg,#0C2E47,#1E7C96);color:#fff;border-radius:24px;padding:24px 20px;box-shadow:0 20px 42px rgba(22,28,34,.26);position:relative;overflow:hidden}
+.closebox::after{content:'';position:absolute;right:-50px;bottom:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(102,194,191,.4),transparent 70%)}
+.closebox p{font-size:1rem;line-height:1.58;position:relative;z-index:2}
+.closebox p+p{margin-top:14px;font-weight:600;color:var(--foam)}
+
+/* ---------- accordion ---------- */
+.acc{margin-top:16px}
+.acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px 13px 17px;font-size:.82rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--sea);background:var(--foam);border:1.5px solid rgba(30,124,150,.3);border-radius:15px;transition:background .2s,transform .18s}
+.acc summary:hover{background:#C8E5E1;transform:translateY(-1px)}
+.acc[open] summary{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary i{flex:0 0 28px;width:28px;height:28px;border-radius:50%;background:var(--sea);position:relative;transition:transform .25s}
+.acc summary i::before,.acc summary i::after{content:'';position:absolute;left:50%;top:50%;background:#fff;border-radius:2px;transform:translate(-50%,-50%)}
+.acc summary i::before{width:11px;height:2px}
+.acc summary i::after{width:2px;height:11px;transition:opacity .25s}
+.acc[open] summary i{transform:rotate(180deg)}
+.acc[open] summary i::after{opacity:0}
+.acc .inner p+p{margin-top:12px}
+.acc .inner{padding:16px 17px 4px;animation:fade .35s ease;font-size:.95rem;line-height:1.56;color:#4E6274}
+.acc ul.inner{list-style:none;display:flex;flex-direction:column;gap:9px}
+.acc ul.inner li{position:relative;padding-left:22px}
+.acc ul.inner li::before{content:'';position:absolute;left:3px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--aqua)}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+/* ---------- bonuses ---------- */
+.bcard{position:relative;background:#fff;border-radius:24px;padding:24px 18px 20px;box-shadow:0 16px 36px rgba(22,28,34,.1);margin-top:34px}
+.bnum{position:absolute;top:-15px;left:18px;background:var(--ink);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:8px 15px;box-shadow:0 8px 18px rgba(22,28,34,.24);z-index:3}
+.btop{display:flex;gap:15px;align-items:flex-start;margin-top:8px}
+.bcard h3{font-size:1.08rem;font-weight:800;letter-spacing:-.025em;line-height:1.26;margin:0 0 8px}
+.bres{display:flex;gap:10px;font-size:.94rem;line-height:1.48;color:var(--ink2)}
+.bres b{font-weight:800;color:var(--ink)}
+.filecard{flex:0 0 86px;width:86px;aspect-ratio:3/4;border-radius:5px;position:relative;overflow:hidden;background:#fff;box-shadow:0 10px 22px rgba(22,28,34,.22);transform:rotate(-4deg);transition:transform .3s}
+.bcard:hover .filecard{transform:rotate(-1deg) translateY(-3px)}
+.filecard .band{position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(150deg,var(--sea),var(--aqua))}
+.filecard .band .e{position:absolute;left:8px;bottom:6px;font-size:1.25rem;line-height:1}
+.filecard .band em{position:absolute;right:7px;top:6px;font-style:normal;font-size:.52rem;font-weight:800;letter-spacing:.1em;color:#fff;opacity:.9}
+.filecard .rows{position:absolute;left:8px;right:8px;top:54%;display:flex;flex-direction:column;gap:5px}
+.filecard .rows i{display:block;height:3px;border-radius:2px;background:#DCE4E8}
+.filecard .rows i:nth-child(2){width:78%}
+.filecard .rows i:nth-child(4){width:62%}
+.filecard.f2 .band{background:linear-gradient(150deg,#E0653C,#EFA070)}
+.filecard.f3 .band{background:linear-gradient(150deg,#0C2E47,#3E7A93)}
+
+/* ---------- comparison ---------- */
+.vs{display:flex;align-items:stretch;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:20px -20px 0;padding:6px 20px 18px}
+.vs::-webkit-scrollbar{display:none}
+.vsc{min-width:286px;max-width:296px;flex-shrink:0;scroll-snap-align:center;display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 14px 30px rgba(22,28,34,.09);content-visibility:auto;contain-intrinsic-size:290px 430px}
+.vsc-h{display:flex;align-items:center;gap:10px;padding:14px 18px;background:var(--ink);color:#fff}
+.vsc-h span{font-size:1.25rem;line-height:1}
+.vsc-h b{font-size:.82rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.side{padding:16px 18px;font-size:.95rem;line-height:1.55;flex:1}
+.side .who{display:flex;align-items:center;gap:8px;font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.side .who .mk{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.72rem;color:#fff}
+.side.water{background:#F5F4F1;color:#5F6A74}
+.side.water .who{color:#8E9AA4}
+.side.water .mk{background:#AFB8C0}
+.side.oil{color:var(--ink2);background:linear-gradient(180deg,rgba(102,194,191,.14),rgba(102,194,191,.05))}
+.side.oil .who{color:var(--sea)}
+.side.oil .mk{background:var(--aqua-d)}
+.clip{margin:30px auto 0;width:min(250px,72%);position:relative}
+.clip video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:22px;border:7px solid #fff;box-shadow:0 22px 42px rgba(22,28,34,.24)}
+.clip .badge{position:absolute;right:-14px;bottom:18px;background:var(--coral);color:#fff;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;box-shadow:0 10px 22px rgba(22,28,34,.28);animation:bob 4s ease-in-out infinite}
+
+/* ---------- swipe gallery ---------- */
+.swipe{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:22px -20px 0;padding:6px 20px 18px}
+.swipe::-webkit-scrollbar{display:none}
+.swipe>*{min-width:252px;max-width:262px;flex-shrink:0;scroll-snap-align:center;content-visibility:auto;contain-intrinsic-size:256px 300px}
+.pcard{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 14px 32px rgba(22,28,34,.11);display:flex;flex-direction:column}
+.pcard .top{height:120px;position:relative;display:grid;place-items:center;overflow:hidden}
+.pcard .top .em{font-size:3rem;line-height:1;position:relative;z-index:2;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+.pcard .top .ps{left:-14%;width:128%;top:52%;height:58px;transform:translateY(-50%) rotate(-5deg);opacity:.85;z-index:1}
+.pcard .n{position:absolute;left:12px;top:10px;z-index:3;font-size:.72rem;font-weight:800;letter-spacing:.1em;color:#fff;background:rgba(12,46,71,.55);backdrop-filter:blur(4px);border-radius:999px;padding:4px 9px}
+.pcard .body{padding:16px 16px 18px}
+.pcard h3{font-size:1.04rem;font-weight:800;letter-spacing:-.025em;line-height:1.25;margin-bottom:7px}
+.pcard p{font-size:.93rem;line-height:1.5;color:#4E6274}
+.hintswipe{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);font-weight:700}
+.hintswipe i{font-style:normal;animation:slide 1.8s ease-in-out infinite}
+@keyframes slide{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+
+/* ---------- tiles ---------- */
+.tiles{display:flex;flex-direction:column;gap:15px;margin-top:30px}
+.tile{position:relative;display:flex;align-items:center;gap:16px;background:#fff;border-radius:20px;padding:16px 18px 16px 14px;box-shadow:0 12px 26px rgba(22,28,34,.08)}
+.tile:nth-child(odd){transform:rotate(-.7deg)}
+.tile:nth-child(even){transform:rotate(.6deg)}
+.tile .disc{flex:0 0 62px;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;position:relative;overflow:hidden;background:var(--foam)}
+.tile .disc .em{position:relative;z-index:2;font-size:1.75rem;line-height:1}
+.tile .disc .ps{left:-20%;width:140%;top:50%;height:34px;transform:translateY(-50%) rotate(-8deg);opacity:.7;z-index:1}
+.tile b{font-size:1.03rem;font-weight:800;letter-spacing:-.022em;line-height:1.28}
+.tile .no{position:absolute;right:14px;top:12px;font-size:.72rem;font-weight:800;letter-spacing:.1em;color:#C7D2D8}
+
+/* ---------- kit ---------- */
+.bigprice{margin:26px 0 0;background:#fff;border:2px solid var(--ink);border-radius:22px;padding:24px 20px 20px;text-align:center;box-shadow:6px 7px 0 rgba(12,46,71,.13)}
+.bigprice .pnum{display:block;font-size:3.2rem;font-weight:900;letter-spacing:-.05em;line-height:.88;color:var(--ink)}
+.bigprice .pnum em{font-style:normal;font-size:1.1rem;font-weight:600;letter-spacing:0;color:var(--gray);vertical-align:super;margin-left:2px}
+.bigprice .plabel{display:block;margin-top:10px;font-size:1rem;font-weight:600;color:var(--sea);line-height:1.35}
+.accentline{display:inline;font-weight:800;color:var(--ink);background:linear-gradient(180deg,transparent 58%,rgba(102,194,191,.5) 58%);padding:0 3px;margin:0 -3px}
+.punch{margin-top:24px;text-align:center}
+.punch p{font-size:1.26rem;font-weight:800;letter-spacing:-.025em;line-height:1.3}
+.punch p+p{margin-top:6px;color:var(--sea)}
+.kit{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:11px}
+.kit li{display:flex;gap:13px;align-items:flex-start;background:#fff;border-radius:16px;padding:15px 17px;box-shadow:0 10px 24px rgba(22,28,34,.07)}
+.kit .em{flex:0 0 auto;font-size:1.4rem;line-height:1.2}
+.kit b{display:block;font-size:1.02rem;font-weight:800;letter-spacing:-.02em;margin-bottom:3px}
+.kit span.t{display:block;font-size:.93rem;line-height:1.5;color:#4E6274}
+
+/* ---------- program ---------- */
+.subline{text-align:center;font-size:.92rem;color:var(--gray);margin-top:-4px}
+.lesson{position:relative;background:#fff;border-radius:24px;padding:24px 18px 20px;margin-top:34px;box-shadow:0 16px 36px rgba(22,28,34,.1)}
+.lnum{position:absolute;top:-15px;left:18px;background:var(--sea);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:8px 15px;box-shadow:0 8px 18px rgba(22,28,34,.24);z-index:3}
+.lesson h3{font-size:1.1rem;font-weight:800;letter-spacing:-.025em;line-height:1.26;margin:8px 0 14px}
+.vidbox{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/10;background:#0C2E47}
+.vidbox img{width:100%;height:100%;object-fit:cover;opacity:.72}
+.vidbox .play{position:absolute;inset:0;display:grid;place-items:center}
+.vidbox .play span{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.3);transition:transform .25s}
+.vidbox:hover .play span{transform:scale(1.08)}
+.vidbox .play svg{margin-left:3px;color:var(--ink)}
+.lesson .bres{margin-top:16px}
+.stopbox{position:relative;margin-top:32px;background:var(--ink);color:#fff;border-radius:24px;padding:26px 20px;overflow:hidden}
+.stopbox .ps{left:-10%;width:120%;bottom:-10px;height:60px;opacity:.4;transform:rotate(-2deg)}
+.stopbox .em{position:relative;z-index:2;font-size:1.8rem;line-height:1;display:block;margin-bottom:8px}
+.stopbox h3{position:relative;z-index:2;font-family:var(--script);font-size:2rem;line-height:1.1;color:var(--foam);margin-bottom:10px}
+.stopbox p{position:relative;z-index:2;font-size:.98rem;line-height:1.58}
+
+/* ---------- checklist ---------- */
+.cklist{list-style:none;margin:24px 0 0;display:flex;flex-direction:column;gap:10px}
+.cklist li{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:16px;padding:14px 15px;box-shadow:0 8px 20px rgba(22,28,34,.07);font-size:.96rem;line-height:1.5;color:var(--ink2)}
+.cklist .ic{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:var(--aqua);color:#fff;display:grid;place-items:center;margin-top:1px;font-size:.85rem;font-weight:800}
+
+/* ---------- about ---------- */
+.portrait{margin:24px auto 0;width:min(300px,86%);background:#fff;padding:11px 11px 13px;border-radius:6px;box-shadow:0 24px 46px rgba(22,28,34,.2);transform:rotate(-1.8deg)}
+.portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 22%;border-radius:2px}
+.role{text-align:center;font-size:1.02rem;font-weight:800;color:var(--sea);margin-top:18px;text-wrap:balance}
+.subhead{margin:30px 0 4px;font-size:1.14rem;font-weight:900;letter-spacing:-.025em;text-align:center}
+.dotlist{list-style:none;margin:16px 0 0;display:flex;flex-direction:column;gap:11px}
+.dotlist li{display:flex;gap:11px;font-size:.97rem;line-height:1.55;color:var(--ink2)}
+.dotlist .em{flex:0 0 auto;font-size:1.2rem;line-height:1.4}
+
+.stats{display:flex;flex-direction:column;gap:12px;margin:26px 0 0}
+.stats div{display:flex;align-items:center;gap:16px;background:#fff;border-radius:20px;padding:15px 18px;box-shadow:0 12px 26px rgba(22,28,34,.08)}
+.stats div:nth-child(odd){transform:rotate(-.6deg)}
+.stats div:nth-child(even){transform:rotate(.5deg)}
+.stats b{flex:0 0 auto;font-size:2.15rem;font-weight:900;letter-spacing:-.05em;line-height:.9;color:var(--sea);min-width:78px}
+.stats span{font-size:.95rem;line-height:1.4;color:var(--ink2);font-weight:600}
+
+/* ---------- guarantee ---------- */
+.guard{position:relative;margin-top:8px;background:var(--ink);color:#fff;border-radius:26px;overflow:hidden;padding:36px 20px 28px;box-shadow:0 22px 44px rgba(22,28,34,.28)}
+.guard::before{content:'';position:absolute;left:0;right:0;top:0;height:14px;background:repeating-linear-gradient(115deg,var(--aqua) 0 14px,#0C2E47 14px 28px)}
+.guard .ps{left:-12%;width:124%;bottom:-14px;height:64px;opacity:.32;transform:rotate(-2deg)}
+.guard>*{position:relative;z-index:2}
+.gbig{margin:6px 0 0;max-width:11.5em;font-weight:900;text-transform:uppercase;font-size:clamp(1.5rem,6.6vw,1.95rem);line-height:.98;letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.gbig em{font-style:normal;color:var(--aqua)}
+.gtext{margin-top:18px;font-size:.97rem;line-height:1.58;color:#C3DAE0}
+.gtext+.gtext{margin-top:12px}
+.gtext b{color:#fff}
+.gstamp{position:absolute;right:12px;top:24px;z-index:3;width:104px;height:104px;border-radius:50%;border:2.5px solid var(--aqua);color:var(--aqua);display:grid;place-items:center;text-align:center;transform:rotate(9deg);background:rgba(12,46,71,.7);backdrop-filter:blur(3px)}
+.gstamp::after{content:'';position:absolute;inset:6px;border-radius:50%;border:1.2px dashed rgba(102,194,191,.6)}
+.gstamp b{display:block;font-size:1.9rem;font-weight:900;letter-spacing:-.05em;line-height:.86}
+.gstamp span{display:block;font-size:.5rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.3;margin-top:4px}
+
+/* ---------- gallery ---------- */
+.gallery{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:22px -20px 0;padding:0 20px 14px}
+.gallery::-webkit-scrollbar{display:none}
+.gallery figure{min-width:230px;max-width:250px;flex-shrink:0;scroll-snap-align:start;background:#fff;padding:9px;border-radius:4px;box-shadow:0 16px 32px rgba(22,28,34,.16);content-visibility:auto;contain-intrinsic-size:240px 300px}
+.gallery img{width:100%;aspect-ratio:4/5;object-fit:cover}
+
+/* ---------- guarantee ---------- */
+
+/* ---------- final ---------- */
+.getlist{list-style:none;margin:26px 0 0;display:flex;flex-direction:column;gap:10px}
+.getlist li{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px 15px;font-size:.96rem;line-height:1.48}
+.getlist .ic{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:rgba(102,194,191,.9);color:#0C2E47;display:grid;place-items:center;margin-top:1px;font-size:.9rem;font-weight:800}
+.getlist b{font-weight:800;color:#fff}
+.special{text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--foam);margin-top:34px}
+.sec-deep .p-now{color:#fff}
+.sec-deep .p-old{color:#9FBAC6}
+.sec-deep .micro{color:#A9C4CE}
+.sec-deep .timer{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.sec-deep .timer .val,.sec-deep .timer svg{color:#FFC7A9}
+.sec-deep .note{color:var(--foam)}
+
+/* ---------- faq ---------- */
+.faq{margin-top:24px;display:flex;flex-direction:column;gap:10px}
+.faq details{background:#fff;border-radius:16px;box-shadow:0 8px 20px rgba(22,28,34,.07);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:16px 48px 16px 17px;position:relative;font-size:1rem;font-weight:700;letter-spacing:-.015em;line-height:1.35}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'';position:absolute;right:17px;top:50%;width:15px;height:15px;margin-top:-7px;background:linear-gradient(var(--sea),var(--sea)) center/100% 2.4px no-repeat,linear-gradient(var(--sea),var(--sea)) center/2.4px 100% no-repeat;transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(135deg)}
+.faq p{padding:0 17px 17px;font-size:.95rem;line-height:1.58;color:#4E6274}
+
+/* ---------- footer ---------- */
+.footer{background:#0A2436;color:#B9CDD6;padding:44px 20px 40px;position:relative;overflow:hidden}
+.footer>*{position:relative;z-index:2}
+.footer .lead{color:#CFE0E7;text-align:center;font-size:1rem}
+.support{display:flex;justify-content:center;align-items:center;gap:9px;margin:20px auto 0;padding:16px 24px;background:#fff;color:#0C2E47;border:none;border-radius:16px;font-family:var(--font);font-size:1rem;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+.legal{margin-top:34px;padding-top:26px;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;gap:16px}
+.legal div b{display:block;font-size:.9rem;font-weight:800;color:#E7F1F5;letter-spacing:-.01em;line-height:1.35}
+.legal div span{display:block;font-size:.86rem;margin-top:3px;color:#94AEBA}
+.links{margin-top:22px;font-size:.88rem;color:#9FBAC6;text-align:center}
+.links a{text-decoration:underline;text-underline-offset:3px}
+.disclaimer{margin-top:22px;font-size:.8rem;line-height:1.55;color:#7F98A5}
+.disclaimer b{color:#B9CDD6}
+
+/* ---------- sticky ---------- */
+.sb{position:fixed;left:0;right:0;bottom:0;z-index:60;max-width:480px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 13px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line);box-shadow:0 -8px 28px rgba(22,28,34,.12);transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.sb.on{transform:none}
+.sb-p{display:flex;align-items:baseline;gap:7px;white-space:nowrap}
+.sb-p b{font-size:1.3rem;font-weight:900;letter-spacing:-.03em}
+.sb-p s{font-size:.8rem;color:var(--gray)}
+.sb-p i{font-style:normal;font-size:.72rem;font-weight:800;color:#fff;background:var(--coral);padding:3px 7px;border-radius:6px}
+.sb button{background:linear-gradient(180deg,#7FCDCA,#4FB0AD);color:#fff;border:none;font-family:var(--font);font-weight:800;font-size:.86rem;padding:13px 16px;border-radius:14px;cursor:pointer;white-space:nowrap;box-shadow:0 4px 0 var(--aqua-sh)}
+
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .reveal.vis{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}.d4{transition-delay:.28s}
+.cap .hero{min-height:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="phone">
+
+<!-- ==================== 1. ПЕРШИЙ ЕКРАН ==================== -->
+<header class="hero">
+  <div class="hero-bg"><div class="wall"></div><div class="bokeh"></div><div class="veil"></div></div>
+  <div class="hero-in">
+    <span class="eyebrow">Міні-курс · 4 уроки · старт <b data-start>завтра</b></span>
+
+    <h1>
+      <span class="h1-script">Напиши свою першу картину</span>
+      <span class="h1-big">олійними<span class="l2">фарбами</span></span>
+      <span class="pill">за 2 години</span>
+      <span class="h1-tail">навіть якщо востаннє тримала пензель у школі</span>
+    </h1>
+    <span class="ps ps-teal h1-stroke" aria-hidden="true"></span>
+
+    <p class="lede">Море і небо. У цій картині немає жодного обʼєкта, який треба вміти малювати: ні човнів, ні будинків, ні людей. Тільки <span class="hl">колір і горизонт</span> — і чотири уроки, де показаний кожен мазок.</p>
+
+    <div class="showcase">
+      <div class="print">
+        <picture>
+          <source srcset="assets/painting.avif" type="image/avif">
+          <img src="assets/painting.jpg" alt="Морський пейзаж олією на полотні 25×35 см" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+    </div>
+
+    <ul class="checks">
+      <li><span class="ic" aria-hidden="true">🖐</span><span class="tx"><b>Без досвіду</b> — навіть якщо ти жодного разу не тримала в руках олійні фарби</span></li>
+      <li><span class="ic" aria-hidden="true">🍽</span><span class="tx"><b>Без мольберта, рами й майстерні</b> — потрібен звичайний стіл на кухні</span></li>
+      <li><span class="ic" aria-hidden="true">🧽</span><span class="tx"><b>Помилку стираєш ганчіркою</b> — олійні фарби дозволяють переписати будь-який невдалий мазок</span></li>
+    </ul>
+
+    <div class="pricerow">
+      <span class="p-now">390<sup>грн</sup></span>
+      <span class="p-old">2390 грн</span>
+      <span class="p-off">−84%</span>
+    </div>
+
+    <button class="cta">Забрати міні-курс за 390 грн →</button>
+    <p class="micro">Після оплати ти одразу потрапиш у Telegram-бот. Перший урок прийде наступного ранку.</p>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>Міні-курс <i>·</i> 4 уроки <i>·</i> старт <b data-start>завтра</b></span><span>Море і небо <i>·</i> Полотно 25×35 <i>·</i> 2 години</span>
+  <span>Міні-курс <i>·</i> 4 уроки <i>·</i> старт <b data-start>завтра</b></span><span>Море і небо <i>·</i> Полотно 25×35 <i>·</i> 2 години</span>
+</div></div>
+
+<!-- ==================== 2. БОНУСИ ==================== -->
+<section class="sec sec-mint">
+  <div class="emoji-rail reveal" aria-hidden="true"><span>🎁</span><span>📄</span><span>🖼</span></div>
+  <h2 class="reveal">
+    <span class="h2-script">Забери міні-курс</span>
+    <span class="h2-big">до кінця таймера — і отримай <span class="hl-c">3 бонуси</span></span>
+  </h2>
+
+  <div class="timer-wrap reveal d2" style="margin-top:18px">
+    <div class="timer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="13" r="8.4" stroke="currentColor" stroke-width="1.9"/><path d="M12 8.6V13l3 2M9.4 2.6h5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      <span class="val" data-timer>10:00</span>
+    </div>
+  </div>
+
+  <article class="bcard reveal d1">
+    <span class="bnum">Бонус 1</span>
+    <div class="btop">
+      <span class="filecard" aria-hidden="true"><span class="band"><em>PDF</em><span class="e">🎨</span></span><span class="rows"><i></i><i></i><i></i><i></i></span></span>
+      <div>
+        <h3>Список матеріалів для картини під будь який бюджет</h3>
+        <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> ти заходиш у художній магазин зі списком у телефоні й виходиш за 5 хвилин рівно з тим, що потрібно для цієї картини.</span></p>
+      </div>
+    </div>
+    <details class="acc"><summary>Що всередині<i></i></summary><p class="inner">Точний перелік того, що купити: кольори олійних фарб із назвами, два щетинні пензлі, полотно та палітра. До кожної фарби вказаний аналог українського бренду ROSA — щоб не переплачувати за імпорт там, де він не потрібен. З орієнтовними цінами і поясненням, що можна замінити, а що ні.</p></details>
+  </article>
+
+  <article class="bcard reveal d2">
+    <span class="bnum">Бонус 2</span>
+    <div class="btop">
+      <span class="filecard f2" aria-hidden="true"><span class="band"><em>PDF</em><span class="e">🆘</span></span><span class="rows"><i></i><i></i><i></i><i></i></span></span>
+      <div>
+        <h3>Гайд: рятівний план "Що робити, якщо хочеться кинути картину на середині роботи"</h3>
+        <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> ти не кидаєш картину на середині, а знаєш, який саме мазок покласти наступним.</span></p>
+      </div>
+    </div>
+    <details class="acc"><summary>Що всередині<i></i></summary><p class="inner">Момент, коли ти дивишся на напівготове полотно і думаєш «ні, щось не те», настає майже в кожного. У гайді — 5 причин, чому це відбувається, і що робити з кожною: кольори стали брудними, деталей забагато, фон сперечається з головним, ти порівнюєш себе з чужою роботою, або просто втомилось око.</p></details>
+  </article>
+
+  <article class="bcard reveal d3">
+    <span class="bnum">Бонус 3</span>
+    <div class="btop">
+      <span class="filecard f3" aria-hidden="true"><span class="band"><em>PDF</em><span class="e">🖼</span></span><span class="rows"><i></i><i></i><i></i><i></i></span></span>
+      <div>
+        <h3>Гайд «Як органічно розмістити олійний живопис в інтерʼєрі»</h3>
+        <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> картина займає своє місце на стіні, а не стоїть за шафою.</span></p>
+      </div>
+    </div>
+    <details class="acc"><summary>Що всередині<i></i></summary><p class="inner">На якій висоті вішати картину, щоб вона не «губилась» на стіні, як її підсвітити, щоб було видно фактуру мазка, і як розмістити так, щоб вона справді прикрашала вашу оселю.</p></details>
+  </article>
+
+  <button class="cta reveal d2" style="margin-top:30px">Забрати міні-курс і 3 бонуси за 390 грн →</button>
+</section>
+
+<!-- ==================== 3. ЧОМУ САМЕ ЦЯ КАРТИНА ==================== -->
+<section class="sec sec-paper">
+  <h2 class="reveal"><span class="h2-big">У цій картині немає нічого, що можна <span class="hl">намалювати неправильно</span></span></h2>
+
+  <p class="lead reveal d1" style="margin-top:22px;text-align:center">Більшість людей кидають малювання на першій же роботі — і майже завжди з однієї причини: вони обрали складний сюжет.</p>
+
+  <div class="chips reveal d2">
+    <span><b aria-hidden="true">💐</b>Букет</span><span><b aria-hidden="true">🐈</b>кота</span><span><b aria-hidden="true">🧑‍🎨</b>портрет</span><span><b aria-hidden="true">🏘</b>вуличку з будинками</span>
+  </div>
+
+  <div class="callout reveal d3">
+    <span class="tag" aria-hidden="true">😬</span>
+    Там одразу видно, що вийшло криво: у кота одне око вище за друге, будинок завалився, пропорції поїхали.
+  </div>
+
+  <p class="turn reveal d1">Морський пейзаж влаштований інакше.</p>
+
+  <ul class="tlist">
+    <li class="reveal d1"><span class="emj" aria-hidden="true">✏️</span><h3>Тут немає малюнка</h3><p>На полотні лише дві великі площини — небо і вода — та лінія горизонту між ними. Пензель ти береш одразу, з першої хвилини.</p></li>
+    <li class="reveal d2"><span class="emj" aria-hidden="true">🔍</span><h3>Тут немає дрібних деталей</h3><p>Ні пальців, ні листя, ні вікон, ні складок тканини. Уся картина пишеться двома щетинними пензлями великими мазками.</p></li>
+    <li class="reveal d3"><span class="emj" aria-hidden="true">⚖️</span><h3>Тут немає з чим порівнювати</h3><p>А море не буває «неправильним». Воно буває темнішим, світлішим, зеленішим — і будь-який твій варіант лишається морем.</p></li>
+    <li class="reveal d4"><span class="emj" aria-hidden="true">📐</span><h3>Тут маленьке полотно</h3><p>25×35 см — розмір, який поміщається на кухонному столі й закривається за один сеанс.</p></li>
+  </ul>
+
+  <div class="closebox reveal d1">
+    <p>І при цьому робота не виглядає як «навчальна вправа». Це закінчена інтерʼєрна картина, яку вішають у вітальні й показують гостям.</p>
+    <p>Проста картина — це половина справи. Друга половина — фарби, якими ти її пишеш.</p>
+  </div>
+</section>
+
+<div class="divider alt" aria-hidden="true"><span class="ps ps-blue"></span></div>
+
+<!-- ==================== 4. ОЛІЯ ПРОСТІША ЗА АКВАРЕЛЬ ==================== -->
+<section class="sec sec-white">
+  <div class="emoji-rail reveal" aria-hidden="true"><span>💧</span><span>⚔️</span><span>🎨</span></div>
+  <h2 class="reveal">
+    <span class="h2-kicker">Новачкам радять почати з акварелі.</span>
+    <span class="h2-big">Це найгірша порада для того, хто боїться <span class="hl-c">зіпсувати роботу з першого мазка</span></span>
+  </h2>
+
+  <p class="lead reveal d1" style="margin-top:20px">Логіка ніби зрозуміла: акварель дешевша, її треба менше, вона «легша». Насправді акварель — <b style="color:var(--ink)">одна з найскладніших технік у живописі</b>. Просто про це чомусь не говорять уголос.</p>
+
+  <div class="callout reveal d2">
+    <span class="tag" aria-hidden="true">⚖️</span>
+    Ось чесне порівняння по чотирьох речах, від яких залежить, чи дійде новачок до готової картини.
+  </div>
+
+  <p class="hintswipe reveal d1" style="margin-top:22px">Гортай <i>→</i></p>
+
+  <div class="vs">
+    <div class="vsc reveal d1">
+      <div class="vsc-h"><span aria-hidden="true">🚫</span><b>Помилка</b></div>
+      <p class="side water"><span class="who"><span class="mk" aria-hidden="true">✕</span>Акварель</span>мазок ліг на папір — і він там назавжди. Взяла занадто темний тон? Не виправиш. Фарба розтеклася не туди? Не виправиш. Одна невдала пляма — і аркуш можна викидати.</p>
+      <p class="side oil"><span class="who"><span class="mk" aria-hidden="true">✓</span>Олія</span>поки фарба мокра — знімаєш невдалий мазок ганчіркою. Висохла — перекриваєш новим шаром. Полотно не запамʼятовує твоїх помилок.</p>
+    </div>
+    <div class="vsc reveal d2">
+      <div class="vsc-h"><span aria-hidden="true">⏱</span><b>Час</b></div>
+      <p class="side water"><span class="who"><span class="mk" aria-hidden="true">✕</span>Акварель</span>треба встигнути покласти всі сусідні мазки, поки папір вологий. Відволіклася на пʼять хвилин — краї підсохли, і наступний мазок ляже жорсткою межею.</p>
+      <p class="side oil"><span class="who"><span class="mk" aria-hidden="true">✓</span>Олія</span>сохне днями. Можна відійти, приготувати вечерю, відповісти на дзвінок і повернутися до тієї самої картини.</p>
+    </div>
+    <div class="vsc reveal d3">
+      <div class="vsc-h"><span aria-hidden="true">🎯</span><b>Контроль</b></div>
+      <p class="side water"><span class="who"><span class="mk" aria-hidden="true">✕</span>Акварель</span>колір і форма мазка залежать від кількості води на пензлі. Це навичка, яка напрацьовується місяцями — і доти кожна робота виходить непередбачуваною.</p>
+      <p class="side oil"><span class="who"><span class="mk" aria-hidden="true">✓</span>Олія</span>фарба лежить там, куди ти її поклала. Рівно стільки, скільки ти поклала.</p>
+    </div>
+    <div class="vsc reveal d4">
+      <div class="vsc-h"><span aria-hidden="true">🏁</span><b>Що лишається в кінці</b></div>
+      <p class="side water"><span class="who"><span class="mk" aria-hidden="true">✕</span>Акварель</span>аркуш паперу, який треба нести в багетну майстерню — паспарту, скло, рама. Плюс час і гроші зверху.</p>
+      <p class="side oil"><span class="who"><span class="mk" aria-hidden="true">✓</span>Олія</span>полотно на підрамнику. Вішаєш на цвях того самого дня.</p>
+    </div>
+  </div>
+
+  <div class="clip reveal d1">
+    <video src="assets/wipe-full.mp4" poster="assets/poster-wipe.jpg" muted loop playsinline preload="none" aria-label="Невдалий мазок знімається ганчіркою"></video>
+    <span class="badge" aria-hidden="true">🧽</span>
+  </div>
+
+  <p class="note reveal d2">Саме тому першу в житті картину варто писати олією: тут помилка не коштує тобі роботи, а забирає одну хвилину й одну ганчірку.</p>
+</section>
+
+<!-- ==================== 5. ДЛЯ КОГО ==================== -->
+<section class="sec sec-mint">
+  <div class="emoji-rail reveal" aria-hidden="true"><span>🙋‍♀️</span><span>🖌</span><span>💭</span></div>
+  <h2 class="reveal"><span class="h2-big">Цей міні-курс для тебе, якщо ти:</span></h2>
+  <p class="hintswipe reveal d1">Гортай <i>→</i></p>
+
+  <div class="swipe reveal d1">
+    <article class="pcard"><div class="top" style="background:linear-gradient(160deg,#EAF4F2,#CFE7E4)"><span class="ps ps-teal" aria-hidden="true"></span><span class="n">01</span><span class="em" aria-hidden="true">🖌</span></div><div class="body"><h3>Ніколи не малювала фарбами</h3><p>Не знаєш, з якого боку братися за пензель.</p></div></article>
+    <article class="pcard"><div class="top" style="background:linear-gradient(160deg,#EFF2F6,#D5DFE9)"><span class="ps ps-blue" aria-hidden="true"></span><span class="n">02</span><span class="em" aria-hidden="true">🏫</span></div><div class="body"><h3>Малювала в школі, а потім кинула</h3><p>Минуло тридцять років, а фраза досі памʼятається дослівно.</p></div></article>
+    <article class="pcard"><div class="top" style="background:linear-gradient(160deg,#FBF1EA,#F1D8C7)"><span class="ps ps-short" aria-hidden="true"></span><span class="n">03</span><span class="em" aria-hidden="true">📦</span></div><div class="body"><h3>Купила фарби — і вони лежать</h3><p>Не через лінь, а тому що незрозуміло, з чого починати.</p></div></article>
+    <article class="pcard"><div class="top" style="background:linear-gradient(160deg,#E9F1F6,#CBDDE9)"><span class="ps ps-sky" aria-hidden="true"></span><span class="n">04</span><span class="em" aria-hidden="true">💧</span></div><div class="body"><h3>Пробувала акварель — і розчарувалась</h3><p>Насправді ти просто почала з найскладнішої техніки.</p></div></article>
+    <article class="pcard"><div class="top" style="background:linear-gradient(160deg,#EEF4F0,#D3E6DC)"><span class="ps ps-deep" aria-hidden="true"></span><span class="n">05</span><span class="em" aria-hidden="true">🖼</span></div><div class="body"><h3>Хочеш картину, яку зробила сама</h3><p>Роботу, про яку можна сказати: це написала я.</p></div></article>
+    <article class="pcard"><div class="top" style="background:linear-gradient(160deg,#F3F0EA,#DFD6C6)"><span class="ps ps-teal" aria-hidden="true"></span><span class="n">06</span><span class="em" aria-hidden="true">🤫</span></div><div class="body"><h3>Хочеш дві години тиші в голові</h3><p>Думки про роботу, новини й побут відступають самі.</p></div></article>
+  </div>
+
+  <p class="note reveal d1">Якщо впізнала себе хоча б в одному пункті — ця картина цілком тобі під силу.</p>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="ps ps-teal"></span></div>
+
+<!-- ==================== 6. ЩО ЛИШАЄТЬСЯ В РЕЗУЛЬТАТІ ==================== -->
+<section class="sec sec-paper">
+  <h2 class="reveal"><span class="h2-big">Картину олією не треба нікуди нести — <span class="hl">ти вішаєш її того ж дня</span></span></h2>
+  <p class="lead reveal d1" style="margin-top:20px;text-align:center">Техніка вирішує не лише те, як ти пишеш, а й те, що в тебе залишиться, коли робота закінчена.</p>
+
+  <div class="tiles">
+    <div class="tile reveal d1"><span class="disc"><span class="ps ps-teal" aria-hidden="true"></span><span class="em" aria-hidden="true">🖼</span></span><b>Не потрібна рама, паспарту і скло</b><span class="no" aria-hidden="true">01</span></div>
+    <div class="tile reveal d2"><span class="disc"><span class="ps ps-blue" aria-hidden="true"></span><span class="em" aria-hidden="true">🪜</span></span><b>Не потрібен мольберт</b><span class="no" aria-hidden="true">02</span></div>
+    <div class="tile reveal d3"><span class="disc"><span class="ps ps-deep" aria-hidden="true"></span><span class="em" aria-hidden="true">📦</span></span><b>Картина закінчена з усіх боків</b><span class="no" aria-hidden="true">03</span></div>
+    <div class="tile reveal d4"><span class="disc"><span class="ps ps-short" aria-hidden="true"></span><span class="em" aria-hidden="true">🎁</span></span><b>Її легко подарувати</b><span class="no" aria-hidden="true">04</span></div>
+  </div>
+</section>
+
+<div class="divider alt" aria-hidden="true"><span class="ps ps-deep"></span></div>
+
+<!-- ==================== 8. ПРОГРАМА ==================== -->
+<section class="sec sec-mint">
+  <h2 class="reveal">
+    <span class="h2-script">Чотири уроки</span>
+    <span class="h2-big">від порожнього полотна до картини на стіні</span>
+  </h2>
+  <p class="subline reveal d1">4 уроки · домашнє завдання після кожного уроку · доступ у Telegram-боті на рік</p>
+
+  <article class="lesson reveal d1">
+    <span class="lnum">Урок 1</span>
+    <h3>Як організувати робоче місце для картини навіть на звичайному кухонному столі?</h3>
+    <div class="vidbox"><img src="assets/brushes.jpg" alt="" loading="lazy" decoding="async"><span class="play"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span></div>
+    <details class="acc"><summary>Що в уроці<i></i></summary><ul class="inner">
+      <li>як обрати матеріали саме під цю картину: 12 кольорів, два пензлі, полотно 25×35</li>
+      <li>як розкласти фарби, палітру й полотно на кухонному столі, щоб нічого не заважало руці</li>
+      <li>як розводити олійну фарбу медіумом до потрібної густоти</li>
+      <li>як мити й зберігати щетинні пензлі, щоб вони не задубіли після першої картини</li>
+    </ul></details>
+    <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> у тебе на столі лежить розкладений набір фарб, розведена фарба і чисте полотно 25×35. Ти сідаєш за стіл і пишеш першу картину.</span></p>
+  </article>
+
+  <article class="lesson reveal d2">
+    <span class="lnum">Урок 2</span>
+    <h3>Як, малюючи небо, за 2 прості кроки закласти настрій картини та колір моря?</h3>
+    <div class="vidbox"><img src="assets/painting.jpg" alt="" loading="lazy" decoding="async"><span class="play"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span></div>
+    <details class="acc"><summary>Що в уроці<i></i></summary><ul class="inner">
+      <li>як обрати настрій майбутньої картини: ранок, полудень чи вечір</li>
+      <li>де провести лінію горизонту на полотні і чому саме там</li>
+      <li>як поділити полотно на небо і воду</li>
+      <li>як закласти перший шар неба</li>
+      <li>де в небі покласти світло, а де тінь</li>
+      <li>як писати хмари щетинним пензлем великими мазками</li>
+    </ul></details>
+    <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> більша частина полотна вже зайнята небом, і разом із нею зникає страх білого аркуша.</span></p>
+  </article>
+
+  <article class="lesson reveal d3">
+    <span class="lnum">Урок 3</span>
+    <h3>Як за 3 плани написати море, яке ніколи не буває просто синім?</h3>
+    <div class="vidbox"><img src="assets/sea-macro.jpg" alt="" loading="lazy" decoding="async"><span class="play"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span></div>
+    <details class="acc"><summary>Що в уроці<i></i></summary><ul class="inner">
+      <li>як написати дальній план води біля лінії горизонту</li>
+      <li>як колір води змінюється з відстанню: від глибокого синього біля горизонту до смарагдового ближче до тебе</li>
+      <li>які фарби змішувати для кожного плану залежно від неба, яке ти вже написала</li>
+      <li>як покласти світло на поверхню води</li>
+      <li>як написати просту версію моря без піни й великих хвиль</li>
+    </ul></details>
+    <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> картина закінчена і готова до стіни вже на цьому уроці.</span></p>
+  </article>
+
+  <div class="stopbox reveal d1">
+    <span class="ps ps-sky" aria-hidden="true"></span>
+    <span class="em" aria-hidden="true">✋</span>
+    <h3>Тут можна зупинитися.</h3>
+    <p>Картина написана, і ти маєш повне право поставити крапку. Але якщо дати їй підсохнути два-три дні й повернутися до неї, можна зробити її по-справжньому твоєю.</p>
+  </div>
+
+  <article class="lesson reveal d1">
+    <span class="lnum">Урок 4</span>
+    <h3>Як доопрацювати хмари й море, щоб у картині зʼявився твій почерк?</h3>
+    <div class="vidbox"><img src="assets/poster-brush.jpg" alt="" loading="lazy" decoding="async"><span class="play"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span></div>
+    <details class="acc"><summary>Що в уроці<i></i></summary><ul class="inner">
+      <li>як підсвітити хмари і додати їм обʼєму</li>
+      <li>як зробити воду живішою кількома мазками</li>
+      <li>як виправити ділянку, яка тобі не подобається, не переписуючи всю картину</li>
+      <li>як додати контрасту між небом і водою</li>
+    </ul></details>
+    <p class="bres"><span aria-hidden="true">🎯</span><span><b>Результат:</b> саме тут вона набуває унікальності, і вже видно твій авторський почерк. Дві однакові роботи після цього уроку не виходять ні в кого.</span></p>
+  </article>
+
+  <p class="note reveal d1">Після кожного уроку ти отримуєш коротке домашнє завдання. Якщо щось не виходить, пишеш Олені й отримуєш відповідь.</p>
+
+  <button class="cta reveal d2">Забрати міні-курс за 390 грн →</button>
+</section>
+
+<!-- ==================== 7. МАТЕРІАЛИ ==================== -->
+<section class="sec sec-white">
+  <div class="emoji-rail reveal" aria-hidden="true"><span>🛒</span><span>🖌</span><span>🎨</span></div>
+  <h2 class="reveal"><span class="h2-big">Що потрібно купити для цієї картини</span></h2>
+  <div class="bigprice reveal d1">
+    <span class="pnum">≈100 <em>грн</em></span>
+    <span class="plabel">коштує одна картина олією</span>
+  </div>
+
+  <p class="lead reveal d2" style="margin-top:22px">Але якщо в тебе ще немає нічого — набір треба зібрати приблизно на <b style="color:var(--ink)">2140 грн</b>. <b class="accentline">І його вистачить на десятки робіт:</b> дванадцять тюбиків олії не закінчуються за один вечір, пензлі служать роками, палітра — вічно.</p>
+
+  <div class="punch reveal d2">
+    <p>Це не витрати на картину.</p>
+    <p>Це витрати на фарби.</p>
+  </div>
+
+  <div class="showcase reveal d1" style="margin:28px -20px 0">
+    <div class="print" style="margin-left:26px;margin-right:26px;transform:rotate(1.6deg)">
+      <picture>
+        <source srcset="assets/brushes.avif" type="image/avif">
+        <img src="assets/brushes.jpg" alt="Щетинні пензлі на полотні з морським пейзажем" loading="lazy" decoding="async" style="aspect-ratio:3/4">
+      </picture>
+    </div>
+  </div>
+
+    <p class="note reveal d1">Точний список із назвами фарб, українськими аналогами й цінами ти отримаєш одразу після оплати — це перший бонус курсу.</p>
+</section>
+
+<!-- ==================== 9. ЯК ПРОХОДИТЬ НАВЧАННЯ ==================== -->
+<section class="sec sec-paper">
+  <h2 class="reveal"><span class="h2-big">Як проходить навчання</span></h2>
+
+  <ul class="tlist">
+    <li class="reveal d1"><span class="emj" aria-hidden="true">📱</span><h3>Один урок щоранку</h3><p>Після оплати ти одразу потрапляєш у Telegram-бот. Перший урок приходить наступного ранку, далі щодня ще по одному.</p></li>
+    <li class="reveal d2"><span class="emj" aria-hidden="true">🎥</span><h3>Відео, де видно кожен мазок</h3><p>Камера стоїть над полотном, тому видно руку, нахил пензля і колір, який змішується на палітрі. Ти ставиш на паузу і йдеш далі у власному темпі.</p></li>
+    <li class="reveal d3"><span class="emj" aria-hidden="true">💬</span><h3>Пояснення звичайними словами</h3><p>Жодних термінів на кшталт «валер» і «лесування». Візьми цей пензель, набери стільки фарби, веди ось так.</p></li>
+    <li class="reveal d1"><span class="emj" aria-hidden="true">📝</span><h3>Домашнє завдання після кожного уроку</h3><p>Якщо щось не виходить, пишеш Олені й отримуєш відповідь.</p></li>
+    <li class="reveal d2"><span class="emj" aria-hidden="true">🗓</span><h3>Доступ до уроків на цілий рік</h3><p>Уроки лишаються в боті 12 місяців. Захочеш написати другу картину через півроку, просто відкриєш бот.</p></li>
+    <li class="reveal d3"><span class="emj" aria-hidden="true">🍽</span><h3>Телефон і кухонний стіл</h3><p>Більше нічого для навчання не потрібно. Планшет, комп'ютер, окрема кімната і мольберт тут не знадобляться.</p></li>
+  </ul>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="ps ps-blue"></span></div>
+
+<!-- ==================== 10. ЧЕКЛІСТ ==================== -->
+<section class="sec sec-white">
+  <div class="emoji-rail reveal" aria-hidden="true"><span>✅</span><span>🖼</span><span>🎉</span></div>
+  <h2 class="reveal">
+    <span class="h2-script">За чотири уроки</span>
+    <span class="h2-big">ти:</span>
+  </h2>
+
+  <ul class="cklist">
+    <li class="reveal d1"><span class="ic" aria-hidden="true">✓</span><span>Напишеш морський пейзаж олійними фарбами на полотні 25×35, навіть якщо тримаєш пензель уперше в житті</span></li>
+    <li class="reveal d2"><span class="ic" aria-hidden="true">✓</span><span>Дізнаєшся, які 12 кольорів потрібні для цієї картини і які з них можна замінити українськими аналогами</span></li>
+    <li class="reveal d3"><span class="ic" aria-hidden="true">✓</span><span>Навчишся розводити олійну фарбу медіумом до густоти, з якою зручно працювати</span></li>
+    <li class="reveal d1"><span class="ic" aria-hidden="true">✓</span><span>Зрозумієш, як провести лінію горизонту і поділити полотно між небом і водою</span></li>
+    <li class="reveal d2"><span class="ic" aria-hidden="true">✓</span><span>Навчишся писати хмари щетинним пензлем великими мазками</span></li>
+    <li class="reveal d3"><span class="ic" aria-hidden="true">✓</span><span>Дізнаєшся, як змішати кольори води для трьох планів моря: від глибокого синього біля горизонту до смарагдового ближче до тебе</span></li>
+    <li class="reveal d1"><span class="ic" aria-hidden="true">✓</span><span>Навчишся прибирати невдалий мазок ганчіркою і класти новий поверх нього</span></li>
+    <li class="reveal d2"><span class="ic" aria-hidden="true">✓</span><span>Зможеш доопрацювати картину через два-три дні і зробити її несхожою на жодну іншу</span></li>
+    <li class="reveal d3"><span class="ic" aria-hidden="true">✓</span><span>Повісиш на стіну картину, про яку скажеш: це написала я</span></li>
+  </ul>
+</section>
+
+<!-- ==================== 11. МИСТЕЦТВО БЕЗ СТРЕСУ ==================== -->
+<section class="sec sec-mint">
+  <h2 class="reveal"><span class="h2-big">«У неї вийде намалювати море, вона ж художниця. А в мене ні»</span></h2>
+
+  <p class="lead reveal d1" style="margin-top:22px">Це найчастіша думка, яка зупиняє людину перед покупкою будь-яких курсів з малювання. Вона виглядає логічною: я пишу картини двадцять років, виставляла свої роботи в кількох країнах, мої роботи купують.</p>
+
+  <p class="turn reveal d2">Тільки моє навчання влаштоване інакше.</p>
+
+  <ul class="tlist">
+    <li class="reveal d1"><span class="emj" aria-hidden="true">🧭</span><h3>Мій досвід потрібен для того, щоб вийшла твоя картина</h3><p>Кожен крок в уроках звучить конкретно: візьми ці два кольори, змішай ось так, веди пензлем звідси сюди. Тобі не доведеться розшифровувати фразу «а тут просто відчуйте колір».</p></li>
+    <li class="reveal d2"><span class="emj" aria-hidden="true">🤝</span><h3>Ти не змагаєшся зі мною</h3><p>Твоя картина не має повторити мою. У кожного своє бачення, і це нормально. Саме тому картина і буде твоєю.</p></li>
+    <li class="reveal d3"><span class="emj" aria-hidden="true">🧩</span><h3>Тобі не треба нічого вигадувати</h3><p>Сюжет обраний, палітра зібрана, послідовність кроків показана. Тобі лишається робота руками, а вона виходить у всіх.</p></li>
+  </ul>
+</section>
+
+<div class="divider alt" aria-hidden="true"><span class="ps ps-short" style="left:-6%;width:112%"></span></div>
+
+<!-- ==================== 12. ПРО АВТОРА ==================== -->
+<section class="sec sec-paper">
+  <h2 class="reveal">
+    <span class="h2-kicker">Автор курсу:</span>
+    <span class="h2-big">Олена Кулик Діріл</span>
+  </h2>
+
+  <div class="portrait reveal d1">
+    <picture>
+      <source srcset="assets/olena.avif" type="image/avif">
+      <img src="assets/olena.jpg" alt="Олена Кулик Діріл пише морський пейзаж на пленері" loading="lazy" decoding="async">
+    </picture>
+  </div>
+
+  <div class="stats">
+    <div class="reveal d1"><b>25+</b><span>персональних виставок</span></div>
+    <div class="reveal d2"><b>24+</b><span>роки досвіду в техніці олійного живопису</span></div>
+    <div class="reveal d3"><b>20+</b><span>країн світу, в колекціях яких зберігаються картини</span></div>
+  </div>
+
+  <p class="lead reveal d1" style="margin-top:26px">Професійна художниця, в мистецтві з дитинства, донька відомої української художниці Олени Кулик.</p>
+  <p class="lead reveal d2">Створила власний стиль малювання. Віртуозно малює море олійними фарбами та володіє різними техніками, але перевагу віддає саме олії.</p>
+
+  <details class="acc reveal d2" style="margin-top:22px">
+    <summary>Повна історія<i></i></summary>
+    <div class="inner">
+      <p>Провела 25 персональних виставок у різних країнах світу, включаючи виставки в дипломатичних установах. Картини знаходяться в музеях, також в приватних колекціях 20 країн.</p>
+      <p>Дванадцять років тому я переїхала до Туреччини. З собою був невеликий набір пастелі, і більше нічого: ні мови, ні знайомих, ні клієнтів, які лишилися в Україні. Кар'єру довелося будувати заново, з нуля.</p>
+      <p>Перша виставка в новій країні відбулася через дев'ять місяців. Усі роботи для неї я написала вже на новому місці.</p>
+      <p>Я бачу одну й ту саму історію в кожної людини, яка приходить до мене з бажанням малювати. Колись у дитинстві хтось сказав їй, що нічого не вийде. Людина повірила і не бралася за пензель тридцять років.</p>
+      <p>Мене це дратує більше за все інше в цій професії. Тому я зібрала свій спосіб писати морський пейзаж у чотири уроки, де показаний кожен мазок.</p>
+    </div>
+  </details>
+
+  <div class="closebox reveal d1">
+    <p>Я не обіцяю тобі, що ти станеш художницею за один вечір. Я обіцяю, що після цих уроків білий аркуш перестане тебе лякати, а на стіні висітиме картина, яку ти написала своїми руками.</p>
+  </div>
+</section>
+
+<!-- ==================== 13. РОБОТИ ОЛЕНИ ==================== -->
+<section class="sec sec-white">
+  <h2 class="reveal"><span class="h2-big">Мої роботи</span></h2>
+  <p class="lead reveal d2" style="margin-top:20px">Ти не будеш писати жодну з цих картин. На міні-курсі ми пишемо одну конкретну роботу, простішу за всі, що ти бачиш нижче.</p>
+  <p class="hintswipe reveal d2" style="margin-top:18px">Гортай <i>→</i></p>
+
+  <div class="gallery reveal d1">
+    <figure><picture><source srcset="assets/painting.avif" type="image/avif"><img src="assets/painting.jpg" alt="Морський пейзаж олією" loading="lazy" decoding="async"></picture></figure>
+    <figure><picture><source srcset="assets/sea-macro.avif" type="image/avif"><img src="assets/sea-macro.jpg" alt="Морський пейзаж олією" loading="lazy" decoding="async"></picture></figure>
+    <figure><picture><source srcset="assets/edge-macro.avif" type="image/avif"><img src="assets/edge-macro.jpg" alt="Морський пейзаж олією" loading="lazy" decoding="async"></picture></figure>
+    <figure><picture><source srcset="assets/tex-water.avif" type="image/avif"><img src="assets/tex-water.jpg" alt="Морський пейзаж олією" loading="lazy" decoding="async"></picture></figure>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><span class="ps ps-teal"></span></div>
+
+<!-- ==================== 14. ГАРАНТІЯ ==================== -->
+<section class="sec sec-mint">
+  <h2 class="reveal"><span class="h2-big">Повернення коштів</span></h2>
+
+  <div class="guard reveal d1">
+    <span class="ps ps-sky" aria-hidden="true"></span>
+    <span class="gstamp" aria-hidden="true"><span><b>14</b><span>днів<br>гарантія</span></span></span>
+    <p class="gbig">Жодних ризиків. Або в тебе на стіні з'являється <em>твоя перша картина</em>, або я повертаю гроші.</p>
+    <p class="gtext">Я впевнена в якості цих уроків, тому даю <b>14 днів повної гарантії</b>.</p>
+    <p class="gtext">Якщо протягом двох тижнів ти пройдеш усі чотири уроки, напишеш свій морський пейзаж, але не побачиш у ньому цінності або очікуваного результату, я без жодних питань поверну кошти.</p>
+  </div>
+</section>
+
+<!-- ==================== 15. ФІНАЛЬНИЙ ОФЕР ==================== -->
+<section class="sec sec-deep">
+  <h2 class="reveal"><span class="h2-big">Повний список усього, <span style="color:var(--foam)">що ти отримаєш</span></span></h2>
+
+  <ul class="getlist">
+    <li class="reveal d1"><span class="ic" aria-hidden="true">✓</span><span>4 практичні уроки з написання морського пейзажу олією</span></li>
+    <li class="reveal d1"><span class="ic" aria-hidden="true">✓</span><span>Покрокова методика, де показаний кожен мазок</span></li>
+    <li class="reveal d2"><span class="ic" aria-hidden="true">✓</span><span>Домашнє завдання після кожного уроку</span></li>
+    <li class="reveal d2"><span class="ic" aria-hidden="true">🎁</span><span><b>БОНУС 1</b> Список матеріалів з українськими аналогами і цінами</span></li>
+    <li class="reveal d3"><span class="ic" aria-hidden="true">🎁</span><span><b>БОНУС 2</b> Гайд «Криза на середині картини»</span></li>
+    <li class="reveal d3"><span class="ic" aria-hidden="true">🎁</span><span><b>БОНУС 3</b> Гайд «Як повісити олійний живопис в інтер'єрі»</span></li>
+    <li class="reveal d4"><span class="ic" aria-hidden="true">✓</span><span>Підтримка від автора курсу</span></li>
+    <li class="reveal d4"><span class="ic" aria-hidden="true">✓</span><span>Доступ до всіх уроків на рік</span></li>
+    <li class="reveal d4"><span class="ic" aria-hidden="true">✓</span><span>Гарантія повернення коштів на 14 днів</span></li>
+  </ul>
+
+  <p class="special reveal d1">Спеціальна ціна</p>
+
+  <div class="timer-wrap reveal d1">
+    <div class="timer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="13" r="8.4" stroke="currentColor" stroke-width="1.9"/><path d="M12 8.6V13l3 2M9.4 2.6h5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      <span class="val" data-timer>10:00</span>
+    </div>
+  </div>
+
+  <div class="pricerow reveal d1" style="margin-top:14px">
+    <span class="p-now">390<sup>грн</sup></span>
+    <span class="p-old">2390 грн</span>
+    <span class="p-off">−84%</span>
+  </div>
+
+  <button class="cta coral reveal d2">Забрати міні-курс за 390 грн →</button>
+  <p class="micro reveal d2">Після оплати ти одразу потрапиш у Telegram-бот. Перший урок прийде наступного ранку.</p>
+
+  <p class="note reveal d3">Бонуси зникають разом із таймером. Далі міні-курс продається без них.</p>
+</section>
+
+<!-- ==================== 16. FAQ ==================== -->
+<section class="sec sec-paper">
+  <div class="emoji-rail reveal" aria-hidden="true"><span>❓</span><span>💬</span></div>
+  <h2 class="reveal"><span class="h2-big">Часті запитання</span></h2>
+
+  <div class="faq reveal d1">
+    <details><summary>Чому так дешево? У чому підступ?</summary><p>Підступу немає. Це короткий міні-курс на чотири уроки, а не велика програма на кілька місяців. Плюс це перший запуск, і я тестую цю ціну. У наступних запусках вона буде іншою.</p></details>
+    <details><summary>Я взагалі ніколи не малювала фарбами. У мене вийде?</summary><p>Так, і саме для таких людей ця картина й обрана. У морському пейзажі немає жодного об'єкта, який треба вміти малювати: ні човнів, ні будинків, ні людей. Ти не будуєш композицію олівцем і не рахуєш пропорції. Є небо, вода і лінія між ними.</p></details>
+    <details><summary>Мені 55. Не пізно починати?</summary><p>Ні. Більшість людей, які приходять до мене вчитися, старші за сорок. Малювання не вимагає ні швидкої реакції, ні сили в руках, ні гострого зору. Потрібні тільки два вільні години і бажання.</p></details>
+    <details><summary>А якщо я зіпсую картину?</summary><p>Олійна фарба дозволяє переписати будь-який невдалий мазок. Поки фарба мокра, ти прибираєш його ганчіркою. Коли висохла, кладеш новий шар зверху. Полотно коштує близько ста гривень, але друге тобі, найімовірніше, не знадобиться.</p></details>
+    <details><summary>Скільки коштують матеріали?</summary><p>Близько 2140 гривень за найдоступнішим українським брендом ROSA. Це витрати не на одну картину, а на набір фарб: дванадцяти тюбиків вистачить на десятки робіт, пензлі служать роками. Друга картина обійдеться тобі в сто гривень за нове полотно. Точний список з назвами і цінами ти отримаєш одразу після оплати.</p></details>
+    <details><summary>Чи можна почати без усіх матеріалів?</summary><p>Перший урок ти подивишся без фарб, він саме про підготовку. Але до другого уроку набір уже має бути на столі.</p></details>
+    <details><summary>Скільки часу займе весь міні-курс?</summary><p>Уроки приходять по одному щоранку протягом чотирьох днів. Сама картина пишеться приблизно за дві години в другому і третьому уроці. Четвертий урок ти виконаєш через два-три дні, коли фарба підсохне.</p></details>
+    <details><summary>Де проходить навчання?</summary><p>У Telegram. Після оплати ти одразу потрапляєш у бот, перший урок приходить наступного ранку. Нічого встановлювати не потрібно.</p></details>
+    <details><summary>Скільки часу зберігається доступ?</summary><p>Рік. Захочеш повернутися до уроків через півроку, просто відкриєш бот.</p></details>
+    <details><summary>Що робити, якщо щось не виходить?</summary><p>Напиши мені в підтримку, і я відповім. Плюс у тебе буде гайд «Криза на середині картини» з п'ятьма найчастішими причинами, через які робота перестає подобатись.</p></details>
+    <details><summary>А якщо мені не сподобається?</summary><p>Протягом чотирнадцяти днів пиши в підтримку одне повідомлення, і я поверну кошти повністю. Без анкет і без пояснень.</p></details>
+  </div>
+
+  <button class="cta reveal d2">Приєднатися за 390 грн →</button>
+</section>
+
+<!-- ==================== 17. ФУТЕР ==================== -->
+<footer class="footer">
+  <span class="ps ps-deep" style="left:-20%;width:140%;top:-16px;height:56px;opacity:.35;transform:rotate(-2deg)" aria-hidden="true"></span>
+  <p class="lead">З будь-яких питань пишіть у підтримку ↓</p>
+  <button class="support"><span aria-hidden="true">💬</span>Технічна підтримка</button>
+
+  <div class="legal">
+    <div><b>СТЕПАНЕНКО БОГДАН ОЛЕКСАНДРОВИЧ ФОП</b><span>ЄДРПОУ 3757902952 · stepanenkob30@gmail.com</span></div>
+    <div><b>ЗЕМЛЯНИЙ МИХАЙЛО СЕРГІЙОВИЧ ФОП</b><span>ЄДРПОУ 3758302175 · +380 98 596 6120</span></div>
+    <div><b>БРЖЕСТОВСЬКА ГАННА ЮРІЇВНА ФОП</b><span>ЄДРПОУ 2877703349</span></div>
+  </div>
+
+  <p class="links"><a href="politika.html">Політика конфіденційності</a> · <a href="oferta.html">Договір оферти</a></p>
+
+  <p class="disclaimer"><b>ВАЖЛИВО:</b> не вводьте свою контактну інформацію, доки не прочитаєте legal disclaimer. Ми не даємо жодних гарантій, що ви досягнете якихось результатів за допомогою наших інструментів, стратегій або інформації. Всі продукти і сервіси компанії призначені для освітніх цілей. Ви несете відповідальність за свої дії і результати.</p>
+</footer>
+
+<div style="height:74px;background:#0A2436"></div>
+</div>
+
+<div class="sb" id="sb">
+  <div class="sb-p"><b>390 грн</b><s>2390 грн</s><i>−84%</i></div>
+  <button>Забрати міні-курс →</button>
+</div>
+
+<script>
+(function(){
+  var M=['січня','лютого','березня','квітня','травня','червня','липня','серпня','вересня','жовтня','листопада','грудня'];
+  var d=new Date(); d.setDate(d.getDate()+1);
+  var s=d.getDate()+' '+M[d.getMonth()];
+  document.querySelectorAll('[data-start]').forEach(function(e){e.textContent=s});
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  var left=600,els=document.querySelectorAll('[data-timer]');
+  setInterval(function(){if(left>0)left--;var m=Math.floor(left/60),ss=left%60;var t=m+':'+(ss<10?'0':'')+ss;els.forEach(function(e){e.textContent=t})},1000);
+
+  var sb=document.getElementById('sb');
+  addEventListener('scroll',function(){sb.classList.toggle('on',scrollY>700)},{passive:true});
+
+  var v=document.querySelector('.clip video');
+  if(v){var vo=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){v.preload='auto';v.load();v.play().catch(function(){});vo.disconnect()}})},{threshold:.3});vo.observe(v)}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.DS_Store
+.vercel
+_cap*.html
+preview/
+*.log
+.env*
+node_modules/
+morskyi-peyzazh/assets/_src/

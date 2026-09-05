@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/morskyi-peyzazh/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/morskyi-peyzazh/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
+}
