@@ -6,3 +6,4 @@ preview/
 .env*
 node_modules/
 morskyi-peyzazh/assets/_src/
+.env.local
