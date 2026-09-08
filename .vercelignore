@@ -1,0 +1,9 @@
+# службові файли збірки — на прод не потрібні
+preview/
+patch_v2.py
+objects.css
+README.md
+.env*
+.DS_Store
+
+copy_edits.py

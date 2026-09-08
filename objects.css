@@ -1,0 +1,193 @@
+
+/* ==================================================================
+   СЦЕНИ З ПРЕДМЕТАМИ — блоки 3, 4, 7
+   Суцільний монохромний фон, великий предмет, навколо — плашки-іконки.
+   ================================================================== */
+:root{--o-navy:#103F52;--o-sea:#134B5E;--o-sand:#EAE2D2;--o-cream:#F4EFE5}
+
+.obj-sec{position:relative;overflow:hidden}
+.obj-sec.dark{background:var(--o-navy);color:#DCE9ED}
+.obj-sec.deep{background:var(--o-sea);color:#DCE9ED}
+.obj-sec.sand{background:var(--o-sand);color:var(--ink2)}
+
+/* ---- сцена ---- */
+/* Сцена стоїть МІЖ заголовком і основним текстом. Предмет виходить за край
+   колонки, його «хвіст» опускається нижче коробки сцени, а наступний абзац
+   підіймається під нього й відступає з боку предмета — картинка й текст
+   заходять одне в одне, а не стоять окремими смугами.
+   Висота сцени — padding-bottom у % від ширини колонки, тож усе тримає
+   пропорції на будь-якій ширині екрана. */
+.obj-stage{position:relative;height:0;margin:16px -20px 0}
+.obj-stage .obj{position:absolute;height:auto;filter:drop-shadow(0 30px 44px rgba(0,0,0,.36))}
+.obj-sec.sand .obj-stage .obj{filter:drop-shadow(0 26px 40px rgba(72,58,36,.28))}
+.obj-lead{margin-top:0;text-align:left}
+.obj-chip{position:absolute;width:60px;height:60px;border-radius:18px;background:var(--o-cream);
+  display:grid;place-items:center;box-shadow:0 12px 26px rgba(0,0,0,.28);
+  animation:ofloat 6.5s ease-in-out infinite;z-index:4}
+.obj-chip svg{width:26px;height:26px;stroke:#5E8A97;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.obj-sec.sand .obj-chip{background:#fff;box-shadow:0 12px 26px rgba(72,58,36,.18)}
+.obj-sec.sand .obj-chip svg{stroke:#8A7862}
+@keyframes ofloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
+
+/* ---- паралельні рядки: предмет ліворуч, текст праворуч ----
+   Картинка в звичайному потоці й ширша за свій стовпець, тож виходить
+   за край колонки, а висота рядка = висота вищого зі стовпців. */
+.obj-row{display:flex;align-items:center;gap:18px;margin:20px 0 0 -20px}
+.obj-art{position:relative}
+.obj-art .obj{position:static;display:block;max-width:none;height:auto;margin-left:-34%;width:142%}
+.obj-col{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px}
+.obj-col .obj-lead{margin:0;padding:0;font-size:.95rem;line-height:1.56;text-align:left}
+.obj-col .chips{margin:0;justify-content:flex-start;gap:8px}
+.obj-col .chips span{font-size:.86rem;padding:7px 12px}
+.obj-col .callout{margin:0;font-size:.92rem;line-height:1.5;padding:17px 15px 15px}
+.obj-col .callout .tag{width:28px;height:28px;font-size:.98rem;top:-14px;left:12px}
+
+/* пензлі 586×900 */
+.st-brushes{flex:0 0 40%}
+.st-brushes .obj{filter:drop-shadow(0 26px 40px rgba(0,0,0,.36))}
+.st-brushes .k1{right:2px;top:3%;transform:rotate(-6deg)}
+.st-brushes .k2{left:2px;top:44%;transform:rotate(5deg);animation-delay:.8s}
+.st-brushes .k3{right:-14px;bottom:11%;transform:rotate(-8deg);animation-delay:1.6s}
+
+/* тюбики 710×900 — віддзеркалені, щоб мазок лився в бік тексту */
+.st-tubes{flex:0 0 44%}
+.st-tubes .obj{transform:scaleX(-1);filter:drop-shadow(0 26px 40px rgba(72,58,36,.28))}
+
+/* палітра 818×900 — по центру, картка з ціною лягає на її нижній край */
+.st-palette{padding-bottom:80%}
+.st-palette .obj{left:50%;top:0;width:84%;transform:translateX(-51%) rotate(-3deg)}
+.st-palette .k1{right:8px;top:3%;transform:rotate(6deg)}
+.st-palette .k2{left:4px;top:30%;transform:rotate(-7deg);animation-delay:1s}
+.st-palette .k3{right:30px;bottom:12%;transform:rotate(4deg);animation-delay:2s}
+.obj-sec.deep .bigprice{margin-top:-7%;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+
+/* на вузьких екранах відступ під предмет менший, щоб рядок не став колонкою */
+@media (max-width:400px){
+  .st-brushes{flex:0 0 36%}
+  .st-tubes{flex:0 0 36%}
+  .obj-row{gap:10px}
+  .obj-col{gap:14px}
+  .obj-col .obj-lead{font-size:.88rem;line-height:1.5}
+  .obj-col .callout{font-size:.85rem;padding:15px 13px 13px}
+  .obj-col .chips span{font-size:.8rem;padding:6px 10px}
+}
+
+/* роздільник між темною сценою і піском — на кольорі піску,
+   щоб між секціями не було світлої смуги */
+.obj-div{background:var(--o-sand)}
+
+/* ---- темні сцени: перефарбування наявних елементів ---- */
+.obj-sec.dark .h2-big,.obj-sec.deep .h2-big{color:#fff}
+.obj-sec.dark .h2-kicker,.obj-sec.deep .h2-kicker{color:#9FBFC9}
+.obj-sec.dark .h2-script,.obj-sec.deep .h2-script{color:var(--foam)}
+.obj-sec.dark .lead,.obj-sec.deep .lead{color:#BDD5DC}
+.obj-sec.dark .lead b,.obj-sec.deep .lead b{color:#fff!important}
+.obj-sec.dark .hl,.obj-sec.deep .hl{background:linear-gradient(180deg,transparent 58%,rgba(102,194,191,.42) 58%)}
+.obj-sec.dark .hl-c,.obj-sec.deep .hl-c{background:linear-gradient(180deg,transparent 58%,rgba(224,101,60,.5) 58%)}
+.obj-sec.dark .chips span{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.26);color:#E4F0F3;box-shadow:none}
+.obj-sec.dark .callout,.obj-sec.deep .callout{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.3);
+  color:#DCEAEE;box-shadow:6px 7px 0 rgba(0,0,0,.22)}
+.obj-sec.dark .turn,.obj-sec.deep .turn{color:var(--foam)}
+.obj-sec.dark .tlist li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);box-shadow:none}
+.obj-sec.dark .tlist h3{color:#fff}
+.obj-sec.dark .tlist p{color:#B9D0D7}
+.obj-sec.dark .note,.obj-sec.deep .note{color:#CFE2E7}
+
+.obj-close{margin-top:28px;background:var(--o-cream);border-radius:24px;padding:24px 20px;
+  box-shadow:0 20px 42px rgba(0,0,0,.3)}
+.obj-close p{font-size:1rem;line-height:1.58;color:var(--ink2)}
+.obj-close p+p{margin-top:14px;font-weight:700;color:var(--sea)}
+
+/* блок 7 на глибокому морському */
+.obj-sec.deep .bigprice{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.32);box-shadow:6px 7px 0 rgba(0,0,0,.22)}
+.obj-sec.deep .bigprice .pnum{color:#fff}
+.obj-sec.deep .bigprice .pnum em{color:#9FBFC9}
+.obj-sec.deep .bigprice .plabel{color:var(--foam)}
+.obj-sec.deep .punch p{color:#fff}
+.obj-sec.deep .punch p+p{color:var(--foam)}
+.obj-sec.deep .accentline{color:#fff;background:linear-gradient(180deg,transparent 58%,rgba(102,194,191,.42) 58%)}
+
+/* блок 4 на піску */
+.obj-sec.sand .h2-big{color:var(--ink)}
+.obj-sec.sand .lead{color:#4A5B52}
+.obj-sec.sand .callout{box-shadow:6px 7px 0 rgba(72,58,36,.12)}
+.obj-sec.sand .vsc{box-shadow:0 14px 30px rgba(72,58,36,.12)}
+.obj-sec.sand .note{color:var(--ink2)}
+
+/* ---- сцени на мʼяті (блоки 2 і 8): фон лишається, плашки стають білими ---- */
+.obj-sec.mint .obj-chip{background:#fff;box-shadow:0 12px 26px rgba(30,124,150,.18)}
+.obj-sec.mint .obj-chip svg{stroke:var(--sea)}
+.obj-sec.mint .obj-stage .obj{filter:drop-shadow(0 26px 40px rgba(30,124,150,.24))}
+
+/* мастихін і медіум 620×900 — фоновий шар у правому верхньому куті блоку
+   «Програма». Лежить під контентом (z-index:0), місця в потоці не займає. */
+.st-tools{position:absolute;top:-56px;right:-16%;width:62%;height:auto;
+  padding:0;margin:0;z-index:0;pointer-events:none}
+/* діагональна маска гасить предмет там, де лягає текст (ліворуч-донизу),
+   і лишає його щільним у самому куті */
+.st-tools .obj{position:static;display:block;max-width:none;height:auto;width:100%;
+  margin:0;transform:rotate(10deg);
+  -webkit-mask-image:linear-gradient(215deg,#000 0 34%,rgba(0,0,0,.42) 64%,rgba(0,0,0,.06) 88%);
+          mask-image:linear-gradient(215deg,#000 0 34%,rgba(0,0,0,.42) 64%,rgba(0,0,0,.06) 88%)}
+
+/* мольберт 470×900 — фоновий шар блоку «Фінальний офер». Секція щільно
+   зайнята текстом згори донизу, вільного кута немає, тож предмет іде великим
+   водяним знаком по центру: дає глибину й не заважає читати білий текст. */
+.st-easel{position:absolute;top:8px;right:-24%;width:72%;height:auto;padding:0;margin:0;
+  transform:rotate(-5deg);z-index:0;pointer-events:none}
+.st-easel .obj{position:static;display:block;max-width:none;height:auto;width:100%;margin:0;opacity:.46;
+  -webkit-mask-image:linear-gradient(252deg,#000 0 34%,rgba(0,0,0,.34) 68%,transparent 90%);
+          mask-image:linear-gradient(252deg,#000 0 34%,rgba(0,0,0,.34) 68%,transparent 90%)}
+/* картки списку стають матовим склом над предметом — інакше білий текст
+   на світлому полотні падає до контрасту 3.2:1 */
+.obj-sec .getlist li{background:rgba(10,40,56,.62);border-color:rgba(255,255,255,.2);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+
+/* довгий поворотний рядок після правок копірайту — скрипт дрібнішим кеглем */
+.turn-long{font-size:1.42rem;line-height:1.32;max-width:20em;margin-left:auto;margin-right:auto;text-wrap:balance}
+
+/* ---- галерея робіт: кожна робота зберігає власні пропорції ---- */
+.gallery figure{flex:0 0 auto;height:300px;margin:0}
+.gallery img{height:100%;width:auto;aspect-ratio:auto;object-fit:cover;border-radius:12px;
+  box-shadow:0 12px 26px rgba(22,28,34,.16)}
+
+/* ---- відео в картках уроків ---- */
+.vidbox video{width:100%;height:100%;object-fit:cover;display:block;opacity:1}
+
+/* ---- карусель кадрів кар'єри в блоці «Про автора» ---- */
+.cyc{position:relative;margin:24px auto 0;width:min(322px,88%);background:#fff;
+  padding:11px 11px 12px;border-radius:6px;box-shadow:0 24px 46px rgba(22,28,34,.2);
+  transform:rotate(-1.8deg)}
+.cyc .frame{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--foam)}
+.cyc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 38%;
+  opacity:0;transform:scale(1.06);transition:opacity 1.1s ease,transform 6s ease}
+.cyc img.on{opacity:1;transform:scale(1)}
+.cyc .dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.cyc .dots i{width:6px;height:6px;border-radius:50%;background:rgba(12,46,71,.18);transition:background .35s}
+.cyc .dots i.on{background:var(--sea)}
+@media (prefers-reduced-motion:reduce){.cyc img{transition:opacity .01s}}
+
+/* ---- два обʼєкти на першому екрані ---- */
+.hero-obj{position:absolute;pointer-events:none;height:auto;max-width:none}
+/* мазок виходить із правого верхнього кута, під текстом (z-index 2 < .hero-in 3) */
+/* Мазок стоїть НИЖЧЕ рядка скрипту: тонкий бірюзовий скрипт на бірюзовій фарбі
+   зливався, а темний капс поверх мазка читається з запасом. */
+/* Мазок — усередині <h1>, тому його позиція рахується у відсотках від
+   заголовка й тримається під рядком скрипту на будь-якій ширині екрана.
+   z-index:-1 кладе його за текст заголовка, але над фоном героя. */
+.ho-stroke{top:-52px;right:-62px;width:44%;z-index:2;transform:rotate(7deg);
+  filter:drop-shadow(0 18px 30px rgba(22,28,34,.2));
+  /* трохи гасимо фарбу там, де під нею лягає текст */
+  -webkit-mask-image:linear-gradient(238deg,#000 0 40%,rgba(0,0,0,.55) 72%,rgba(0,0,0,.12) 94%);
+          mask-image:linear-gradient(238deg,#000 0 40%,rgba(0,0,0,.55) 72%,rgba(0,0,0,.12) 94%)}
+
+/* Світле гало навколо скрипту. На чистому фоні героя його не видно, а там,
+   де за літерами проходить мазок, воно відбиває бірюзу від бірюзи. */
+.hero .h1-script{text-shadow:0 0 16px #FFF,0 0 8px #FFF,0 0 3px #FFF,0 1px 1px rgba(255,255,255,.9)}
+
+/* хвиля — нижче картини, у лівому нижньому куті героя, фоновим шаром:
+   z-index 1 тримає її над фоном (.hero-bg z0) і під контентом (.hero-in z3) */
+.ho-wave{left:-19%;bottom:-2%;width:47%;z-index:1;transform:rotate(-3deg);
+  filter:drop-shadow(0 16px 28px rgba(22,28,34,.16));
+  -webkit-mask-image:linear-gradient(76deg,#000 0 32%,rgba(0,0,0,.34) 66%,transparent 90%);
+          mask-image:linear-gradient(76deg,#000 0 32%,rgba(0,0,0,.34) 66%,transparent 90%)}
