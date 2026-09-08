@@ -6,6 +6,7 @@ objects.css + сцени. Запуск:  python3 patch_v2.py
 """
 import pathlib, re
 import copy_edits
+import pixel
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE / "morskyi-peyzazh-v2"
@@ -279,3 +280,6 @@ for tag in ('obj-sec dark', 'obj-sec sand', 'obj-sec deep', 'st-brushes', 'st-tu
     print(f"  {tag}: {s.count(tag)}")
 print("  showcase лишилось:", s.count('class="showcase'))
 print("  emoji-rail лишилось:", s.count('emoji-rail'))
+
+# піксель — останнім кроком, щоб підхопили і прод, і v2, і будь-яка нова сторінка
+pixel.sync()
