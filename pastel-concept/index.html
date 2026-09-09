@@ -161,6 +161,11 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
 .sec-ink .timer .v{color:#E8A277}
 .sec-ink .timer .l{color:#8E979F}
 .sec-ink hr,.sec-ink .rows li,.sec-ink .ticks li{border-color:rgba(252,250,246,.16)}
+.sec-ink .pull{border-color:rgba(252,250,246,.42);color:var(--paper)}
+.sec-ink .stamp{color:#E8A277}
+.sec-ink .pledge{color:#fff}
+.sec-ink .railcap{color:#8E979F}
+.sec-ink .work,.sec-ink .shot{box-shadow:0 14px 30px rgba(0,0,0,.5)}
 
 /* ---------- нумерований перелік на волосяних лінійках ---------- */
 .rows{list-style:none;margin:30px 0 0;counter-reset:r}
@@ -258,11 +263,14 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
 .rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
   scrollbar-width:none;margin:26px -22px 0;padding:0 22px 14px}
 .rail::-webkit-scrollbar{display:none}
+.rail{align-items:flex-start}
 .rail>*{flex:0 0 auto;scroll-snap-align:start;content-visibility:auto}
 .work{width:216px;background:#fff;padding:9px 9px 10px;box-shadow:0 12px 24px rgba(33,38,43,.12)}
-.work img,.work .ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.work img{width:100%;height:auto;display:block}
+.work .ph{width:100%;aspect-ratio:4/3;display:grid}
 .shot{width:184px;background:#fff;padding:8px;box-shadow:0 12px 24px rgba(33,38,43,.12)}
-.shot img,.shot .ph{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.shot img{width:100%;height:auto;display:block}
+.shot .ph{width:100%;aspect-ratio:9/16;display:grid}
 .ph{background:repeating-linear-gradient(135deg,var(--paper2) 0 8px,var(--paper) 8px 16px);
   display:grid;place-items:center;text-align:center;padding:12px;
   font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);line-height:1.4}
@@ -492,7 +500,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 15б. ЧОМУ САМЕ Я ==================== -->
-  <section class="sec">
+  <section class="sec sec-ink">
     <h2>Чому саме я</h2>
     <p class="lead">Я бачу одну й ту саму історію в кожної людини, яка приходить до мене з бажанням малювати. Колись у дитинстві хтось сказав їй, що нічого не вийде. Учителька, батьки, хтось із родини. Людина повірила і не бралася за пастель тридцять років.</p>
     <p class="lead">Мене це дратує більше за все інше в цій професії. Тому я зібрала свій спосіб малювати атмосферний пейзаж у пʼять уроків, де показаний кожен штрих.</p>
@@ -503,17 +511,15 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 16. РОБОТИ ОЛЕНИ ==================== -->
-  <section class="sec sec-2">
+  <section class="sec">
     <h2>Мої роботи</h2>
     <div class="rail">
-      <div class="work"><div class="ph">Робота Олени<br>1</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>2</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>3</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>4</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>5</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>6</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>7</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>8</div></div>
+      <div class="work"><img src="assets/work-olena-1.webp" width="760" height="1350" alt="Робота Олени Кулик Діріл пастеллю" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-olena-2.webp" width="760" height="1012" alt="Робота Олени Кулик Діріл пастеллю" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-olena-3.webp" width="760" height="1350" alt="Робота Олени Кулик Діріл пастеллю" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-olena-4.webp" width="760" height="570" alt="Робота Олени Кулик Діріл пастеллю" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-olena-5.webp" width="760" height="1350" alt="Робота Олени Кулик Діріл пастеллю" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-olena-6.webp" width="760" height="570" alt="Робота Олени Кулик Діріл пастеллю" loading="lazy" decoding="async"></div>
     </div>
     <p class="lead">Ви не будете малювати жодну з цих картин. На міні-курсі ми робимо одну конкретну роботу, простішу за всі, що ви бачите тут. Але складається вона з тих самих штрихів.</p>
   </section>
@@ -521,7 +527,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 4. ЧОМУ ПАСТЕЛЬ ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>Все, що вам знадобиться для написання власної картини</h2>
     <p class="lead">Пастель, вона ж крейда та аркуш паперу.</p>
 
@@ -542,7 +548,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 5. СТРАХ БІЛОГО АРКУША ==================== -->
-  <section class="sec sec-2">
+  <section class="sec">
     <h2>Білого аркуша тут просто немає</h2>
     <div class="objrow rev">
       <div class="objart"><img src="assets/el-paper.webp" width="524" height="548" alt="Стос тонованого паперу для пастелі: сірий, блакитний, пісочний" loading="lazy" decoding="async"></div>
@@ -564,7 +570,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 6. ДЛЯ КОГО ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>Цей міні-курс для вас, якщо ви:</h2>
 
     <div class="rail">
@@ -606,7 +612,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 7. ПРОГРАМА ==================== -->
-  <section class="sec sec-2">
+  <section class="sec">
     <h2>Пʼять уроків від чистого аркуша до готової картини</h2>
     <p class="lead">5 уроків + бонусний урок · домашнє завдання після кожного уроку · доступ у Telegram-боті на рік</p>
 
@@ -744,7 +750,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 8. ЯК ПРОХОДИТЬ НАВЧАННЯ ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>Як проходить навчання</h2>
     <ul class="rows icons">
       <li><span class="n"><img class="ic" src="assets/el-how-1.webp" width="244" height="189" alt="Телефон із повідомленням на світанку" loading="lazy" decoding="async"></span><div><h3>Один урок щоранку</h3><p>Після оплати ви одразу потрапляєте в Telegram-бот. Перший урок приходить наступного ранку, далі щодня ще по одному. Жодних платформ із паролями і зайвих застосунків.</p></div></li>
@@ -760,7 +766,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 9. ЧЕКЛІСТ ==================== -->
-  <section class="sec sec-2">
+  <section class="sec sec-ink">
     <h2>За пʼять уроків ви:</h2>
     <ul class="ticks">
       <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Намалюєте <b>атмосферний пейзаж пастеллю</b>, навіть якщо тримаєте крейду вперше в житті</span></li>
@@ -781,14 +787,13 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <section class="sec">
     <h2>Роботи моїх студентів</h2>
     <div class="rail">
-      <div class="work"><div class="ph">Робота студента<br>1</div></div>
-      <div class="work"><div class="ph">Робота студента<br>2</div></div>
-      <div class="work"><div class="ph">Робота студента<br>3</div></div>
-      <div class="work"><div class="ph">Робота студента<br>4</div></div>
-      <div class="work"><div class="ph">Робота студента<br>5</div></div>
-      <div class="work"><div class="ph">Робота студента<br>6</div></div>
-      <div class="work"><div class="ph">Робота студента<br>7</div></div>
-      <div class="work"><div class="ph">Робота студента<br>8</div></div>
+      <div class="work"><img src="assets/work-student-1.webp" width="760" height="562" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-student-2.webp" width="760" height="590" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-student-3.webp" width="760" height="548" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-student-4.webp" width="760" height="550" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-student-5.webp" width="760" height="530" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-student-6.webp" width="760" height="524" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
+      <div class="work"><img src="assets/work-student-7.webp" width="760" height="536" alt="Робота студентки міні-курсу" loading="lazy" decoding="async"></div>
     </div>
     <p class="lead">Кожну з цих робіт зробила людина, яка колись сказала собі «я не вмію малювати». Сюжет один і той самий, а картини різні: у когось небо світліше, у когось поле йде в жовтий, у когось хмари важчі. Так і має бути — я не вчу копіювати мою роботу.</p>
     <p class="railcap">Роботи опубліковані з дозволу авторів.</p>
@@ -797,21 +802,26 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 11. ВІДГУКИ ==================== -->
-  <section class="sec sec-2">
+  <section class="sec sec-ink">
     <h2>Що кажуть ті, хто вже пройшов уроки</h2>
     <div class="rail">
-      <div class="shot"><div class="ph">Скріншот<br>відгуку 1</div></div>
-      <div class="shot"><div class="ph">Скріншот<br>відгуку 2</div></div>
-      <div class="shot"><div class="ph">Скріншот<br>відгуку 3</div></div>
-      <div class="shot"><div class="ph">Скріншот<br>відгуку 4</div></div>
-      <div class="shot"><div class="ph">Скріншот<br>відгуку 5</div></div>
+      <div class="shot"><img src="assets/review-3.webp" width="620" height="786" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-7.webp" width="620" height="720" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-1.webp" width="620" height="252" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-8.webp" width="620" height="528" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-5.webp" width="620" height="298" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-4.webp" width="620" height="520" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-9.webp" width="620" height="322" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-10.webp" width="620" height="474" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-2.webp" width="620" height="394" alt="Відгук студентки" loading="lazy" decoding="async"></div>
+      <div class="shot"><img src="assets/review-6.webp" width="620" height="368" alt="Відгук студентки" loading="lazy" decoding="async"></div>
     </div>
   </section>
 
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 12. МАТЕРІАЛИ ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>Що потрібно купити для цієї картини</h2>
     <p class="lead">Ми не приховуємо цифри до оплати: малювання вимагає матеріалів, і ви маєте знати про це до того, як натиснете кнопку.</p>
 
@@ -842,7 +852,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 13. ГАРАНТІЯ ==================== -->
-  <section class="sec sec-2">
+  <section class="sec">
     <h2>Повернення коштів</h2>
     <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
       <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/>
@@ -858,7 +868,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 14. МИСТЕЦТВО БЕЗ СТРЕСУ ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>«У неї вийде намалювати пейзаж, вона ж художниця. А в мене ні?»</h2>
     <p class="lead">Це найчастіша думка, яка зупиняє людину перед покупкою будь-яких уроків малювання. Вона виглядає логічною: я в мистецтві з дитинства, провела 25 персональних виставок, мої роботи зберігаються в приватних колекціях 20 країн. Звісно, у мене виходить.</p>
     <p class="lead"><b>Тільки моє навчання влаштоване інакше.</b></p>
@@ -872,7 +882,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 17. РОБОТА ПІД СКЛОМ ==================== -->
-  <section class="sec sec-2">
+  <section class="sec">
     <h2>Готову роботу треба закрити склом — і про це варто сказати чесно</h2>
     <p class="lead">Пастель живе на папері, тому закінчену картину закривають склом: так вона не осиплеться і не зітреться. Це єдиний крок, якого немає в живописі на полотні, і я не буду вдавати, що його не існує.</p>
     <p class="lead">Хороша новина в тому, що йти в багетну майстерню й чекати кілька днів <b>не обовʼязково</b>.</p>
@@ -916,7 +926,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   </section>
 
   <!-- ==================== 19. FAQ ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>Часті запитання</h2>
     <div class="acc faq">
       <details>
@@ -984,8 +994,9 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
     <p>З будь-яких питань пишіть у підтримку ↓</p>
     <a class="sup" href="#">💬 Технічна підтримка</a>
     <div class="legal">
-      <!-- [?] склад ФОПів підтвердити -->
-      <p>ФОП — реквізити уточнюються</p>
+      <!-- [?] звірити з Оленою: узято з olena-kulik-art.weblium.site -->
+      <p>ФОП Кулик Олена Анатоліївна<br>ЄДРПОУ 3041815047</p>
+      <p style="margin-top:10px">Telegram <a href="https://t.me/olena_art_ua">@olena_art_ua</a><br><a href="mailto:pastel.sanat.akademi@gmail.com">pastel.sanat.akademi@gmail.com</a></p>
       <p style="margin-top:10px"><a href="politika.html">Політика конфіденційності</a> · <a href="oferta.html">Договір оферти</a></p>
     </div>
     <p class="disc"><b>ВАЖЛИВО:</b> не вводьте свою контактну інформацію, доки не прочитаєте legal disclaimer. Ми не даємо жодних гарантій, що ви досягнете якихось результатів за допомогою наших інструментів, стратегій або інформації. Всі продукти і сервіси компанії призначені для освітніх цілей. Ви несете відповідальність за свої дії і результати.</p>
