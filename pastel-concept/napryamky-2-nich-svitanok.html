@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Пастель — Ніч і Світанок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&family=Marck+Script&display=swap" rel="stylesheet">
+<style>
+/* ==================================================================
+   КОНЦЕПТ ПО ДВОХ РЕФЕРЕНСАХ З BEHANCE. Не деплоїться, noindex.
+
+   N — «НІЧ»       за референсом «Стратосфера»: майже чорний індиго,
+                   фіолетові свічення, зорі-іскри, металевий градієнт на
+                   заголовках, скрипт-акценти, золоті кнопки-пігулки,
+                   темні скляні картки.
+   D — «СВІТАНОК»  за референсом beauty-курсу: хмарний білий фон, золото,
+                   зелень по кутах, розрядка в заголовках, великий
+                   таймер блоками, білі картки з мʼякою тінню.
+   ================================================================== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Jost',-apple-system,'SF Pro Display','Helvetica Neue',Arial,sans-serif;background:#232629;color:#EDEAE4;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid #C9A24A;outline-offset:3px}
+
+/* ---------- оболонка порівняння ---------- */
+.bar{position:sticky;top:0;z-index:99;background:rgba(20,21,24,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1);padding:11px 14px 12px}
+.bar-in{max-width:560px;margin:0 auto}
+.bar h1{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8C9490;text-align:center;margin-bottom:9px}
+.tabs{display:flex;gap:6px;background:rgba(255,255,255,.07);border-radius:14px;padding:5px}
+.tabs button{flex:1;min-width:0;font-family:inherit;font-size:.82rem;font-weight:700;color:#B4BCB7;background:none;border:none;border-radius:10px;padding:9px 4px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs button[aria-selected=true]{background:#EFE7D4;color:#1B1A16}
+.hint{max-width:560px;margin:12px auto 0;padding:0 16px;font-size:.85rem;line-height:1.5;color:#A7AEAA;text-align:center}
+.hint b{color:#E4E9E2;font-weight:600}
+.stage{padding:18px 0 60px}
+.pane{display:none}
+.pane.on{display:block}
+.phone{max-width:480px;margin:0 auto;position:relative;overflow:hidden;box-shadow:0 0 70px rgba(0,0,0,.5)}
+.obj{display:block;max-width:none;height:auto}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-14px,0)}}
+
+/* =================================================================
+   N — «НІЧ»  (референс «Стратосфера»)
+   ================================================================= */
+.vN{--bg:#080B16;--bg2:#0C1122;--panel:rgba(255,255,255,.055);--line:rgba(168,178,222,.22);
+  --ink:#EEF0F8;--muted:#A0A8C6;--muted2:#7F87A6;--violet:#8878E6;--violet2:#5B4CB8;--lav:#C6BCFF;
+  --gold1:#F6E2A8;--gold2:#D6AE5C;--gold3:#B48C39;--goldink:#2B2210;
+  background:var(--bg);color:var(--ink);position:relative}
+.vN .sky{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.vN .neb{position:absolute;border-radius:50%;filter:blur(46px)}
+.vN .neb1{width:88%;height:34%;left:-24%;top:2%;background:radial-gradient(circle,rgba(112,92,214,.5),transparent 68%)}
+.vN .neb2{width:76%;height:26%;right:-22%;top:26%;background:radial-gradient(circle,rgba(62,104,182,.45),transparent 68%)}
+.vN .neb3{width:96%;height:30%;left:-10%;bottom:-4%;background:radial-gradient(circle,rgba(88,74,176,.34),transparent 70%)}
+.vN .stars{position:absolute;inset:0;width:100%;height:100%}
+.vN .sec{position:relative;padding:56px 20px 60px;z-index:2}
+.vN .sec-2{background:linear-gradient(180deg,rgba(12,17,34,0),rgba(12,17,34,.85) 18%,rgba(12,17,34,.85) 82%,rgba(12,17,34,0))}
+
+.vN .hero{position:relative;z-index:2;padding:26px 20px 46px;text-align:center}
+.vN .badge{display:inline-flex;align-items:center;gap:9px;padding:9px 16px;border-radius:999px;background:rgba(136,120,230,.14);border:1px solid var(--line);font-size:.66rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:#CFD5F0}
+.vN .badge i{font-style:normal;width:6px;height:6px;border-radius:50%;background:var(--gold2)}
+.vN .kicker{display:block;margin:26px 0 12px;font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted2)}
+.vN h1{margin:0;position:relative}
+.vN .metal{display:block;font-weight:900;text-transform:uppercase;font-size:clamp(2.05rem,9.5vw,2.95rem);line-height:1;letter-spacing:-.04em;padding-top:.1em;
+  background:linear-gradient(178deg,#FFFFFF 4%,#E2E7F6 30%,#98A2C4 58%,#F2F5FE 82%,#AEB6D2 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.vN .script{display:block;font-family:'Marck Script',cursive;font-size:clamp(1.85rem,8.4vw,2.45rem);line-height:1;color:var(--lav);transform:rotate(-2deg);margin:4px 0 0}
+.vN .h1sub{margin:20px auto 0;max-width:20em;font-size:1rem;line-height:1.5;color:var(--muted)}
+.vN .h1sub b{color:#fff;font-weight:600}
+
+.vN .frame{position:relative;margin:34px auto 0;max-width:340px}
+.vN .frame::before{content:'';position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(circle,rgba(136,120,230,.55),rgba(90,120,200,.2) 52%,transparent 72%);filter:blur(20px);z-index:0}
+.vN .frame .in{position:relative;z-index:2;border-radius:18px;overflow:hidden;border:1px solid rgba(198,188,255,.3);box-shadow:0 26px 60px rgba(0,0,0,.6)}
+.vN .frame img{width:100%;aspect-ratio:1000/748;object-fit:cover}
+.vN .frame .tag{position:absolute;z-index:3;left:50%;bottom:-15px;transform:translateX(-50%);white-space:nowrap;background:linear-gradient(180deg,#141A2E,#0C1122);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.64rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#CFD5F0}
+.vN .sp{position:absolute;z-index:3;fill:#EDEFFB;animation:twinkle 3.4s ease-in-out infinite}
+
+.vN .tiles{display:flex;gap:9px;margin:40px 0 0;justify-content:center}
+.vN .tile{flex:1;background:linear-gradient(170deg,rgba(136,120,230,.34),rgba(91,76,184,.22));border:1px solid var(--line);border-radius:16px;padding:14px 8px 12px}
+.vN .tile b{display:block;font-size:1.7rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:#fff}
+.vN .tile span{display:block;margin-top:6px;font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#BFC6E6;line-height:1.3}
+
+.vN .price{display:flex;align-items:flex-end;gap:12px;justify-content:center;margin:36px 0 0}
+.vN .pn{font-size:3rem;font-weight:900;letter-spacing:-.05em;line-height:.86;color:#fff}
+.vN .pn i{font-style:normal;font-size:.95rem;font-weight:500;letter-spacing:0;margin-left:4px;color:var(--muted)}
+.vN .po{font-size:1rem;color:var(--muted2);text-decoration:line-through;padding-bottom:6px}
+.vN .pd{margin-bottom:6px;background:linear-gradient(180deg,var(--gold1),var(--gold3));color:var(--goldink);font-size:.78rem;font-weight:800;padding:5px 9px;border-radius:8px}
+.vN .cta{display:block;width:100%;margin-top:24px;padding:19px 20px;border:none;cursor:pointer;font-family:inherit;border-radius:999px;
+  background:linear-gradient(180deg,var(--gold1) 0%,var(--gold2) 52%,var(--gold3) 100%);color:var(--goldink);
+  font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.3;
+  box-shadow:0 14px 30px rgba(180,140,57,.32),inset 0 1px 0 rgba(255,255,255,.6);position:relative;overflow:hidden;transition:transform .22s,box-shadow .22s}
+.vN .cta::before{content:'';position:absolute;top:0;left:-110%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);transition:left .9s ease}
+.vN .cta:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(180,140,57,.42),inset 0 1px 0 rgba(255,255,255,.6)}
+.vN .cta:hover::before{left:150%}
+.vN .micro{margin-top:15px;font-size:.85rem;line-height:1.55;color:var(--muted2)}
+.vN .clock{display:inline-flex;align-items:center;gap:12px;margin-top:24px;padding:11px 18px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+.vN .clock .v{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1;color:var(--gold1)}
+.vN .clock .l{font-size:.63rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);line-height:1.3;text-align:left}
+
+.vN h2{margin:0 0 8px;text-align:center}
+.vN .h2big{display:block;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8vw,1.95rem);line-height:1.02;letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.vN .h2script{display:block;font-family:'Marck Script',cursive;font-size:1.55rem;line-height:1.1;color:var(--lav);transform:rotate(-1.6deg);margin-top:4px}
+.vN .lead{font-size:1rem;line-height:1.64;color:var(--muted);text-align:center}
+.vN .lead.l{text-align:left}
+.vN .lead+.lead{margin-top:14px}
+.vN .lead b{color:#fff;font-weight:600}
+.vN .hl{color:var(--lav);font-weight:600}
+
+.vN .glass{position:relative;margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:26px 18px 22px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.vN .glass+.glass{margin-top:14px}
+.vN .ring{width:60px;height:60px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:1.5rem;
+  background:linear-gradient(165deg,rgba(150,134,246,.55),rgba(80,66,166,.4));border:1px solid rgba(198,188,255,.34);box-shadow:0 12px 26px rgba(0,0,0,.35)}
+.vN .glass .k{display:block;text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold1)}
+.vN .glass h3{margin:10px 0 10px;text-align:center;font-size:1.1rem;font-weight:800;line-height:1.24;color:#fff;letter-spacing:-.02em}
+.vN .glass p{font-size:.93rem;line-height:1.58;color:var(--muted)}
+.vN .glass .res{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);font-size:.91rem;line-height:1.52;color:#CBD2EC}
+.vN .glass .res b{color:#fff;font-weight:700}
+.vN .note{margin-top:22px;text-align:center;font-size:.95rem;line-height:1.5;color:var(--muted);text-wrap:balance}
+
+.vN .grid4{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:26px}
+.vN .cell{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px 15px}
+.vN .cell .n{display:block;font-size:1.5rem;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--violet);opacity:.85}
+.vN .cell h3{margin:11px 0 7px;font-size:.95rem;font-weight:800;line-height:1.22;color:#fff}
+.vN .cell p{font-size:.84rem;line-height:1.48;color:var(--muted2)}
+.vN .stickN{position:absolute;right:-14%;top:-6%;width:40%;z-index:1;transform:rotate(19deg);filter:drop-shadow(0 26px 34px rgba(0,0,0,.6))}
+.vN .sheetN{position:relative;margin:30px auto 0;width:86%}
+.vN .sheetN::before{content:'';position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(circle,rgba(136,120,230,.4),transparent 68%);filter:blur(22px)}
+.vN .sheetN .obj{position:relative;width:100%;filter:drop-shadow(0 24px 34px rgba(0,0,0,.55))}
+.vN .closing{margin-top:30px;text-align:center}
+.vN .closing p{font-size:1rem;line-height:1.6;color:var(--muted)}
+.vN .closing p+p{margin-top:14px;font-family:'Marck Script',cursive;font-size:1.5rem;line-height:1.25;color:var(--lav)}
+
+/* =================================================================
+   D — «СВІТАНОК»  (референс beauty-курсу)
+   ================================================================= */
+.vD{--bg:#FBFAF6;--bg2:#F3F1EA;--ink:#2B3038;--ink2:#5B636E;--muted:#8A929C;--line:#E4E0D5;
+  --g1:#EFDCA9;--g2:#C9A24A;--g3:#8C6C21;--sage:#7E9A54;
+  background:var(--bg);color:var(--ink);position:relative}
+.vD .sec{position:relative;padding:54px 22px 58px;overflow:hidden}
+.vD .sec-2{background:var(--bg2)}
+.vD .plate{display:block;text-align:center;font-size:.64rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--g3)}
+.vD .rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 0}
+.vD .rule::before,.vD .rule::after{content:'';height:1px;width:44px;background:linear-gradient(90deg,transparent,var(--g2))}
+.vD .rule::after{background:linear-gradient(270deg,transparent,var(--g2))}
+.vD .rule span{width:7px;height:7px;transform:rotate(45deg);background:var(--g2)}
+
+.vD .hero{position:relative;padding:28px 22px 46px;overflow:hidden;text-align:center}
+.vD .hero .clouds{position:absolute;inset:0;z-index:0}
+.vD .hero .clouds img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.vD .hero .veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(251,250,246,.22) 0%,rgba(251,250,246,.12) 26%,rgba(251,250,246,.8) 70%,var(--bg) 100%)}
+.vD .hero>*{position:relative;z-index:3}
+.vD .sprig{position:absolute;z-index:2;pointer-events:none;animation:drift 9s ease-in-out infinite}
+.vD .sprig.a{left:-38px;top:-16px;width:150px;transform:rotate(8deg)}
+.vD .sprig.b{right:-46px;top:120px;width:132px;transform:rotate(-148deg);animation-delay:1.4s}
+.vD .sprig.c{left:-30px;bottom:70px;width:112px;transform:rotate(-24deg);animation-delay:2.6s}
+.vD .mote{position:absolute;z-index:2;border-radius:50%;background:#fff;box-shadow:0 0 6px rgba(255,255,255,.9);animation:drift 7s ease-in-out infinite}
+
+.vD .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--g2);border-radius:999px;padding:8px 16px;font-size:.62rem;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--g3);background:rgba(255,255,255,.6)}
+.vD h1{margin:24px 0 0}
+.vD .h1a{display:block;font-weight:700;text-transform:uppercase;font-size:clamp(1.5rem,6.6vw,1.95rem);line-height:1.16;letter-spacing:.06em;color:var(--ink)}
+.vD .h1b{display:block;font-family:'Marck Script',cursive;font-size:clamp(1.85rem,8.3vw,2.5rem);line-height:1.04;color:var(--g2);transform:rotate(-1.6deg);margin:10px 0 8px}
+.vD .h1sub{margin:18px auto 0;max-width:21em;font-size:.98rem;line-height:1.55;color:var(--ink2)}
+.vD .h1sub b{color:var(--ink);font-weight:600}
+
+.vD .work{position:relative;margin:32px 8px 0}
+.vD .work .mat{background:#fff;padding:14px 14px 42px;box-shadow:0 26px 54px rgba(43,48,56,.18);transform:rotate(-1.6deg)}
+.vD .work img{width:100%;aspect-ratio:1000/748;object-fit:cover}
+.vD .work .sign{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:'Marck Script',cursive;font-size:1.15rem;color:#8A929C;transform:rotate(-1.6deg)}
+.vD .work .sprig{right:-40px;bottom:-22px;width:120px;transform:rotate(-32deg);z-index:5}
+
+.vD .checks{list-style:none;margin:34px 0 0;display:flex;flex-direction:column;gap:12px;text-align:left}
+.vD .checks li{display:flex;gap:12px;align-items:flex-start;font-size:.98rem;line-height:1.5;color:var(--ink2)}
+.vD .checks .d{flex:0 0 18px;width:18px;height:18px;margin-top:4px;transform:rotate(45deg);border:1px solid var(--g2);background:rgba(201,162,74,.16)}
+.vD .checks b{color:var(--ink);font-weight:600}
+
+.vD .price{display:flex;align-items:flex-end;gap:12px;justify-content:center;margin:34px 0 0}
+.vD .pn{font-size:3rem;font-weight:300;letter-spacing:-.04em;line-height:.86}
+.vD .pn i{font-style:normal;font-size:.95rem;font-weight:400;margin-left:5px;color:var(--muted)}
+.vD .po{font-size:1rem;color:var(--muted);text-decoration:line-through;padding-bottom:6px}
+.vD .pd{margin-bottom:6px;background:linear-gradient(180deg,var(--g1),var(--g3));color:#2E2410;font-size:.76rem;font-weight:800;padding:5px 9px;border-radius:6px}
+.vD .cta{display:block;width:100%;margin-top:24px;padding:19px 20px;border:none;cursor:pointer;font-family:inherit;border-radius:999px;
+  background:linear-gradient(180deg,var(--g1) 0%,var(--g2) 55%,var(--g3) 100%);color:#2E2410;
+  font-size:.82rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;line-height:1.3;
+  box-shadow:0 14px 28px rgba(169,131,47,.28),inset 0 1px 0 rgba(255,255,255,.7);position:relative;overflow:hidden;transition:transform .22s,box-shadow .22s}
+.vD .cta::before{content:'';position:absolute;top:0;left:-110%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-20deg);transition:left .9s ease}
+.vD .cta:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(169,131,47,.36),inset 0 1px 0 rgba(255,255,255,.7)}
+.vD .cta:hover::before{left:150%}
+.vD .micro{margin-top:15px;font-size:.85rem;line-height:1.55;color:var(--muted)}
+
+.vD .count{display:flex;justify-content:center;gap:10px;margin:32px 0 0}
+.vD .count .b{flex:0 0 92px;background:#fff;border:1px solid var(--line);padding:13px 6px 10px;box-shadow:0 12px 26px rgba(43,48,56,.09)}
+.vD .count .v{display:block;font-size:2.15rem;font-weight:300;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink)}
+.vD .count .l{display:block;margin-top:8px;font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.vD .countcap{margin-top:12px;text-align:center;font-size:.68rem;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--g3)}
+
+.vD h2{margin:16px 0 0;text-align:center}
+.vD .h2a{display:block;font-weight:700;text-transform:uppercase;font-size:clamp(1.35rem,5.9vw,1.7rem);line-height:1.2;letter-spacing:.05em;color:var(--ink);text-wrap:balance}
+.vD .h2b{display:block;font-family:'Marck Script',cursive;font-size:1.6rem;line-height:1.1;color:var(--g2);transform:rotate(-1.4deg);margin-top:8px}
+.vD .lead{margin-top:20px;font-size:1rem;line-height:1.66;color:var(--ink2)}
+.vD .lead+.lead{margin-top:14px}
+.vD .lead b{color:var(--ink);font-weight:600}
+.vD .gold{color:var(--g3);font-weight:600}
+
+.vD .card{position:relative;margin-top:26px;background:#fff;border:1px solid var(--line);padding:26px 18px 22px;box-shadow:0 18px 40px rgba(43,48,56,.1);text-align:center}
+.vD .card .num{display:inline-block;font-size:2rem;font-weight:300;letter-spacing:.02em;line-height:1;color:var(--g2)}
+.vD .card .k{display:block;margin-top:4px;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.vD .card h3{margin:12px 0 12px;font-size:1.1rem;font-weight:700;letter-spacing:.02em;line-height:1.26;text-transform:uppercase}
+.vD .card p{font-size:.93rem;line-height:1.6;color:var(--ink2);text-align:left}
+.vD .card .res{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);font-size:.91rem;line-height:1.55;color:var(--ink2);text-align:left}
+.vD .card .res b{color:var(--ink);font-weight:700}
+.vD .note{margin-top:24px;text-align:center;font-size:.95rem;line-height:1.55;color:var(--ink2);text-wrap:balance}
+
+.vD .paths{display:flex;gap:0;margin:30px -4px 0;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px rgba(43,48,56,.1)}
+.vD .paths>div{flex:1;min-width:0;padding:22px 15px 20px}
+.vD .paths>div+div{border-left:1px solid var(--line)}
+.vD .paths .t{display:block;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center}
+.vD .paths .t.g{color:var(--g3)}
+.vD .paths p{margin-top:14px;font-size:.88rem;line-height:1.56;color:var(--ink2)}
+.vD .sheetD{position:relative;margin:34px auto 0;width:72%;transform:rotate(-2deg)}
+.vD .sheetD .obj{width:100%;filter:drop-shadow(0 22px 34px rgba(43,48,56,.22))}
+.vD .facts{list-style:none;margin:32px 0 0}
+.vD .facts li{padding:20px 0;border-bottom:1px solid var(--line);display:flex;gap:15px}
+.vD .facts li:first-child{border-top:1px solid var(--line)}
+.vD .facts .r{flex:0 0 34px;font-size:1.3rem;font-weight:300;line-height:1;color:var(--g2);padding-top:3px}
+.vD .facts h3{font-size:.98rem;font-weight:700;line-height:1.26;margin-bottom:6px}
+.vD .facts p{font-size:.91rem;line-height:1.55;color:var(--ink2)}
+.vD .closing{margin-top:30px;text-align:center}
+.vD .closing p{font-size:1rem;line-height:1.62;color:var(--ink2)}
+.vD .closing p+p{margin-top:14px;font-family:'Marck Script',cursive;font-size:1.5rem;line-height:1.25;color:var(--g2)}
+
+/* ---------- sticky-бар ---------- */
+.sticky{position:sticky;bottom:0;z-index:30;display:flex;align-items:center;gap:11px;padding:11px 14px}
+.vN .sticky{background:rgba(8,11,22,.9);border-top:1px solid rgba(168,178,222,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.vN .sticky .n{font-size:1.3rem;font-weight:900;letter-spacing:-.03em;color:#fff}
+.vN .sticky .o{font-size:.8rem;color:#7F87A6;text-decoration:line-through}
+.vN .sticky a{margin-left:auto;background:linear-gradient(180deg,#F6E2A8,#B48C39);color:#2B2210;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:12px 17px;border-radius:999px}
+.vD .sticky{background:rgba(251,250,246,.94);border-top:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.vD .sticky .n{font-size:1.3rem;font-weight:300;letter-spacing:-.02em}
+.vD .sticky .o{font-size:.8rem;color:var(--muted);text-decoration:line-through}
+.vD .sticky a{margin-left:auto;background:linear-gradient(180deg,#EFDCA9,#A9832F);color:#2E2410;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:12px 17px;border-radius:999px}
+
+@media(max-width:380px){
+  .vN .tile b{font-size:1.45rem}
+  .vD .count .b{flex:0 0 80px}
+  .vD .paths>div{padding:18px 12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ спрайт: предмети-заглушки й декор ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gStick" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#4C7522"/><stop offset=".22" stop-color="#9CC756"/>
+    <stop offset=".5" stop-color="#7FAE3E"/><stop offset=".8" stop-color="#5A8527"/><stop offset="1" stop-color="#3D5C1A"/>
+  </linearGradient>
+  <linearGradient id="gWrap" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#CFC8B6"/><stop offset=".25" stop-color="#FBF8F0"/>
+    <stop offset=".7" stop-color="#EFEADC"/><stop offset="1" stop-color="#BEB7A4"/>
+  </linearGradient>
+  <linearGradient id="gPaper" x1=".1" y1="0" x2=".9" y2="1">
+    <stop offset="0" stop-color="#DCD3C0"/><stop offset=".45" stop-color="#CFC4AC"/><stop offset="1" stop-color="#B9AD92"/>
+  </linearGradient>
+
+  <symbol id="objStick" viewBox="0 0 220 780">
+    <rect x="34" y="16" width="152" height="748" rx="42" fill="url(#gStick)"/>
+    <ellipse cx="110" cy="42" rx="74" ry="26" fill="#B4D97A" opacity=".85"/>
+    <ellipse cx="110" cy="46" rx="52" ry="15" fill="#D6ECAE" opacity=".7"/>
+    <rect x="66" y="70" width="26" height="640" rx="13" fill="#fff" opacity=".2"/>
+    <rect x="34" y="250" width="152" height="330" fill="url(#gWrap)"/>
+    <rect x="34" y="250" width="152" height="6" fill="#A9A28E" opacity=".5"/>
+    <rect x="34" y="574" width="152" height="6" fill="#A9A28E" opacity=".5"/>
+    <g fill="#6C6555" opacity=".3">
+      <rect x="58" y="300" width="104" height="7" rx="3"/><rect x="58" y="322" width="76" height="5" rx="2"/>
+      <rect x="58" y="470" width="4" height="60"/><rect x="68" y="470" width="7" height="60"/>
+      <rect x="82" y="470" width="3" height="60"/><rect x="92" y="470" width="8" height="60"/>
+      <rect x="107" y="470" width="4" height="60"/><rect x="118" y="470" width="6" height="60"/>
+      <rect x="132" y="470" width="3" height="60"/><rect x="141" y="470" width="8" height="60"/>
+    </g>
+    <ellipse cx="110" cy="742" rx="70" ry="24" fill="#31491A"/>
+    <ellipse cx="104" cy="738" rx="44" ry="13" fill="#6F9B33" opacity=".8"/>
+  </symbol>
+
+  <symbol id="objSheet" viewBox="0 0 820 620">
+    <clipPath id="clipSheet"><path d="M58 104 L738 44 L788 484 L112 570 Z"/></clipPath>
+    <path d="M58 104 L738 44 L788 484 L112 570 Z" fill="url(#gPaper)"/>
+    <g clip-path="url(#clipSheet)">
+      <path d="M40 90 L800 26 L818 300 L52 372 Z" fill="#B7C3D8" opacity=".9"/>
+      <g fill="#EDEFF2" opacity=".7">
+        <ellipse cx="230" cy="180" rx="120" ry="38" transform="rotate(-4 230 180)"/>
+        <ellipse cx="520" cy="140" rx="140" ry="30" transform="rotate(-4 520 140)"/>
+        <ellipse cx="380" cy="248" rx="160" ry="26" transform="rotate(-4 380 248)"/>
+      </g>
+      <path d="M46 336 L812 268 L816 318 L50 386 Z" fill="#2F4A1C" opacity=".9"/>
+      <path d="M44 360 L814 292 L824 600 L60 620 Z" fill="#6E9B34"/>
+      <path d="M44 430 L818 362 L822 470 L52 540 Z" fill="#8CB84A" opacity=".55"/>
+      <path d="M50 520 L820 452 L824 620 L56 620 Z" fill="#4A6E22" opacity=".7"/>
+    </g>
+    <path d="M112 570 L788 484 L742 540 C 700 566 640 576 594 572 Z" fill="#B7AB90"/>
+    <path d="M594 572 C 662 580 722 560 762 520 L788 484 Z" fill="#F1EADA"/>
+    <path d="M58 104 L738 44 L788 484 L112 570 Z" fill="none" stroke="#8E8268" stroke-width="4" opacity=".55"/>
+  </symbol>
+
+  <!-- іскра-зірка з референсу «Стратосфера» -->
+  <symbol id="sparkle" viewBox="0 0 60 60">
+    <path d="M30 2 C 32 20, 40 28, 58 30 C 40 32, 32 40, 30 58 C 28 40, 20 32, 2 30 C 20 28, 28 20, 30 2 Z"/>
+  </symbol>
+
+  <!-- гілочка польової трави замість плюща з другого референсу -->
+  <symbol id="sprig" viewBox="0 0 200 220">
+    <g fill="none" stroke="#6E8B48" stroke-width="4" stroke-linecap="round">
+      <path d="M28 214 C 60 170, 84 122, 96 56"/>
+    </g>
+    <g fill="#7E9A54">
+      <path d="M96 60 C 108 34, 130 20, 152 20 C 146 46, 124 62, 98 66 Z"/>
+      <path d="M88 96 C 70 78, 46 72, 26 80 C 40 102, 66 110, 90 102 Z" fill="#8FA95F"/>
+      <path d="M80 130 C 96 106, 122 94, 144 98 C 132 122, 106 136, 82 136 Z"/>
+      <path d="M64 166 C 46 152, 22 148, 4 158 C 20 178, 46 184, 68 172 Z" fill="#8FA95F"/>
+      <path d="M50 196 C 66 178, 90 170, 110 176 C 96 196, 72 206, 52 202 Z" opacity=".85"/>
+    </g>
+    <g fill="#C9A24A" opacity=".9">
+      <circle cx="152" cy="20" r="5"/><circle cx="144" cy="98" r="4"/><circle cx="110" cy="176" r="4"/>
+    </g>
+  </symbol>
+</defs></svg>
+
+<div class="bar"><div class="bar-in">
+  <h1>Пастель · перші три блоки · за референсами</h1>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-v="N">N · Ніч</button>
+    <button role="tab" aria-selected="false" data-v="D">D · Світанок</button>
+  </div>
+</div></div>
+
+<p class="hint" id="hint"></p>
+
+<div class="stage">
+
+<!-- ============================================================
+     N — НІЧ  (референс «Стратосфера»)
+     ============================================================ -->
+<div class="pane on" data-pane="N"><div class="phone vN">
+  <div class="sky" aria-hidden="true">
+    <div class="neb neb1"></div><div class="neb neb2"></div><div class="neb neb3"></div>
+    <svg class="stars" viewBox="0 0 400 1400" preserveAspectRatio="xMidYMid slice">
+      <g fill="#E8ECFA">
+        <circle cx="34" cy="72" r="1.6" opacity=".8"/><circle cx="118" cy="40" r="1.1" opacity=".55"/>
+        <circle cx="212" cy="96" r="1.4" opacity=".7"/><circle cx="318" cy="58" r="1" opacity=".5"/>
+        <circle cx="372" cy="140" r="1.7" opacity=".85"/><circle cx="66" cy="188" r="1.2" opacity=".6"/>
+        <circle cx="158" cy="226" r="1.5" opacity=".75"/><circle cx="286" cy="204" r="1" opacity=".45"/>
+        <circle cx="24" cy="308" r="1.3" opacity=".65"/><circle cx="132" cy="352" r="1" opacity=".5"/>
+        <circle cx="248" cy="330" r="1.6" opacity=".8"/><circle cx="356" cy="392" r="1.2" opacity=".6"/>
+        <circle cx="88" cy="452" r="1.4" opacity=".7"/><circle cx="196" cy="486" r="1" opacity=".45"/>
+        <circle cx="302" cy="510" r="1.5" opacity=".75"/><circle cx="42" cy="566" r="1.1" opacity=".55"/>
+        <circle cx="164" cy="612" r="1.6" opacity=".8"/><circle cx="272" cy="648" r="1.2" opacity=".6"/>
+        <circle cx="378" cy="690" r="1" opacity=".45"/><circle cx="72" cy="726" r="1.5" opacity=".75"/>
+        <circle cx="188" cy="768" r="1.1" opacity=".55"/><circle cx="308" cy="812" r="1.6" opacity=".8"/>
+        <circle cx="28" cy="860" r="1.2" opacity=".6"/><circle cx="146" cy="902" r="1" opacity=".45"/>
+        <circle cx="262" cy="944" r="1.5" opacity=".75"/><circle cx="366" cy="986" r="1.1" opacity=".55"/>
+        <circle cx="96" cy="1028" r="1.6" opacity=".8"/><circle cx="216" cy="1070" r="1.2" opacity=".6"/>
+        <circle cx="330" cy="1112" r="1" opacity=".45"/><circle cx="54" cy="1156" r="1.5" opacity=".75"/>
+        <circle cx="176" cy="1198" r="1.1" opacity=".55"/><circle cx="292" cy="1240" r="1.6" opacity=".8"/>
+        <circle cx="384" cy="1288" r="1.2" opacity=".6"/><circle cx="118" cy="1330" r="1.4" opacity=".7"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 1. ПЕРШИЙ ЕКРАН -->
+  <header class="hero">
+    <span class="badge"><i></i>5 уроків + бонусний · старт завтра</span>
+    <h1>
+      <span class="kicker">Авторський міні-курс Олени Кулик Діріл</span>
+      <span class="metal">Атмосферний<br>пейзаж</span>
+      <span class="script">пастеллю</span>
+    </h1>
+    <p class="h1sub">Ваша перша картина <b>за 60 хвилин</b> — навіть якщо ви ніколи не тримали пастель у руках.</p>
+
+    <div class="frame">
+      <svg class="sp" viewBox="0 0 60 60" style="width:26px;left:-12px;top:16%" aria-hidden="true"><use href="#sparkle"/></svg>
+      <svg class="sp" viewBox="0 0 60 60" style="width:16px;right:-6px;top:6%;animation-delay:1.1s" aria-hidden="true"><use href="#sparkle"/></svg>
+      <svg class="sp" viewBox="0 0 60 60" style="width:20px;right:14%;bottom:-4%;animation-delay:2.2s" aria-hidden="true"><use href="#sparkle"/></svg>
+      <div class="in">
+        <img src="assets/painting.jpg" alt="Атмосферний пейзаж пастеллю: поле, смуга дерев і небо з хмарами" width="1000" height="748" fetchpriority="high" decoding="async">
+      </div>
+      <span class="tag">Поле і небо · суха пастель</span>
+    </div>
+
+    <div class="tiles">
+      <div class="tile"><b>05</b><span>уроків<br>+ бонусний</span></div>
+      <div class="tile"><b>60</b><span>хвилин<br>на картину</span></div>
+      <div class="tile"><b>12</b><span>місяців<br>доступу</span></div>
+    </div>
+
+    <div class="price">
+      <span class="pn">390<i>грн</i></span>
+      <span class="po">2390 грн</span>
+      <span class="pd">−84%</span>
+    </div>
+    <a class="cta" href="#">Забрати міні-курс</a>
+    <p class="micro">Після оплати ви одразу потрапите в Telegram-бот. Перший урок прийде наступного ранку.</p>
+    <div class="clock"><span class="v" data-timer>10:00</span><span class="l">до кінця<br>спецпропозиції</span></div>
+  </header>
+
+  <!-- 2. БОНУСИ -->
+  <section class="sec sec-2">
+    <h2>
+      <span class="h2big">Заберіть до кінця таймера</span>
+      <span class="h2script">і отримайте 2 бонуси</span>
+    </h2>
+
+    <article class="glass">
+      <span class="ring" aria-hidden="true">🎁</span>
+      <span class="k">Бонус 1 · PDF</span>
+      <h3>Список матеріалів під три бюджети</h3>
+      <p>Точний перелік того, що купити: набір сухої пастелі, папір потрібного відтінку, клячка. Три варіанти під різний бюджет — від найдешевшого стартового набору до якісного, з яким працюю я сама. З назвами брендів, орієнтовними цінами й поясненням, за що тут варто доплатити, а за що ні.</p>
+      <p class="res"><b>Результат:</b> ви заходите в художній магазин зі списком у телефоні й виходите за 10 хвилин рівно з тим, що потрібно для цієї картини — без зайвого набору на кілька тисяч, який потім лежатиме без діла.</p>
+    </article>
+
+    <article class="glass">
+      <span class="ring" aria-hidden="true">🖼</span>
+      <span class="k">Бонус 2 · PDF</span>
+      <h3>Гайд «Як оформити картину пастеллю»</h3>
+      <p>Як підібрати рамку під розмір і колір роботи, навіщо між склом і пастеллю потрібен зазор, скільки це коштує в готовому варіанті й коли справді є сенс іти в багетну майстерню. Тут же — порада, яку свого часу дав мені мистецтвознавець із понад 40-річним досвідом.</p>
+      <p class="res"><b>Результат:</b> ваша робота висить на стіні в рамці й виглядає як картина з галереї, а не як аркуш паперу, прикріплений скотчем.</p>
+    </article>
+
+    <p class="note">Обидва бонуси зникають разом із таймером — далі міні-курс продається без них.</p>
+    <div style="text-align:center"><div class="clock"><span class="v" data-timer>10:00</span><span class="l">бонуси<br>зникають</span></div></div>
+    <a class="cta" href="#">Забрати курс і 2 бонуси</a>
+    <p class="micro" style="text-align:center">🔒 Безпечна оплата · 💰 Гарантія 14 днів</p>
+  </section>
+
+  <!-- 3. ЧОМУ САМЕ ЦЯ КАРТИНА -->
+  <section class="sec">
+    <svg class="obj stickN" viewBox="0 0 220 780" aria-hidden="true"><use href="#objStick"/></svg>
+    <h2>
+      <span class="h2big">У цьому пейзажі немає нічого,<br>що можна намалювати</span>
+      <span class="h2script">неправильно</span>
+    </h2>
+    <p class="lead">Більшість людей кидають малювання на першій же роботі — не тому, що не мають здібностей. А тому, що відразу намагаються зробити картину «правильною».</p>
+    <p class="lead"><span class="hl">І саме тут зʼявляється страх: а раптом я зіпсую?</span></p>
+    <p class="lead">В атмосферному пейзажі цьому страху немає за що зачепитися. Поле не буває неправильним: воно буває світлішим, темнішим, більш жовтим або більш зеленим — і <b>будь-який ваш варіант лишається полем</b>.</p>
+
+    <div class="sheetN">
+      <svg class="obj" viewBox="0 0 820 620" aria-hidden="true"><use href="#objSheet"/></svg>
+    </div>
+
+    <div class="grid4">
+      <div class="cell"><span class="n">01</span><h3>Немає малюнка олівцем</h3><p>Ви не будуєте композицію і не вимірюєте пропорції. Крейду берете з першої хвилини.</p></div>
+      <div class="cell"><span class="n">02</span><h3>Немає дрібних деталей</h3><p>Дерева — однією темною масою, хмари — боковою стороною крейди. Виписувати нічого.</p></div>
+      <div class="cell"><span class="n">03</span><h3>Не треба один в один</h3><p>Ваша робота може мати власні відтінки й власний настрій.</p></div>
+      <div class="cell"><span class="n">04</span><h3>Невеликий формат</h3><p>Аркуш поміщається на кухонному столі й закривається за один сеанс.</p></div>
+    </div>
+
+    <div class="closing">
+      <p>І при цьому робота не виглядає як навчальна вправа. Це закінчений пейзаж, який вішають у вітальні й показують гостям.</p>
+      <p>доступний сюжет — це половина справи</p>
+    </div>
+  </section>
+
+  <div class="sticky">
+    <span class="n">390 грн</span><span class="o">2390 грн</span>
+    <a href="#">Забрати</a>
+  </div>
+</div></div>
+
+<!-- ============================================================
+     D — СВІТАНОК  (референс beauty-курсу)
+     ============================================================ -->
+<div class="pane" data-pane="D"><div class="phone vD">
+
+  <!-- 1. ПЕРШИЙ ЕКРАН -->
+  <header class="hero">
+    <div class="clouds" aria-hidden="true"><img src="assets/sky-soft.jpg" alt="" width="900" height="470"></div>
+    <div class="veil" aria-hidden="true"></div>
+    <svg class="obj sprig a" viewBox="0 0 200 220" aria-hidden="true"><use href="#sprig"/></svg>
+    <svg class="obj sprig b" viewBox="0 0 200 220" aria-hidden="true"><use href="#sprig"/></svg>
+    <span class="mote" style="width:5px;height:5px;left:22%;top:24%"></span>
+    <span class="mote" style="width:3px;height:3px;left:72%;top:16%;animation-delay:1.6s"></span>
+    <span class="mote" style="width:4px;height:4px;left:58%;top:38%;animation-delay:3.1s"></span>
+
+    <span class="badge">5 уроків + бонусний · старт завтра</span>
+    <h1>
+      <span class="h1a">Намалюйте свою першу</span>
+      <span class="h1b">картину пастеллю</span>
+      <span class="h1a">за 60 хвилин</span>
+    </h1>
+    <div class="rule"><span></span></div>
+    <p class="h1sub">Поле, небо і смуга дерев між ними. Тут немає жодного обʼєкта, який <b>треба вміти малювати</b>.</p>
+
+    <div class="work">
+      <div class="mat">
+        <img src="assets/painting.jpg" alt="Атмосферний пейзаж пастеллю: поле, смуга дерев і небо з хмарами" width="1000" height="748" fetchpriority="high" decoding="async">
+      </div>
+      <span class="sign">Олена Кулик Діріл</span>
+      <svg class="obj sprig" viewBox="0 0 200 220" aria-hidden="true"><use href="#sprig"/></svg>
+    </div>
+
+    <ul class="checks">
+      <li><span class="d" aria-hidden="true"></span><span>Без складної теорії та <b>дорогих матеріалів</b></span></li>
+      <li><span class="d" aria-hidden="true"></span><span>Без страху зробити <b>«неправильно»</b></span></li>
+      <li><span class="d" aria-hidden="true"></span><span>Навіть якщо <b>ніколи не тримали пастель</b> у руках</span></li>
+    </ul>
+
+    <div class="price">
+      <span class="pn">390<i>грн</i></span>
+      <span class="po">2390 грн</span>
+      <span class="pd">−84%</span>
+    </div>
+    <a class="cta" href="#">Забрати міні-курс за 390 грн</a>
+    <p class="micro">Після оплати ви одразу потрапите в Telegram-бот. Перший урок прийде наступного ранку.</p>
+
+    <div class="count">
+      <div class="b"><span class="v" data-min>10</span><span class="l">хвилин</span></div>
+      <div class="b"><span class="v" data-sec>00</span><span class="l">секунд</span></div>
+    </div>
+    <p class="countcap">до кінця спецпропозиції</p>
+  </header>
+
+  <!-- 2. БОНУСИ -->
+  <section class="sec sec-2">
+    <svg class="obj sprig c" viewBox="0 0 200 220" aria-hidden="true"><use href="#sprig"/></svg>
+    <span class="plate">До кінця таймера</span>
+    <h2>
+      <span class="h2a">Заберіть міні-курс і отримайте</span>
+      <span class="h2b">два бонуси</span>
+    </h2>
+    <div class="rule"><span></span></div>
+
+    <article class="card">
+      <span class="num">01</span>
+      <span class="k">Бонус · PDF</span>
+      <h3>Список матеріалів під три бюджети</h3>
+      <p>Точний перелік того, що купити: набір сухої пастелі, папір потрібного відтінку, клячка. Три варіанти під різний бюджет — від найдешевшого стартового набору до якісного, з яким працюю я сама. З назвами брендів, орієнтовними цінами й поясненням, за що тут варто доплатити, а за що ні.</p>
+      <p class="res"><b>Результат:</b> ви заходите в художній магазин зі списком у телефоні й виходите за 10 хвилин рівно з тим, що потрібно для цієї картини — без зайвого набору на кілька тисяч, який потім лежатиме без діла.</p>
+    </article>
+
+    <article class="card">
+      <span class="num">02</span>
+      <span class="k">Бонус · PDF</span>
+      <h3>Гайд «Як оформити картину пастеллю»</h3>
+      <p>Як підібрати рамку під розмір і колір роботи, навіщо між склом і пастеллю потрібен зазор, скільки це коштує в готовому варіанті й коли справді є сенс іти в багетну майстерню. Тут же — порада, яку свого часу дав мені мистецтвознавець із понад 40-річним досвідом.</p>
+      <p class="res"><b>Результат:</b> ваша робота висить на стіні в рамці й виглядає як картина з галереї, а не як аркуш паперу, прикріплений скотчем.</p>
+    </article>
+
+    <p class="note">Обидва бонуси зникають разом із таймером — далі міні-курс продається без них.</p>
+    <div class="count">
+      <div class="b"><span class="v" data-min>10</span><span class="l">хвилин</span></div>
+      <div class="b"><span class="v" data-sec>00</span><span class="l">секунд</span></div>
+    </div>
+    <a class="cta" href="#">Забрати курс і два бонуси</a>
+    <p class="micro" style="text-align:center">Безпечна оплата · Гарантія повернення 14 днів</p>
+  </section>
+
+  <!-- 3. ЧОМУ САМЕ ЦЯ КАРТИНА -->
+  <section class="sec">
+    <span class="plate">Про сюжет</span>
+    <h2>
+      <span class="h2a">У цьому пейзажі немає нічого,<br>що можна намалювати</span>
+      <span class="h2b">неправильно</span>
+    </h2>
+    <div class="rule"><span></span></div>
+
+    <p class="lead">Більшість людей кидають малювання на першій же роботі — не тому, що не мають здібностей. А тому, що відразу намагаються зробити картину «правильною».</p>
+
+    <div class="paths">
+      <div>
+        <span class="t">Як зазвичай</span>
+        <p>Щоб кожна лінія була точною. Щоб кольори поєднувалися без помилки. Щоб результат одразу був схожий на задум. І саме тут зʼявляється страх: а раптом я зіпсую?</p>
+      </div>
+      <div>
+        <span class="t g">Тут</span>
+        <p>Поле не буває неправильним: воно буває світлішим, темнішим, більш жовтим або більш зеленим — і будь-який ваш варіант лишається полем.</p>
+      </div>
+    </div>
+
+    <div class="sheetD">
+      <svg class="obj" viewBox="0 0 820 620" aria-hidden="true"><use href="#objSheet"/></svg>
+    </div>
+
+    <ul class="facts">
+      <li><span class="r">01</span><div><h3>Тут немає малюнка олівцем</h3><p>Ви не будуєте композицію і не вимірюєте пропорції. На аркуші дві великі площини — небо і поле — та смуга дерев між ними. Крейду ви берете з першої хвилини.</p></div></li>
+      <li><span class="r">02</span><div><h3>Тут немає дрібних деталей</h3><p>Смуга дерев пишеться однією темною масою, трава — кількома рухами, хмари — боковою стороною крейди. Виписувати тут просто нічого.</p></div></li>
+      <li><span class="r">03</span><div><h3>Тут не треба повторювати картину один в один</h3><p>Ви вчитеся передавати колір, світло й повітря, але ваша робота може мати власні відтінки й власний настрій.</p></div></li>
+      <li><span class="r">04</span><div><h3>Тут невеликий формат</h3><p>Аркуш поміщається на кухонному столі й закривається за один сеанс. Великий формат лякає саме тим, що його треба чимось заповнити.</p></div></li>
+    </ul>
+
+    <div class="closing">
+      <p>І при цьому робота не виглядає як навчальна вправа. Це закінчений пейзаж, який вішають у вітальні й показують гостям.</p>
+      <p>доступний сюжет — це половина справи</p>
+    </div>
+  </section>
+
+  <div class="sticky">
+    <span class="n">390 грн</span><span class="o">2390 грн</span>
+    <a href="#">Забрати</a>
+  </div>
+</div></div>
+
+</div><!-- /stage -->
+
+<script>
+var HINTS = {
+  N: '<b>N · Ніч</b> — за референсом «Стратосфера». Майже чорний індиго з фіолетовими свіченнями і зорями, металевий градієнт на заголовку, скрипт-акцент, золоті кнопки-пігулки, темні скляні картки й фіолетові плитки з цифрами. Замість космосу — нічне небо: сюжет курсу це небо і є, а картина світиться в центрі як головний обʼєкт.',
+  D: '<b>D · Світанок</b> — за референсом beauty-курсу. Хмарний фон зроблений із неба самої картини, золоті акценти й кнопки, розрядка в заголовках, скрипт золотом, білі картки з мʼякою тінню, таймер великими блоками. Замість плюща по кутах — гілки польової трави.'
+};
+var hint = document.getElementById('hint');
+var tabs = document.querySelectorAll('.tabs button');
+function show(v){
+  tabs.forEach(function(b){ b.setAttribute('aria-selected', String(b.dataset.v === v)); });
+  document.querySelectorAll('.pane').forEach(function(p){ p.classList.toggle('on', p.dataset.pane === v); });
+  hint.innerHTML = HINTS[v];
+  window.scrollTo({top:0});
+}
+tabs.forEach(function(b){ b.addEventListener('click', function(){ show(b.dataset.v); }); });
+show('N');
+
+var left = 600;
+setInterval(function(){
+  if(left > 0) left--;
+  var m = String(Math.floor(left/60)).padStart(2,'0'), s = String(left%60).padStart(2,'0');
+  document.querySelectorAll('[data-timer]').forEach(function(el){ el.textContent = m + ':' + s; });
+  document.querySelectorAll('[data-min]').forEach(function(el){ el.textContent = m; });
+  document.querySelectorAll('[data-sec]').forEach(function(el){ el.textContent = s; });
+}, 1000);
+</script>
+</body>
+</html>

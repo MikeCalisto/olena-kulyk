@@ -10,3 +10,9 @@ copy_edits.py
 pixel.py
 промты/
 CLAUDE.md
+
+# концепт нового курсу: службові файли й архів попередніх напрямків
+pastel-concept/prepare_elements.py
+pastel-concept/build_inline.py
+pastel-concept/preview-inline.html
+pastel-concept/napryamky-*.html

@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Атмосферний пейзаж пастеллю</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ==================================================================
+   МІНІ-КУРС «АТМОСФЕРНИЙ ПЕЙЗАЖ ПАСТЕЛЛЮ» — блоки 1–3.
+   Концепт, не деплоїться, noindex.
+
+   Ідея: уся сторінка — аркуш фактурного паперу для пастелі. Усі
+   акценти зроблені матеріалом курсу: мазки крейди й самі крейди.
+   Жодних градієнтних кнопок, скляних карток і світінь — тільки
+   папір, пігмент і чорнило.
+
+   ПРО ЕЛЕМЕНТИ: мазки й крейди — згенеровані картинки з альфою,
+   підготовлені скриптом prepare_elements.py із сирців у папці `пастель/`.
+   Папір з-під мазка прибраний, а «зуб» усередині лишився дірками — крізь
+   них видно фактуру самої сторінки, тому blend-режими не потрібні.
+   ================================================================== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Jost',-apple-system,'SF Pro Display','Helvetica Neue',Arial,sans-serif;background:#2A2C2E;color:#21262B;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid #2F4BA0;outline-offset:3px}
+
+.phone{--paper:#FCFAF6;--paper2:#F5F1E9;--ink:#21262B;--ink2:#525C66;--muted:#8A939C;--line:#E3DCCC;
+  --blue:#2F4BA0;--blue-d:#243B80;--sky:#B9D2E4;--teal:#6FA1A7;--green:#6E9B34;--tree:#33501E;--rust:#A85228;
+  max-width:480px;margin:0 auto;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);
+  box-shadow:0 0 70px rgba(0,0,0,.4)}
+
+/* ---------- фактура паперу ----------
+   Два шари: великий «зуб» холодного пресування і дрібне волокно.
+   Обидва — feDiffuseLighting, тому папір читається рельєфом, а не
+   сірим шумом. Накладаються через multiply, щоб не гасити білизну. */
+.phone::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:multiply;opacity:.34;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='11'/%3E%3CfeDiffuseLighting lighting-color='%23ffffff' surfaceScale='1.1'%3E%3CfeDistantLight azimuth='228' elevation='62'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23t)'/%3E%3C/svg%3E");
+  background-size:260px 260px}
+.phone::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;mix-blend-mode:multiply;opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.4' numOctaves='1' seed='3'/%3E%3CfeDiffuseLighting lighting-color='%23ffffff' surfaceScale='.7'%3E%3CfeDistantLight azimuth='250' elevation='68'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size:150px 150px}
+.phone>*{position:relative;z-index:2}
+
+/* мазки й крейди */
+.el{display:block;max-width:none;height:auto;pointer-events:none}
+
+/* ---------- перший екран ---------- */
+.hero{padding:26px 22px 42px}
+.badge{display:inline-flex;align-items:center;gap:9px;border:1.5px solid var(--ink);padding:8px 15px;font-size:.66rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;line-height:1.2}
+.badge i{font-style:normal;width:7px;height:7px;background:var(--rust);border-radius:50%}
+
+h1{margin:26px 0 0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,7.6vw,2.35rem);line-height:1.02;letter-spacing:-.038em}
+h1 span{display:block}
+.swept{position:relative;display:inline-block;padding:0 8px}
+.swept .el{position:absolute;left:-7%;width:114%;top:56%;translate:0 -50%;z-index:0}
+.swept span{position:relative;z-index:1}
+.lede{margin-top:22px;font-size:1.04rem;line-height:1.58;color:var(--ink2);max-width:24em}
+.lede b{color:var(--ink);font-weight:600}
+
+/* робота лежить на папері, крейда — поперек кута */
+.plate{position:relative;margin:34px 4px 0}
+.plate .sheet{background:#fff;padding:10px 10px 11px;box-shadow:0 18px 34px rgba(33,38,43,.16),0 2px 4px rgba(33,38,43,.08);transform:rotate(-1.4deg)}
+.plate .sheet img{width:100%;aspect-ratio:1000/748;object-fit:cover}
+.plate .stick{position:absolute;right:-16px;top:-30px;width:150px;z-index:4;rotate:19deg;filter:drop-shadow(0 8px 12px rgba(33,38,43,.28))}
+.plate .cap{margin-top:16px;display:flex;justify-content:space-between;gap:14px;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+.checks{list-style:none;margin:38px 0 0;display:flex;flex-direction:column;gap:16px}
+.checks li{display:flex;gap:14px;align-items:flex-start;font-size:1rem;line-height:1.5;color:var(--ink2)}
+.checks .dash{flex:0 0 46px;height:17px;margin-top:4px}
+.checks b{color:var(--ink);font-weight:700}
+
+.price{display:flex;align-items:flex-end;gap:13px;margin:38px 0 0;padding-bottom:16px;border-bottom:1.5px solid var(--ink)}
+.pn{font-size:3.3rem;font-weight:900;letter-spacing:-.055em;line-height:.84}
+.pn i{font-style:normal;font-size:1rem;font-weight:600;letter-spacing:0;margin-left:5px;color:var(--ink2)}
+.po{font-size:1.05rem;color:var(--muted);text-decoration:line-through;padding-bottom:5px}
+.pd{margin-left:auto;padding-bottom:5px;font-size:.85rem;font-weight:800;letter-spacing:.04em;color:var(--rust)}
+.cta{display:block;width:100%;margin-top:24px;padding:20px;background:var(--blue);color:#FAF7F1;text-align:center;font-family:inherit;font-size:.9rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;border:none;cursor:pointer;box-shadow:0 9px 20px rgba(33,38,43,.2);transition:background .22s,transform .18s,box-shadow .18s}
+.cta:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 13px 26px rgba(33,38,43,.26)}
+.micro{margin-top:16px;font-size:.88rem;line-height:1.55;color:var(--muted)}
+.timer{margin-top:26px;display:flex;align-items:center;gap:14px}
+.timer .v{font-size:2rem;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1;color:var(--rust)}
+.timer .l{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);line-height:1.35}
+
+/* ---------- роздільник-мазок ---------- */
+.divider{position:relative;height:62px;overflow:hidden}
+.divider .el{position:absolute;left:-14%;width:128%;top:50%;translate:0 -50%}
+.divider.flip .el{scale:-1 1}
+
+/* ---------- секції ---------- */
+.sec{padding:46px 22px 52px;position:relative}
+.sec-2{background:var(--paper2)}
+h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8vw,2rem);line-height:1.02;letter-spacing:-.038em;text-wrap:balance}
+.lead{margin-top:20px;font-size:1.02rem;line-height:1.66;color:var(--ink2)}
+.lead+.lead{margin-top:15px}
+.lead b{color:var(--ink);font-weight:600}
+
+/* картки бонусів: аркуш ліворуч, короткий перелік праворуч.
+   Довгий текст «навіщо це» ховається під розкриття — на екрані має лишатися
+   те, що читають очима, а не абзац. */
+.bcard{position:relative;display:flex;gap:15px;margin-top:22px;background:#fff;padding:18px 17px 16px;
+  box-shadow:0 14px 28px rgba(33,38,43,.12),0 2px 4px rgba(33,38,43,.06)}
+.bcard.a{transform:rotate(-.5deg)}
+.bcard.b{transform:rotate(.45deg)}
+.pdf{flex:0 0 92px;position:relative;align-self:flex-start;display:grid;place-items:center}
+.pdf img{width:100%;height:auto;filter:drop-shadow(0 8px 14px rgba(33,38,43,.22))}
+.pdf .tag{position:absolute;left:-6px;bottom:-4px;background:var(--ink);color:var(--paper);
+  font-size:.52rem;font-weight:800;letter-spacing:.16em;padding:4px 6px}
+.bcol{flex:1;min-width:0}
+.bcard .k{font-size:.63rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.bcard h3{margin:7px 0 11px;font-size:1.04rem;font-weight:800;line-height:1.24;letter-spacing:-.02em}
+.blist{list-style:none;display:flex;flex-direction:column;gap:7px}
+.blist li{position:relative;padding-left:15px;font-size:.89rem;line-height:1.42;color:var(--ink2)}
+.blist li::before{content:'';position:absolute;left:0;top:.55em;width:7px;height:2px;background:var(--muted)}
+.why{margin-top:13px;padding-top:12px;border-top:1.5px solid var(--line)}
+.why summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  font-size:.66rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--blue)}
+.why summary::-webkit-details-marker{display:none}
+.why summary i{font-style:normal;flex:0 0 16px;width:16px;height:16px;position:relative;border:1.5px solid var(--blue)}
+.why summary i::before,.why summary i::after{content:'';position:absolute;left:50%;top:50%;translate:-50% -50%;background:var(--blue)}
+.why summary i::before{width:8px;height:1.5px}
+.why summary i::after{width:1.5px;height:8px;transition:opacity .2s}
+.why[open] summary i::after{opacity:0}
+.why p{margin-top:11px;font-size:.9rem;line-height:1.55;color:var(--ink2)}
+.note{margin-top:26px;font-size:.98rem;line-height:1.55;color:var(--ink2);font-weight:600;text-wrap:balance}
+
+/* анатомія аркуша — три смуги з підписами */
+.anat{position:relative;margin:30px -6px 0}
+.anat .el{width:100%}
+.anat .lb{position:absolute;right:6px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);background:rgba(250,247,241,.86);padding:3px 7px}
+.anat .lb.s{top:17%}
+.anat .lb.t{top:45%}
+.anat .lb.f{top:73%}
+
+.points{list-style:none;margin:32px 0 0}
+.points li{padding:22px 0;border-bottom:1.5px solid var(--line);display:flex;gap:16px}
+.points li:first-child{border-top:1.5px solid var(--line)}
+.points .dash{flex:0 0 48px;height:18px;margin-top:5px}
+.points h3{font-size:1.04rem;font-weight:800;line-height:1.26;letter-spacing:-.02em;margin-bottom:7px}
+.points p{font-size:.95rem;line-height:1.58;color:var(--ink2)}
+
+.broken{position:relative;margin:34px auto 0;width:78%}
+.broken .el{width:100%;filter:drop-shadow(0 10px 16px rgba(33,38,43,.22))}
+.closing{margin-top:34px;padding-top:24px;border-top:1.5px solid var(--ink)}
+.closing p{font-size:1.02rem;line-height:1.64}
+.closing p+p{margin-top:14px;font-weight:700}
+
+/* ---------- темна секція: та сама сторінка, але грифельна ---------- */
+.sec-ink{background:var(--ink);color:var(--paper)}
+.sec-ink h2,.sec-ink h3{color:#fff}
+.sec-ink .lead,.sec-ink p{color:#C3CAD2}
+.sec-ink .lead b,.sec-ink b{color:#fff}
+.sec-ink .cta{background:var(--paper);color:var(--ink)}
+.sec-ink .cta:hover{background:#fff}
+.sec-ink .micro{color:#8E979F}
+.sec-ink .timer .v{color:#E8A277}
+.sec-ink .timer .l{color:#8E979F}
+.sec-ink hr,.sec-ink .rows li,.sec-ink .ticks li{border-color:rgba(252,250,246,.16)}
+
+/* ---------- нумерований перелік на волосяних лінійках ---------- */
+.rows{list-style:none;margin:30px 0 0;counter-reset:r}
+.rows li{display:flex;gap:15px;padding:20px 0;border-bottom:1.5px solid var(--line)}
+.rows li:first-child{border-top:1.5px solid var(--line)}
+.rows .n{flex:0 0 30px;font-size:.74rem;font-weight:800;letter-spacing:.1em;color:var(--blue);padding-top:4px;font-variant-numeric:tabular-nums}
+.sec-ink .rows .n{color:#9FB6E4}
+.rows h3{font-size:1.02rem;font-weight:800;line-height:1.26;letter-spacing:-.02em;margin-bottom:6px}
+.rows p{font-size:.93rem;line-height:1.56;color:var(--ink2)}
+
+/* ---------- акордеон: програма і FAQ ---------- */
+.acc{margin-top:26px}
+.acc details{border-bottom:1.5px solid var(--line)}
+.acc details:first-of-type{border-top:1.5px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer}
+.acc summary::-webkit-details-marker{display:none}
+.acc .sw{flex:0 0 40px;height:15px;margin-top:4px}
+.acc .ttl{flex:1;min-width:0}
+.acc .no{display:block;font-size:.62rem;font-weight:800;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.acc h3{font-size:1rem;font-weight:800;line-height:1.28;letter-spacing:-.02em}
+.acc .pm{flex:0 0 18px;width:18px;height:18px;position:relative;margin-top:6px;border:1.5px solid var(--ink);transition:rotate .2s}
+.acc .pm::before,.acc .pm::after{content:'';position:absolute;left:50%;top:50%;translate:-50% -50%;background:var(--ink)}
+.acc .pm::before{width:9px;height:1.5px}
+.acc .pm::after{width:1.5px;height:9px;transition:opacity .2s}
+.acc details[open] .pm::after{opacity:0}
+.acc .body{padding:0 0 20px 54px}
+.acc .body ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.acc .body li{position:relative;padding-left:15px;font-size:.92rem;line-height:1.5;color:var(--ink2)}
+.acc .body li::before{content:'';position:absolute;left:0;top:.6em;width:7px;height:2px;background:var(--muted)}
+.acc .res{margin-top:14px;padding-top:13px;border-top:1.5px solid var(--line);font-size:.92rem;line-height:1.55;color:var(--ink2)}
+.acc .res b{color:var(--ink);font-weight:700}
+.acc.faq h3{font-size:.98rem;font-weight:700}
+.acc.faq .body{padding:0 0 18px 0}
+.acc.faq .body p{font-size:.94rem;line-height:1.6;color:var(--ink2)}
+.acc.faq .body p+p{margin-top:11px}
+
+/* стос тонованого паперу — блок про страх білого аркуша */
+.paperstack{margin:30px auto 0;width:66%;text-align:center}
+.paperstack img{width:100%;filter:drop-shadow(0 14px 22px rgba(33,38,43,.2))}
+.paperstack figcaption{margin-top:16px;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* три способи покласти колір — усередині уроку 2 */
+.ways{display:flex;gap:10px;margin-top:16px}
+.ways span{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:9px}
+.ways img{width:100%;height:auto}
+.ways span:nth-child(2) img{width:74%}
+.ways b{font-size:.6rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+/* предмет збоку від тексту — щоб абзац не стояв суцільною стіною */
+.objrow{display:flex;gap:16px;align-items:center;margin:28px 0 0}
+.objrow .objart{flex:0 0 44%;position:relative}
+.objrow .objart img{width:120%;max-width:none;height:auto;margin-left:-20%}
+.objrow.rev{flex-direction:row-reverse}
+.objrow.rev .objart img{margin-left:0;margin-right:-20%}
+.objrow .objtx{flex:1;min-width:0}
+.objrow .objtx .lead{margin-top:0;font-size:.95rem;line-height:1.56}
+
+/* велика фраза-цитата між абзацами */
+.pull{margin:32px 0;padding:24px 0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  text-align:center;font-size:clamp(1.35rem,5.8vw,1.75rem);font-weight:300;line-height:1.18;letter-spacing:-.02em}
+
+/* більший таймер */
+.timer.big .v{font-size:3.1rem;letter-spacing:-.045em}
+.timer.big .l{font-size:.72rem}
+
+/* замість номерів у переліках — свій елемент на кожен пункт */
+.rows.icons li{align-items:flex-start}
+.rows.icons .n{flex:0 0 46px;padding-top:0}
+.rows.icons .ic{width:46px;height:auto;display:block}
+.rows.icons .slot{display:block;width:46px;aspect-ratio:1;
+  background:repeating-linear-gradient(135deg,var(--paper2) 0 7px,var(--paper) 7px 14px);border:1px solid var(--line)}
+.sec-2 .rows.icons .slot{background:repeating-linear-gradient(135deg,#EDE8DC 0 7px,var(--paper2) 7px 14px)}
+
+/* відеокадр з уроку над кожним уроком у програмі */
+.acc summary{display:block;padding:0}
+.acc .vid{display:block;aspect-ratio:16/9;margin:18px 0 15px;
+  background:repeating-linear-gradient(135deg,var(--paper2) 0 9px,var(--paper) 9px 18px);border:1px solid var(--line);
+  display:grid;place-items:center;text-align:center;font-size:.64rem;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);line-height:1.5}
+.acc .vid b{display:block;font-size:1.4rem;margin-bottom:6px;letter-spacing:0}
+.acc .srow{display:flex;align-items:flex-start;gap:14px;padding-bottom:19px}
+.acc.faq summary{padding:0}
+.acc.faq .srow{padding:17px 0}
+
+/* ---------- чекліст із крейдяною галочкою ---------- */
+.ticks{list-style:none;margin:28px 0 0}
+.ticks li{display:flex;gap:14px;padding:15px 0;border-bottom:1.5px solid var(--line);font-size:.97rem;line-height:1.5;color:var(--ink2)}
+.ticks li:first-child{border-top:1.5px solid var(--line)}
+.ticks .tk{flex:0 0 30px;width:30px;height:auto;margin-top:0}
+.ticks b{color:var(--ink);font-weight:700}
+.sec-ink .ticks li{color:#C3CAD2}
+.sec-ink .ticks b{color:#fff}
+
+/* ---------- карусель робіт і відгуків ---------- */
+.rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;margin:26px -22px 0;padding:0 22px 14px}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{flex:0 0 auto;scroll-snap-align:start;content-visibility:auto}
+.work{width:216px;background:#fff;padding:9px 9px 10px;box-shadow:0 12px 24px rgba(33,38,43,.12)}
+.work img,.work .ph{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.shot{width:184px;background:#fff;padding:8px;box-shadow:0 12px 24px rgba(33,38,43,.12)}
+.shot img,.shot .ph{width:100%;aspect-ratio:9/16;object-fit:cover;display:block}
+.ph{background:repeating-linear-gradient(135deg,var(--paper2) 0 8px,var(--paper) 8px 16px);
+  display:grid;place-items:center;text-align:center;padding:12px;
+  font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);line-height:1.4}
+.railcap{margin-top:12px;font-size:.82rem;line-height:1.5;color:var(--muted)}
+
+/* ---------- матеріали ---------- */
+.mat{list-style:none;margin:28px 0 0}
+.mat li{display:flex;gap:15px;align-items:center;padding:16px 0;border-bottom:1.5px solid var(--line)}
+.mat li:first-child{border-top:1.5px solid var(--line)}
+.mat .thumb{flex:0 0 66px;position:relative;aspect-ratio:1;background:var(--paper2);border:1px solid var(--line);
+  overflow:hidden;display:grid;place-items:center}
+.mat .thumb img{width:86%;height:auto}
+.mat .thumb .dash{width:78%;height:auto}
+.mat .tx{flex:1;min-width:0}
+.mat h3{font-size:.98rem;font-weight:800;line-height:1.25;letter-spacing:-.02em}
+.mat p{margin-top:5px;font-size:.88rem;line-height:1.5;color:var(--ink2)}
+.mat .cost{flex:0 0 auto;text-align:right;font-size:.92rem;font-weight:800;color:var(--ink);white-space:nowrap}
+.mat .cost i{display:block;font-style:normal;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.total{margin-top:22px;padding:18px 17px;background:#fff;box-shadow:0 12px 24px rgba(33,38,43,.1);display:flex;align-items:baseline;gap:12px}
+.total .v{font-size:1.9rem;font-weight:900;letter-spacing:-.04em;line-height:1}
+.total .l{font-size:.86rem;line-height:1.4;color:var(--ink2)}
+
+/* ---------- гарантія: печатка ---------- */
+.stamp{display:block;width:150px;height:150px;margin:26px auto 0;color:var(--rust);opacity:.9;rotate:-7deg}
+.pledge{margin-top:26px;font-weight:900;text-transform:uppercase;font-size:clamp(1.15rem,5vw,1.45rem);line-height:1.16;letter-spacing:-.03em;text-wrap:balance}
+
+/* ---------- про автора ---------- */
+.author{position:relative;margin:28px 0 0}
+.author .port{background:#fff;padding:11px 11px 12px;box-shadow:0 18px 34px rgba(33,38,43,.16);transform:rotate(-1.2deg)}
+.author .port img,.author .port .ph{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.stats{display:flex;gap:10px;margin:26px 0 0}
+.stats div{flex:1;border-top:2px solid var(--ink);padding-top:11px}
+.stats b{display:block;font-size:1.7rem;font-weight:900;letter-spacing:-.045em;line-height:1}
+.stats span{display:block;margin-top:6px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.35}
+
+/* ---------- рамка зі склом (мальована, без генерації) ---------- */
+.framebox{position:relative;width:74%;margin:28px auto 0;aspect-ratio:3/4;background:#C8B79A;padding:12px;
+  box-shadow:0 18px 34px rgba(33,38,43,.2);rotate:-1.5deg}
+.framebox .inner{position:relative;height:100%;background:#fff;padding:16px;overflow:hidden}
+.framebox .art{height:100%;background:linear-gradient(180deg,#B9C7DA 0 44%,#33501E 44% 52%,#7BA33F 52% 100%)}
+.framebox .glass{position:absolute;inset:0;background:linear-gradient(118deg,rgba(255,255,255,.55) 0 14%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 68%,rgba(255,255,255,.3) 84%)}
+.framebox .gap{position:absolute;right:-12px;top:38%;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl}
+
+/* ---------- футер ---------- */
+.foot{padding:40px 22px 30px;background:var(--ink);color:#9AA3AD}
+.foot .sup{display:block;width:100%;margin-top:18px;padding:17px;border:1.5px solid rgba(252,250,246,.3);color:var(--paper);text-align:center;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s}
+.foot .sup:hover{background:rgba(252,250,246,.1)}
+.foot .legal{margin-top:26px;padding-top:20px;border-top:1.5px solid rgba(252,250,246,.16);font-size:.78rem;line-height:1.6}
+.foot .legal a{text-decoration:underline;text-underline-offset:3px}
+.foot .disc{margin-top:16px;font-size:.72rem;line-height:1.6;color:#767E86}
+
+/* ---------- sticky ---------- */
+.sticky{position:sticky;bottom:0;z-index:30;display:flex;align-items:center;gap:12px;padding:11px 16px;background:rgba(250,247,241,.95);border-top:1.5px solid var(--ink);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.sticky .n{font-size:1.36rem;font-weight:900;letter-spacing:-.04em;line-height:1}
+.sticky .o{font-size:.83rem;color:var(--muted);text-decoration:line-through}
+.sticky a{margin-left:auto;background:var(--blue);color:#FAF7F1;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:13px 18px}
+
+@media(max-width:380px){
+  .plate .stick{width:110px;left:-26px;bottom:-22px}
+  .checks .dash,.points .dash{flex-basis:38px}
+}
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <!-- ==================== 1. ПЕРШИЙ ЕКРАН ==================== -->
+  <header class="hero">
+    <span class="badge"><i></i>Міні-курс · 5 уроків · старт сьогодні</span>
+
+    <h1>
+      <span>Намалюйте свою</span>
+      <span>першу картину</span>
+      <span>пастеллю</span>
+      <span><span class="swept"><img class="el" src="assets/el-sweep.webp" width="900" height="193" alt="" aria-hidden="true"><span>за 60 хвилин</span></span></span>
+    </h1>
+
+    <p class="lede">Поле, небо і смуга дерев між ними. У цій картині <b>немає жодного обʼєкта, який треба вміти малювати</b> — і пʼять уроків, де показаний кожен рух крейди.</p>
+
+    <div class="plate">
+      <div class="sheet">
+        <img src="assets/painting.jpg" alt="Атмосферний пейзаж пастеллю: поле, смуга дерев і небо з хмарами" width="1000" height="748" fetchpriority="high" decoding="async">
+      </div>
+      <img class="el stick" src="assets/el-stick.webp" width="900" height="247" alt="" aria-hidden="true" decoding="async">
+    </div>
+
+    <ul class="checks">
+      <li><img class="el dash" src="assets/el-dash-1.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Без складної теорії та <b>дорогих матеріалів</b></span></li>
+      <li><img class="el dash" src="assets/el-dash-3.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Без страху зробити <b>«неправильно»</b></span></li>
+      <li><img class="el dash" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Навіть якщо <b>ніколи не тримали пастель</b> у руках</span></li>
+    </ul>
+
+    <div class="price">
+      <span class="pn">390<i>грн</i></span>
+      <span class="po">2390 грн</span>
+      <span class="pd">−84%</span>
+    </div>
+    <a class="cta" href="#">Забрати міні-курс за 390 грн</a>
+    <p class="micro">Після оплати ви одразу потрапите в Telegram-бот. <b>Перший урок прийде вже через 5 хвилин.</b></p>
+  </header>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 2. БОНУСИ ==================== -->
+  <section class="sec sec-2">
+    <h2>Заберіть міні-курс і отримайте 2 бонуси</h2>
+    <div class="timer big" style="margin-top:22px"><span class="v" data-timer>10:00</span><span class="l">бонуси<br>зникають</span></div>
+
+    <article class="bcard a">
+      <span class="pdf">
+        <img src="assets/el-bonus-1.webp" width="507" height="574" alt="Список покупок з олівцем" loading="lazy" decoding="async">
+        <span class="tag">PDF</span>
+      </span>
+      <div class="bcol">
+        <p class="k">Бонус 1</p>
+        <h3>Список матеріалів під три бюджети</h3>
+        <ul class="blist">
+          <li>Що саме купити: набір сухої пастелі, папір потрібного відтінку, клячка</li>
+          <li>Три варіанти бюджету — від найдешевшого набору до того, з яким працюю я сама</li>
+          <li>Назви брендів, орієнтовні ціни, за що варто доплатити, а за що ні</li>
+        </ul>
+        <details class="why">
+          <summary><i aria-hidden="true"></i>Навіщо це</summary>
+          <p>Ви заходите в художній магазин зі списком у телефоні й виходите за 10 хвилин рівно з тим, що потрібно для цієї картини — без зайвого набору на кілька тисяч, який потім лежатиме без діла.</p>
+        </details>
+      </div>
+    </article>
+
+    <article class="bcard b">
+      <span class="pdf">
+        <img src="assets/el-bonus-2.webp" width="443" height="544" alt="Робота в рамці під склом" loading="lazy" decoding="async">
+        <span class="tag">PDF</span>
+      </span>
+      <div class="bcol">
+        <p class="k">Бонус 2</p>
+        <h3>Гайд «Як оформити картину пастеллю»</h3>
+        <ul class="blist">
+          <li>Як підібрати рамку під розмір і колір роботи</li>
+          <li>Навіщо між склом і пастеллю потрібен зазор</li>
+          <li>Скільки коштує готовий варіант і коли є сенс іти в багетну майстерню</li>
+          <li>Порада мистецтвознавця з понад 40-річним досвідом</li>
+        </ul>
+        <details class="why">
+          <summary><i aria-hidden="true"></i>Навіщо це</summary>
+          <p>Ваша робота висить на стіні в рамці й виглядає як картина з галереї, а не як аркуш паперу, прикріплений скотчем.</p>
+        </details>
+      </div>
+    </article>
+
+    <p class="note">Обидва бонуси зникають разом із таймером — далі міні-курс продається без них.</p>
+    <a class="cta" href="#">Забрати міні-курс і 2 бонуси</a>
+    <p class="micro">🔒 Безпечна оплата · 💰 Гарантія 14 днів</p>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 3. ЧОМУ САМЕ ЦЯ КАРТИНА ==================== -->
+  <section class="sec">
+    <h2>У цьому пейзажі немає нічого, що можна намалювати неправильно</h2>
+
+    <div class="objrow">
+      <div class="objart"><img src="assets/el-broken.webp" width="900" height="353" alt="" aria-hidden="true" loading="lazy" decoding="async" style="rotate:-8deg"></div>
+      <div class="objtx">
+        <p class="lead">Більшість людей кидають малювання на першій же роботі — не тому, що не мають здібностей. А тому, що відразу намагаються зробити картину «правильною».</p>
+      </div>
+    </div>
+
+    <p class="pull">а раптом я зіпсую?</p>
+
+    <p class="lead">В атмосферному пейзажі цьому страху немає за що зачепитися. Поле не буває неправильним: воно буває світлішим, темнішим, більш жовтим або більш зеленим — і будь-який ваш варіант лишається полем.</p>
+
+    <div class="anat">
+      <img class="el" src="assets/el-bands.webp" width="900" height="539" alt="Три мазки пастеллю: небо, смуга дерев і поле" loading="lazy" decoding="async">
+      <span class="lb s">Небо</span>
+      <span class="lb t">Смуга дерев</span>
+      <span class="lb f">Поле</span>
+    </div>
+
+    <ul class="points">
+      <li><img class="el dash" src="assets/el-dash-1.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут немає малюнка олівцем</h3><p>Ви не будуєте композицію і не вимірюєте пропорції. На аркуші дві великі площини — небо і поле — та смуга дерев між ними. Крейду ви берете з першої хвилини.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-3.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут немає дрібних деталей</h3><p>Смуга дерев пишеться однією темною масою, трава — кількома рухами, хмари — боковою стороною крейди. Виписувати тут просто нічого.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут не треба повторювати картину один в один</h3><p>Ви вчитеся передавати колір, світло й повітря, але ваша робота може мати власні відтінки й власний настрій.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-6.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут невеликий формат</h3><p>Аркуш поміщається на кухонному столі й закривається за один сеанс. Великий формат лякає саме тим, що його треба чимось заповнити.</p></div></li>
+    </ul>
+
+    <div class="closing">
+      <p>І при цьому робота не виглядає як навчальна вправа. Це закінчений пейзаж, який вішають у вітальні й показують гостям.</p>
+      <p>Доступний сюжет — це половина справи. Друга половина — матеріал, яким ви працюєте.</p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 15. ПРО АВТОРА ==================== -->
+  <section class="sec sec-2">
+    <h2>Олена Кулик Діріл</h2>
+
+    <div class="author">
+      <div class="port"><div class="ph" style="aspect-ratio:4/5">Фото Олени<br>потрібен файл</div></div>
+    </div>
+
+    <!-- [?] підтвердити: 24 роки роботи в техніці сухої пастелі -->
+    <div class="stats">
+      <div><b>25+</b><span>персональних<br>виставок</span></div>
+      <div><b>20+</b><span>країн<br>у колекціях</span></div>
+      <div><b>24</b><span>роки<br>з пастеллю</span></div>
+    </div>
+
+    <p class="lead">Я професійна художниця, в мистецтві з дитинства, донька української художниці Олени Кулик. Мої персональні виставки проходили в Україні, Італії, Німеччині та Туреччині, зокрема в дипломатичних установах. Я працюю сухою пастеллю та олією, але саме пастель лишається моєю головною технікою: це прямий контакт із папером через пальці, без інструмента-посередника.</p>
+
+    <details class="why" style="margin-top:20px">
+      <summary><i aria-hidden="true"></i>Повна історія</summary>
+      <p>Дванадцять років тому я переїхала до Туреччини. З собою був невеликий набір пастелі, і більше нічого: ні мови, ні знайомих, ні клієнтів, які лишилися в Україні. Кар'єру довелося будувати заново, з нуля.</p>
+      <p>Перша виставка в новій країні відбулася через дев'ять місяців. Усі роботи для неї я намалювала вже на новому місці.</p>
+      <p>Я бачу одну й ту саму історію в кожної людини, яка приходить до мене з бажанням малювати. Колись у дитинстві хтось сказав їй, що нічого не вийде. Учителька, батьки, хтось із родини. Людина повірила і не бралася за пастель тридцять років.</p>
+      <p>Мене це дратує більше за все інше в цій професії. Тому я зібрала свій спосіб малювати атмосферний пейзаж у пʼять уроків, де показаний кожен штрих.</p>
+      <p>Я не обіцяю вам, що ви станете художником за один вечір. Я обіцяю, що після цих уроків чистий аркуш перестане вас лякати, а на стіні висітиме картина, яку ви намалювали своїми руками.</p>
+    </details>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 4. ЧОМУ ПАСТЕЛЬ ==================== -->
+  <section class="sec">
+    <h2>Пастель — це крейда, папір і ваші руки</h2>
+
+    <div class="plate" style="margin-top:26px">
+      <div class="sheet"><img src="assets/process2.jpg" alt="Рука кладе колір боковою стороною пастельної крейди на аркуш" width="800" height="730" loading="lazy" decoding="async"></div>
+    </div>
+
+    <ul class="rows icons">
+      <li><span class="n"><img class="ic" src="assets/el-chalk-1.webp" width="300" height="210" alt="Кінчик пальця з пігментом" loading="lazy" decoding="async"></span><div><h3>Між вами і папером немає інструмента</h3><p>Колір кладеться боковою стороною крейди й розтирається пальцем. Пензлі, вода, палітра і розчинники тут не потрібні взагалі.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-chalk-2.webp" width="285" height="244" alt="Два мазки, що змішуються" loading="lazy" decoding="async"></span><div><h3>Кольори змішуються прямо на аркуші</h3><p>Не треба вгадувати пропорції на палітрі й розводити фарбу до потрібної густоти. Поклали один колір поверх іншого, провели пальцем — і отримали відтінок.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-chalk-3.webp" width="248" height="259" alt="Перекреслений годинник" loading="lazy" decoding="async"></span><div><h3>Нічого не сохне</h3><p>Немає шарів, між якими треба чекати. Робота починається і закінчується за один сеанс.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-chalk-4.webp" width="208" height="276" alt="Чиста долоня" loading="lazy" decoding="async"></span><div><h3>Нічого не треба мити</h3><p>Пастель не пахне і не тече. Склали крейди в коробку — і за дві хвилини стіл вільний.</p></div></li>
+      <!-- [?] підтвердити в Олени: 600 грн -->
+      <li><span class="n"><img class="ic" src="assets/el-chalk-5.webp" width="278" height="225" alt="Стопка монет" loading="lazy" decoding="async"></span><div><h3>Стартовий набір коштує близько 600 грн</h3><p>Крейди вистачить на десятки робіт, а другий аркуш паперу коштує 30 гривень.</p></div></li>
+    </ul>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 5. СТРАХ БІЛОГО АРКУША ==================== -->
+  <section class="sec sec-2">
+    <h2>Білого аркуша тут просто немає</h2>
+    <div class="objrow rev">
+      <div class="objart"><img src="assets/el-paper.webp" width="524" height="548" alt="Стос тонованого паперу для пастелі: сірий, блакитний, пісочний" loading="lazy" decoding="async"></div>
+      <div class="objtx">
+        <p class="lead">Найчастіша причина, чому набір для малювання лежить у шафі роками: людина боїться зробити перший штрих на чистому білому аркуші. Поки він чистий — усе ще можливо. Щойно зʼявиться перша лінія, стане видно, що вона крива.</p>
+      </div>
+    </div>
+
+    <p class="pull">Пастель працює на кольоровому папері</p>
+    <p class="lead">Це не декоративна дрібниця, а <b>частина методу</b>.</p>
+
+    <ul class="rows">
+      <li><span class="n">01</span><div><h3>Фон уже заданий за вас</h3><p>Ви починаєте не з порожнечі, а з сірого, блакитного або пісочного аркуша, який сам по собі працює як колір неба або як тон поля. Частина роботи зроблена ще до першого штриха.</p></div></li>
+      <li><span class="n">02</span><div><h3>Помилка не фатальна</h3><p>Невдалий штрих перекривається наступним шаром, зайве знімається клячкою. Папір тримає кілька шарів — я показую в уроці, скільки саме.</p></div></li>
+      <li><span class="n">03</span><div><h3>Перший рух — не лінія, а пляма</h3><p>Ви кладете колір боковою стороною крейди широким рухом на пів аркуша. Тут неможливо провести криву лінію, бо ніяких ліній ви й не проводите.</p></div></li>
+    </ul>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 6. ДЛЯ КОГО ==================== -->
+  <section class="sec">
+    <h2>Цей міні-курс для вас, якщо ви:</h2>
+    <ul class="rows icons">
+      <li><span class="n"><img class="ic" src="assets/el-who-1.webp" width="283" height="164" alt="Олівець" loading="lazy" decoding="async"></span><div><h3>Ніколи не малювали нічим, крім олівця</h3><p>Не знаєте, з чого почати і що взагалі купувати, і не впевнені, що маєте право називати це малюванням.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-who-2.webp" width="251" height="244" alt="Шкільний зошит" loading="lazy" decoding="async"></span><div><h3>Малювали в школі, а потім кинули</h3><p>Колись вам це подобалось. Потім хтось сказав, що виходить не дуже. Минуло тридцять років, а фраза досі памʼятається дослівно.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-who-3.webp" width="278" height="233" alt="Закрита коробка з пастеллю" loading="lazy" decoding="async"></span><div><h3>Купили матеріали — і вони лежать</h3><p>Був порив: замовили набір, папір. Дійшло до того, щоб розкласти все на столі, — і на цьому зупинилось. Не через лінь, а тому що незрозуміло, з чого починати.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-who-4.webp" width="282" height="189" alt="Кювета з фарбою" loading="lazy" decoding="async"></span><div><h3>Пробували фарби — і розчарувались</h3><p>Вода розтеклася не туди, кольори змішались у сіре, аркуш пішов хвилями. Ви вирішили, що малювання — не ваше.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-who-5.webp" width="248" height="264" alt="Картина в рамці на стіні" loading="lazy" decoding="async"></span><div><h3>Хочете картину, яку зробили самі</h3><p>Не постер із маркетплейсу, а роботу, про яку можна сказати: це моє. Або подарунок близькій людині, який ніде більше не купиш.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-who-6.webp" width="231" height="208" alt="Чашка чаю" loading="lazy" decoding="async"></span><div><h3>Хочете годину тиші в голові</h3><p>Не медитацію і не курс із психології. Просто заняття, під час якого думки про роботу, новини й побут відступають самі — бо руки зайняті, а очі стежать за кольором.</p></div></li>
+    </ul>
+    <p class="note" style="margin-top:26px">Якщо впізнали себе хоча б в одному пункті — ця картина цілком вам під силу.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 7. ПРОГРАМА ==================== -->
+  <section class="sec sec-2">
+    <h2>Пʼять уроків від чистого аркуша до готової картини</h2>
+    <p class="lead">5 уроків + бонусний урок · домашнє завдання після кожного уроку · доступ у Telegram-боті на рік</p>
+
+    <div class="acc">
+      <details>
+        <summary>
+          <span class="vid"><b>▶</b>кадр із уроку<br>урок 1</span>
+          <span class="srow"><img class="el sw" src="assets/el-dash-1.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="ttl"><span class="no">Урок 1</span><h3>Як зібрати мінімальний стартовий набір: пастель і папір</h3></span>
+          <span class="pm" aria-hidden="true"></span></span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>які саме кольори потрібні для цієї картини і без яких можна обійтися</li>
+            <li>чим мʼяка пастель відрізняється від твердої і що з цього брати новачку</li>
+            <li>який папір тримає пастель, а з якого вона осипається за тиждень</li>
+            <li>чому колір паперу — це вже частина картини, і який відтінок брати під поле і небо</li>
+          </ul>
+          <p class="res"><b>Результат:</b> Витратите мало, отримаєте максимум матеріалів та задоволення. Жодних зайвих покупок.</p>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="vid"><b>▶</b>кадр із уроку<br>урок 2</span>
+          <span class="srow"><img class="el sw" src="assets/el-dash-3.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="ttl"><span class="no">Урок 2</span><h3>Наносимо пастель моїм авторським методом, щоб картина виглядала справді живою</h3></span>
+          <span class="pm" aria-hidden="true"></span></span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>три способи покласти колір: бокова сторона крейди, кінчик, розтирання пальцем</li>
+            <li>як змішувати кольори просто на папері, без палітри й без води</li>
+            <li>скільки шарів витримує папір і в якому порядку їх класти</li>
+            <li>як не змастити рукою те, що вже намальовано</li>
+          </ul>
+          <figure class="ways">
+            <span><img src="assets/el-way-side.webp" width="420" height="157" alt="Мазок боковою стороною крейди" loading="lazy" decoding="async"><b>боком крейди</b></span>
+            <span><img src="assets/el-way-tip.webp" width="236" height="240" alt="Штрихи кінчиком крейди" loading="lazy" decoding="async"><b>кінчиком</b></span>
+            <span><img src="assets/el-way-finger.webp" width="420" height="249" alt="Колір, розтертий пальцем" loading="lazy" decoding="async"><b>пальцем</b></span>
+          </figure>
+          <p class="res"><b>Результат:</b> Зникає обережний дрібний штрих, від якого роботи новачків виглядають блідими й затертими. Замість нього зʼявляється широкий впевнений рух, і колір лягає щільно й соковито.</p>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="vid"><b>▶</b>кадр із уроку<br>урок 3</span>
+          <span class="srow"><img class="el sw" src="assets/el-dash-2.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="ttl"><span class="no">Урок 3</span><h3>Крок за кроком створимо хмари та небо</h3></span>
+          <span class="pm" aria-hidden="true"></span></span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>де провести лінію горизонту на аркуші і чому саме там</li>
+            <li>як закласти небо великими рухами за кілька хвилин</li>
+            <li>де в хмарі світло, а де тінь, і як зробити її обʼємною</li>
+            <li>чому хмари ніколи не малюють по контуру</li>
+          </ul>
+          <p class="res"><b>Результат:</b> Більша частина аркуша вже зайнята небом. Ви дивитесь на власні хмари й бачите, що вони вийшли обʼємними, — а саме хмар початківці бояться найбільше.</p>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="vid"><b>▶</b>кадр із уроку<br>урок 4</span>
+          <span class="srow"><img class="el sw" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="ttl"><span class="no">Урок 4</span><h3>Малюємо поле так, щоб додати пейзажу глибини і повітря</h3></span>
+          <span class="pm" aria-hidden="true"></span></span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>як написати смугу дерев на горизонті однією масою, не малюючи жодного дерева</li>
+            <li>як колір поля змінюється від горизонту до переднього плану</li>
+            <li>де покласти світлу пляму, щоб у картині зʼявилося сонце</li>
+            <li>один прийом повітряної перспективи, після якого зʼявляється відстань між вами і горизонтом</li>
+          </ul>
+          <p class="res"><b>Результат:</b> Замість двох кольорових смуг на аркуші зʼявляється простір, у який хочеться зайти. Картина закінчена і готова до рамки вже на цьому уроці.</p>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="vid"><b>▶</b>кадр із уроку<br>урок 5</span>
+          <span class="srow"><img class="el sw" src="assets/el-dash-4.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="ttl"><span class="no">Урок 5</span><h3>Як кількома штрихами оживити роботу і зробити її справді унікальною та особливою</h3></span>
+          <span class="pm" aria-hidden="true"></span></span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>фінальні акценти: трави на передньому плані, світлові плями, контраст</li>
+            <li>як подивитися на роботу свіжим оком і побачити, чого їй не вистачає</li>
+            <li>як зрозуміти, що час зупинитися, і не «залюбити» картину до бруду</li>
+            <li>як зафіксувати пастель, щоб вона не осипалася</li>
+          </ul>
+          <p class="res"><b>Результат:</b> Саме тут студенти пишуть: «Не вірю, що це намалювала я!»</p>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="vid"><b>▶</b>кадр із уроку<br>бонусний урок</span>
+          <span class="srow"><img class="el sw" src="assets/el-dash-6.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <span class="ttl"><span class="no">Бонусний урок</span><h3>Як оформити пастель, щоб вона виглядала як робота з галереї</h3></span>
+          <span class="pm" aria-hidden="true"></span></span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>чому пастель зберігають під склом і що буде, якщо цього не зробити</li>
+            <li>готова рамка проти багетної майстерні: коли який варіант має сенс</li>
+            <li>навіщо між склом і роботою потрібен зазор</li>
+            <li>порада мистецтвознавця з понад 40-річним досвідом, яку я свого часу отримала сама</li>
+          </ul>
+          <p class="res"><b>Результат:</b> Картина займає своє місце на стіні у вітальні, а не лежить у папці на шафі.</p>
+        </div>
+      </details>
+    </div>
+
+    <p class="lead">Після кожного уроку ви отримуєте коротке домашнє завдання. Якщо щось не виходить — пишете мені й отримуєте відповідь.</p>
+
+    <div class="bcard a" style="margin-top:28px">
+      <span class="pdf">
+        <img src="assets/el-bonus-1.webp" width="507" height="574" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <span class="tag">×2</span>
+      </span>
+      <div class="bcol">
+        <p class="k">Якщо встигнете до кінця таймера</p>
+        <h3>+ 2 бонуси до курсу</h3>
+        <ul class="blist">
+          <li>Список матеріалів під три бюджети з цінами</li>
+          <li>Гайд «Як оформити картину пастеллю»</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timer"><span class="v" data-timer>10:00</span><span class="l">бонуси<br>зникають</span></div>
+    <a class="cta" href="#">Забрати міні-курс і 2 бонуси</a>
+    <p class="micro">⏱ Перший урок — уже завтра вранці</p>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 8. ЯК ПРОХОДИТЬ НАВЧАННЯ ==================== -->
+  <section class="sec">
+    <h2>Як проходить навчання</h2>
+    <ul class="rows icons">
+      <li><span class="n"><img class="ic" src="assets/el-how-1.webp" width="244" height="189" alt="Телефон із повідомленням на світанку" loading="lazy" decoding="async"></span><div><h3>Один урок щоранку</h3><p>Після оплати ви одразу потрапляєте в Telegram-бот. Перший урок приходить наступного ранку, далі щодня ще по одному. Жодних платформ із паролями і зайвих застосунків.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-how-2.webp" width="236" height="217" alt="Камера над аркушем" loading="lazy" decoding="async"></span><div><h3>Відео, де видно кожен штрих</h3><p>Я ставлю камеру над аркушем, тому видно руку, нахил крейди й те, як колір розтирається пальцем. Ви ставите на паузу, повторюєте свій штрих і йдете далі у власному темпі.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-how-3.webp" width="162" height="210" alt="Секундомір" loading="lazy" decoding="async"></span><div><h3>Уроки до 10 хвилин</h3><p>Жодних лекцій на годину. Кожне відео — це конкретний етап картини, який ви повторюєте одразу після перегляду.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-how-4.webp" width="242" height="158" alt="Хмарка з простими словами" loading="lazy" decoding="async"></span><div><h3>Пояснення простими словами</h3><p>Без термінів, які треба окремо розшифровувати. Я пояснюю так, ніби сиджу поруч за вашим столом: візьміть цю крейду, покладіть ось так, розітріть пальцем звідси сюди.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-how-5.webp" width="169" height="191" alt="Аркуш із галочкою" loading="lazy" decoding="async"></span><div><h3>Домашнє завдання після кожного уроку</h3><p>Коротке завдання закріплює те, що ви щойно подивилися. Якщо щось не виходить — пишете мені й отримуєте відповідь.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-how-6.webp" width="179" height="197" alt="Календар" loading="lazy" decoding="async"></span><div><h3>Доступ до уроків на цілий рік</h3><p>Уроки лишаються в боті 12 місяців. Захочете намалювати другу картину через півроку — просто відкриєте бот і передивитесь потрібний урок.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-how-7.webp" width="275" height="160" alt="Телефон на столі" loading="lazy" decoding="async"></span><div><h3>Телефон і стіл</h3><p>Більше нічого для навчання не потрібно. Планшет, компʼютер, окрема кімната й мольберт тут не знадобляться.</p></div></li>
+    </ul>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 9. ЧЕКЛІСТ ==================== -->
+  <section class="sec sec-2">
+    <h2>За пʼять уроків ви:</h2>
+    <ul class="ticks">
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Намалюєте <b>атмосферний пейзаж пастеллю</b>, навіть якщо тримаєте крейду вперше в житті</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Дізнаєтесь, який набір пастелі й папір потрібні саме для цієї картини і на чому можна не переплачувати</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Навчитесь класти колір трьома способами: боковою стороною крейди, кінчиком і пальцем</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Зрозумієте, як змішувати кольори просто на папері, <b>без палітри й води</b></span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Навчитесь писати хмари так, щоб вони виглядали обʼємними, а не плоскими плямами</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Дізнаєтесь, як однією темною масою написати смугу дерев, <b>не малюючи жодного дерева</b></span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Навчитесь передавати глибину: від далекого поля біля горизонту до трави на передньому плані</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Зрозумієте, у який момент картину треба залишити в спокої</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Оформите роботу під скло й повісите на стіну картину, про яку скажете: <b>це моя робота</b></span></li>
+    </ul>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 10. РОБОТИ СТУДЕНТІВ ==================== -->
+  <section class="sec">
+    <h2>Роботи моїх студентів</h2>
+    <div class="rail">
+      <div class="work"><div class="ph">Робота студента<br>1</div></div>
+      <div class="work"><div class="ph">Робота студента<br>2</div></div>
+      <div class="work"><div class="ph">Робота студента<br>3</div></div>
+      <div class="work"><div class="ph">Робота студента<br>4</div></div>
+      <div class="work"><div class="ph">Робота студента<br>5</div></div>
+      <div class="work"><div class="ph">Робота студента<br>6</div></div>
+      <div class="work"><div class="ph">Робота студента<br>7</div></div>
+      <div class="work"><div class="ph">Робота студента<br>8</div></div>
+    </div>
+    <p class="lead">Кожну з цих робіт зробила людина, яка колись сказала собі «я не вмію малювати». Сюжет один і той самий, а картини різні: у когось небо світліше, у когось поле йде в жовтий, у когось хмари важчі. Так і має бути — я не вчу копіювати мою роботу.</p>
+    <p class="railcap">Роботи опубліковані з дозволу авторів.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 11. ВІДГУКИ ==================== -->
+  <section class="sec sec-2">
+    <h2>Що кажуть ті, хто вже пройшов уроки</h2>
+    <div class="rail">
+      <div class="shot"><div class="ph">Скріншот<br>відгуку 1</div></div>
+      <div class="shot"><div class="ph">Скріншот<br>відгуку 2</div></div>
+      <div class="shot"><div class="ph">Скріншот<br>відгуку 3</div></div>
+      <div class="shot"><div class="ph">Скріншот<br>відгуку 4</div></div>
+      <div class="shot"><div class="ph">Скріншот<br>відгуку 5</div></div>
+    </div>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 12. МАТЕРІАЛИ ==================== -->
+  <section class="sec">
+    <h2>Що потрібно купити для цієї картини</h2>
+    <p class="lead">Ми не приховуємо цифри до оплати: малювання вимагає матеріалів, і ви маєте знати про це до того, як натиснете кнопку.</p>
+
+    <!-- [?] підтвердити в Олени всі ціни в цьому блоці -->
+    <ul class="mat">
+      <li>
+        <span class="thumb"><img src="assets/el-set.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
+        <span class="tx"><h3>Суха пастель, 24 кольори</h3><p>Той тип пастелі, з яким я працюю в уроках.</p></span>
+        <span class="cost">450<i>від, грн</i></span>
+      </li>
+      <li>
+        <span class="thumb"><img src="assets/el-paper.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
+        <span class="tx"><h3>Папір для пастелі</h3><p>Кольоровий, із фактурою, яка тримає крейду.</p></span>
+        <span class="cost">27<i>аркуш, грн</i></span>
+      </li>
+      <li>
+        <span class="thumb"><img src="assets/el-kneaded.webp" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
+        <span class="tx"><h3>Клячка</h3><p>Мʼяка гумка, якою знімають зайвий шар пастелі.</p></span>
+        <span class="cost">50<i>близько, грн</i></span>
+      </li>
+      <li>
+        <span class="thumb"><img class="el dash" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
+        <span class="tx"><h3>Ваші пальці</h3><p>Основний інструмент розтушовки. Пензлі, вода, палітра й розчинники тут не потрібні взагалі.</p></span>
+        <span class="cost">0<i>безкоштовно</i></span>
+      </li>
+    </ul>
+
+    <div class="total"><span class="v">≈600 грн</span><span class="l">стартовий набір — і це все, що потрібно для роботи</span></div>
+    <p class="lead">600 гривень — це не витрати на одну картину. Набір крейд не закінчується за вечір, його вистачить на десятки робіт. <b>Друга картина обійдеться вам у 30 гривень</b> — стільки коштує новий аркуш паперу.</p>
+    <p class="lead">Точний список із назвами, цінами й трьома варіантами бюджету ви отримаєте одразу після оплати — це перший бонус курсу.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 13. ГАРАНТІЯ ==================== -->
+  <section class="sec sec-2">
+    <h2>Повернення коштів</h2>
+    <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="5"/>
+      <text x="100" y="88" text-anchor="middle" font-family="Jost, sans-serif" font-size="54" font-weight="900" fill="currentColor">14</text>
+      <text x="100" y="122" text-anchor="middle" font-family="Jost, sans-serif" font-size="26" font-weight="800" letter-spacing="3" fill="currentColor">ДНІВ</text>
+      <text x="100" y="150" text-anchor="middle" font-family="Jost, sans-serif" font-size="14" font-weight="700" letter-spacing="4" fill="currentColor">ГАРАНТІЯ</text>
+    </svg>
+    <p class="lead">Я впевнена в якості цих уроків, тому даю <b>14 днів повної гарантії</b>. Якщо протягом двох тижнів ви пройдете всі уроки, намалюєте свій пейзаж, але не побачите в ньому цінності або очікуваного результату, я без жодних питань поверну кошти.</p>
+    <p class="pledge">Жодних ризиків. Або у вас на стіні зʼявляється ваша перша картина, або я повертаю гроші.</p>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 14. МИСТЕЦТВО БЕЗ СТРЕСУ ==================== -->
+  <section class="sec">
+    <h2>«У неї вийде намалювати пейзаж, вона ж художниця. А в мене ні?»</h2>
+    <p class="lead">Це найчастіша думка, яка зупиняє людину перед покупкою будь-яких уроків малювання. Вона виглядає логічною: я в мистецтві з дитинства, провела 25 персональних виставок, мої роботи зберігаються в приватних колекціях 20 країн. Звісно, у мене виходить.</p>
+    <p class="lead"><b>Тільки моє навчання влаштоване інакше.</b></p>
+    <ul class="rows">
+      <li><span class="n">01</span><div><h3>Мій досвід потрібен для того, щоб вийшла ваша картина</h3><p>Роки практики пішли на те, щоб розкласти цей пейзаж на кроки, які повторить людина без жодної підготовки. Саме тому кожен крок в уроках звучить конкретно: візьміть ці два кольори, покладіть ось так, розітріть пальцем звідси сюди. Вам не доведеться розшифровувати фразу «а тут просто відчуйте колір».</p></div></li>
+      <li><span class="n">02</span><div><h3>Ви не змагаєтесь зі мною</h3><p>Ваша картина не має повторити мою. Небо вийде іншим за відтінком, хмари ляжуть по-своєму, горизонт стане на кілька сантиметрів вище. У кожного своє бачення, і це нормально. Саме тому картина і буде вашою.</p></div></li>
+      <li><span class="n">03</span><div><h3>Вам не треба нічого вигадувати</h3><p>Найважче в малюванні — це рішення: що малювати, з чого почати, який колір узяти. На цьому міні-курсі всі рішення вже прийняті за вас. Сюжет обраний, кольори підібрані, послідовність кроків показана. Вам лишається робота руками, а вона виходить у всіх.</p></div></li>
+    </ul>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+<!-- ==================== 16. РОБОТИ ОЛЕНИ ==================== -->
+  <section class="sec sec-2">
+    <h2>Мої роботи</h2>
+    <div class="rail">
+      <div class="work"><div class="ph">Робота Олени<br>1</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>2</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>3</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>4</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>5</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>6</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>7</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>8</div></div>
+    </div>
+    <p class="lead">Ви не будете малювати жодну з цих картин. На міні-курсі ми робимо одну конкретну роботу, простішу за всі, що ви бачите тут. Але складається вона з тих самих штрихів.</p>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 17. РОБОТА ПІД СКЛОМ ==================== -->
+  <section class="sec">
+    <h2>Готову роботу треба закрити склом — і про це варто сказати чесно</h2>
+    <p class="lead">Пастель живе на папері, тому закінчену картину закривають склом: так вона не осиплеться і не зітреться. Це єдиний крок, якого немає в живописі на полотні, і я не буду вдавати, що його не існує.</p>
+    <p class="lead">Хороша новина в тому, що йти в багетну майстерню й чекати кілька днів <b>не обовʼязково</b>.</p>
+
+    <div class="framebox" aria-hidden="true">
+      <div class="inner"><div class="art"></div><div class="glass"></div></div>
+      <span class="gap">зазор</span>
+    </div>
+
+    <!-- [?] підтвердити: рамка від 180 грн -->
+    <ul class="rows">
+      <li><span class="n">01</span><div><h3>Готова рамка коштує від 180 грн</h3><p>Рамка потрібного розміру зі склом продається у звичайному будівельному гіпермаркеті або на маркетплейсі. Це та сама сума, яку ви витрачаєте на дві кави, і той самий вечір, коли робота вже висить на стіні.</p></div></li>
+      <li><span class="n">02</span><div><h3>Багетна майстерня — за бажанням, не за потреби</h3><p>Індивідуальний багет під розмір коштує дорожче й робиться кілька днів. Він має сенс, коли ви вже впевнені, що робота варта такої оправи. Для першої картини готової рамки досить.</p></div></li>
+      <li><span class="n">03</span><div><h3>У бонусному уроці я показую, як зробити це правильно</h3><p>Який зазор потрібен між склом і пастеллю і навіщо, як підібрати колір рамки під колір роботи, на якій висоті вішати. Так робота виглядає закінченою, а не «поки що так».</p></div></li>
+    </ul>
+  </section>
+
+  <!-- ==================== 18. ПОВНИЙ СПИСОК І ФІНАЛЬНИЙ ОФЕР ==================== -->
+  <section class="sec sec-ink">
+    <h2>Повний список усього, що ви отримаєте</h2>
+    <ul class="ticks">
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>5 практичних уроків з малювання атмосферного пейзажу пастеллю</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Бонусний урок про оформлення роботи під скло</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Покрокова методика, де показаний кожен штрих</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Домашнє завдання після кожного уроку</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><b>Бонус 1.</b> Список матеріалів під три бюджети з цінами</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><b>Бонус 2.</b> Гайд «Як оформити картину пастеллю»</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Підтримка від автора курсу</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Доступ до всіх уроків на рік</span></li>
+      <li><img class="tk" src="assets/el-tick.webp" width="308" height="254" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Гарантія повернення коштів на 14 днів</span></li>
+    </ul>
+
+    <div class="price" style="border-bottom-color:rgba(252,250,246,.4)">
+      <span class="pn" style="color:#fff">390<i style="color:#9AA3AD">грн</i></span>
+      <span class="po" style="color:#8E979F">2390 грн</span>
+      <span class="pd" style="color:#E8A277">−84%</span>
+    </div>
+    <a class="cta" href="#">Забрати міні-курс за 390 грн</a>
+    <p class="micro">Після оплати ви одразу потрапите в Telegram-бот. Перший урок прийде наступного ранку.</p>
+    <div class="timer"><span class="v" data-timer>10:00</span><span class="l">бонуси зникають<br>разом із таймером</span></div>
+  </section>
+
+  <!-- ==================== 19. FAQ ==================== -->
+  <section class="sec sec-2">
+    <h2>Часті запитання</h2>
+    <div class="acc faq">
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Чому так дешево? У чому підступ?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Підступу немає. Це короткий міні-курс на пʼять уроків, а не велика програма на кілька місяців. Плюс я тестую цю ціну на новому запуску. Далі вона буде іншою.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Я взагалі ніколи не малював(ла). У мене вийде?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Так, і саме для таких людей цей сюжет і обраний. У цьому пейзажі немає жодного обʼєкта, який треба вміти малювати: ні людей, ні будинків, ні тварин. Є небо, поле і смуга дерев між ними. Ви не будуєте композицію олівцем і не рахуєте пропорції.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Мені 55. Не пізно починати?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Ні. У малюванні немає віку, після якого вже пізно. Тут не потрібні ні швидка реакція, ні сила в руках, ні гострий зір. Потрібні година часу й бажання спробувати.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Чим пастель відрізняється від фарб? Це складніше?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Простіше. У пастелі немає пензлів, води, розчинників і палітри: ви кладете колір крейдою і розтираєте пальцем, а змішуються кольори прямо на папері. Немає й пауз на висихання — картину можна закінчити за один сеанс.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Скільки коштують матеріали?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Близько 600 гривень: набір сухої пастелі й папір. Це витрати не на одну картину — крейд вистачить на десятки робіт. Другий аркуш коштує 30 гривень. Точний список із трьома варіантами бюджету ви отримаєте одразу після оплати.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Чи можна почати без усіх матеріалів?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Перший урок ви подивитесь без пастелі — він саме про те, що і де купувати. Але до другого уроку набір уже має бути на столі.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Чи не осиплеться пастель із паперу?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Не осиплеться, якщо взяти правильний папір і закінчену роботу закрити склом. І про папір, і про фіксацію я розповідаю в уроках, а оформленню присвячений окремий бонусний урок.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Чи обовʼязково купувати рамку?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Малювати можна без неї, а от зберігати роботу краще під склом: так пастель не зітреться. Готова рамка потрібного розміру коштує від 180 грн у звичайному гіпермаркеті — багетна майстерня для першої картини не обовʼязкова.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Скільки часу займе весь міні-курс?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Уроки приходять по одному щоранку. Сама картина малюється приблизно за 60 хвилин.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Я вже малюю аквареллю. Мені підійде?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Підійде. Пастель — зовсім інша техніка, і навіть люди з досвідом фарб на початку розгублюються: тут немає ні води, ні пензля, ні палітри. Я показую ключові відмінності й прийоми, яких в інших техніках просто не існує.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Де проходить навчання?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>У Telegram. Після оплати ви одразу потрапляєте в бот, перший урок приходить наступного ранку. Нічого встановлювати не потрібно.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Скільки часу зберігається доступ?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Рік. Захочете повернутися до уроків через півроку — просто відкриєте бот.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>Що робити, якщо щось не виходить?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Напишіть мені в підтримку, і я відповім.</p></div>
+      </details>
+      <details>
+        <summary><span class="srow"><span class="ttl"><h3>А якщо мені не сподобається?</h3></span><span class="pm" aria-hidden="true"></span></span></summary>
+        <div class="body"><p>Протягом чотирнадцяти днів напишіть у підтримку одне повідомлення, і я поверну кошти повністю. Без анкет і без пояснень.</p></div>
+      </details>
+    </div>
+    <a class="cta" href="#" style="margin-top:30px">Приєднатися за 390 грн</a>
+  </section>
+
+  <!-- ==================== 20. ФУТЕР ==================== -->
+  <footer class="foot">
+    <p>З будь-яких питань пишіть у підтримку ↓</p>
+    <a class="sup" href="#">💬 Технічна підтримка</a>
+    <div class="legal">
+      <!-- [?] склад ФОПів підтвердити -->
+      <p>ФОП — реквізити уточнюються</p>
+      <p style="margin-top:10px"><a href="politika.html">Політика конфіденційності</a> · <a href="oferta.html">Договір оферти</a></p>
+    </div>
+    <p class="disc"><b>ВАЖЛИВО:</b> не вводьте свою контактну інформацію, доки не прочитаєте legal disclaimer. Ми не даємо жодних гарантій, що ви досягнете якихось результатів за допомогою наших інструментів, стратегій або інформації. Всі продукти і сервіси компанії призначені для освітніх цілей. Ви несете відповідальність за свої дії і результати.</p>
+  </footer>
+
+  <div class="sticky">
+    <span class="n">390 грн</span><span class="o">2390 грн</span>
+    <a href="#">Забрати</a>
+  </div>
+</div>
+
+<script>
+var left = 600;
+setInterval(function(){
+  if(left > 0) left--;
+  var m = String(Math.floor(left/60)).padStart(2,'0'), s = String(left%60).padStart(2,'0');
+  document.querySelectorAll('[data-timer]').forEach(function(el){ el.textContent = m + ':' + s; });
+}, 1000);
+</script>
+</body>
+</html>
