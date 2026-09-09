@@ -268,6 +268,18 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);line-height:1.4}
 .railcap{margin-top:12px;font-size:.82rem;line-height:1.5;color:var(--muted)}
 
+/* бонуси й «для кого» — горизонтальними галереями */
+.bonusrail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;margin:24px -22px 0;padding:0 22px 18px}
+.bonusrail::-webkit-scrollbar{display:none}
+.bonusrail .bcard{flex:0 0 300px;margin-top:0;flex-direction:column;gap:0;scroll-snap-align:start;transform:none}
+.bonusrail .pdf{flex:0 0 auto;width:84px;margin-bottom:13px}
+.pcard{flex:0 0 258px;scroll-snap-align:start;background:#fff;padding:20px 18px 18px;
+  box-shadow:0 14px 28px rgba(33,38,43,.12),0 2px 4px rgba(33,38,43,.06)}
+.pcard img{width:52px;height:auto;margin-bottom:13px}
+.pcard h3{font-size:1rem;font-weight:800;line-height:1.26;letter-spacing:-.02em;margin-bottom:8px}
+.pcard p{font-size:.9rem;line-height:1.55;color:var(--ink2)}
+
 /* ---------- матеріали ---------- */
 .mat{list-style:none;margin:28px 0 0}
 .mat li{display:flex;gap:15px;align-items:center;padding:16px 0;border-bottom:1.5px solid var(--line)}
@@ -341,7 +353,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
       <span><span class="swept"><img class="el" src="assets/el-sweep.webp" width="900" height="193" alt="" aria-hidden="true"><span>за 60 хвилин</span></span></span>
     </h1>
 
-    <p class="lede">Поле, небо і смуга дерев між ними. У цій картині <b>немає жодного обʼєкта, який треба вміти малювати</b> — і пʼять уроків, де показаний кожен рух крейди.</p>
+    <p class="lede">Поле, небо і смуга дерев між ними. У цій картині <b>немає жодного обʼєкта, який треба вміти малювати</b> — я створила пʼять уроків, де показаний кожен рух крейди.</p>
 
     <div class="plate">
       <div class="sheet">
@@ -369,10 +381,11 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
 
   <!-- ==================== 2. БОНУСИ ==================== -->
   <section class="sec sec-2">
-    <h2>Заберіть міні-курс і отримайте 2 бонуси</h2>
+    <h2>Долучайтесь до курсу до кінця таймеру, щоб забрати 2 подарунки</h2>
     <div class="timer big" style="margin-top:22px"><span class="v" data-timer>10:00</span><span class="l">бонуси<br>зникають</span></div>
 
-    <article class="bcard a">
+    <div class="bonusrail">
+    <article class="bcard">
       <span class="pdf">
         <img src="assets/el-bonus-1.webp" width="507" height="574" alt="Список покупок з олівцем" loading="lazy" decoding="async">
         <span class="tag">PDF</span>
@@ -392,7 +405,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
       </div>
     </article>
 
-    <article class="bcard b">
+    <article class="bcard">
       <span class="pdf">
         <img src="assets/el-bonus-2.webp" width="443" height="544" alt="Робота в рамці під склом" loading="lazy" decoding="async">
         <span class="tag">PDF</span>
@@ -412,6 +425,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
         </details>
       </div>
     </article>
+    </div>
 
     <p class="note">Обидва бонуси зникають разом із таймером — далі міні-курс продається без них.</p>
     <a class="cta" href="#">Забрати міні-курс і 2 бонуси</a>
@@ -431,7 +445,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
       </div>
     </div>
 
-    <p class="pull">а раптом я зіпсую?</p>
+    <p class="pull">а раптом я зіпсую? 😨🫣</p>
 
     <p class="lead">В атмосферному пейзажі цьому страху немає за що зачепитися. Поле не буває неправильним: воно буває світлішим, темнішим, більш жовтим або більш зеленим — і будь-який ваш варіант лишається полем.</p>
 
@@ -443,15 +457,14 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
     </div>
 
     <ul class="points">
-      <li><img class="el dash" src="assets/el-dash-1.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут немає малюнка олівцем</h3><p>Ви не будуєте композицію і не вимірюєте пропорції. На аркуші дві великі площини — небо і поле — та смуга дерев між ними. Крейду ви берете з першої хвилини.</p></div></li>
-      <li><img class="el dash" src="assets/el-dash-3.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут немає дрібних деталей</h3><p>Смуга дерев пишеться однією темною масою, трава — кількома рухами, хмари — боковою стороною крейди. Виписувати тут просто нічого.</p></div></li>
-      <li><img class="el dash" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут не треба повторювати картину один в один</h3><p>Ви вчитеся передавати колір, світло й повітря, але ваша робота може мати власні відтінки й власний настрій.</p></div></li>
-      <li><img class="el dash" src="assets/el-dash-6.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Тут невеликий формат</h3><p>Аркуш поміщається на кухонному столі й закривається за один сеанс. Великий формат лякає саме тим, що його треба чимось заповнити.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-1.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Немає малюнка олівцем</h3><p>Ви не будуєте композицію і не вимірюєте пропорції. На аркуші дві великі площини — небо і поле — та смуга дерев між ними. Крейду ви берете з першої хвилини.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-3.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Немає дрібних деталей</h3><p>Смуга дерев пишеться однією темною масою, трава — кількома рухами, хмари — боковою стороною крейди. Виписувати тут просто нічого.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Не треба повторювати картину один в один</h3><p>Ви вчитеся передавати колір, світло й повітря, але ваша робота може мати власні відтінки й власний настрій.</p></div></li>
+      <li><img class="el dash" src="assets/el-dash-6.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><h3>Невеликий формат знімає страх чистого аркуша</h3><p>Великий аркуш вимагає плану, часу і сміливості. А маленький формат дозволяє швидко і в задоволення створити свій особистий шедевр.</p></div></li>
     </ul>
 
     <div class="closing">
-      <p>І при цьому робота не виглядає як навчальна вправа. Це закінчений пейзаж, який вішають у вітальні й показують гостям.</p>
-      <p>Доступний сюжет — це половина справи. Друга половина — матеріал, яким ви працюєте.</p>
+      <p>І при цьому робота не виглядає як звичайний малюнок. Ви створюєте авторський пейзаж, який не соромно повісити у вітальні й показати гостям.</p>
     </div>
   </section>
 
@@ -474,21 +487,43 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
 
     <p class="lead">Я професійна художниця, в мистецтві з дитинства, донька української художниці Олени Кулик. Мої персональні виставки проходили в Україні, Італії, Німеччині та Туреччині, зокрема в дипломатичних установах. Я працюю сухою пастеллю та олією, але саме пастель лишається моєю головною технікою: це прямий контакт із папером через пальці, без інструмента-посередника.</p>
 
-    <details class="why" style="margin-top:20px">
-      <summary><i aria-hidden="true"></i>Повна історія</summary>
-      <p>Дванадцять років тому я переїхала до Туреччини. З собою був невеликий набір пастелі, і більше нічого: ні мови, ні знайомих, ні клієнтів, які лишилися в Україні. Кар'єру довелося будувати заново, з нуля.</p>
-      <p>Перша виставка в новій країні відбулася через дев'ять місяців. Усі роботи для неї я намалювала вже на новому місці.</p>
-      <p>Я бачу одну й ту саму історію в кожної людини, яка приходить до мене з бажанням малювати. Колись у дитинстві хтось сказав їй, що нічого не вийде. Учителька, батьки, хтось із родини. Людина повірила і не бралася за пастель тридцять років.</p>
-      <p>Мене це дратує більше за все інше в цій професії. Тому я зібрала свій спосіб малювати атмосферний пейзаж у пʼять уроків, де показаний кожен штрих.</p>
-      <p>Я не обіцяю вам, що ви станете художником за один вечір. Я обіцяю, що після цих уроків чистий аркуш перестане вас лякати, а на стіні висітиме картина, яку ви намалювали своїми руками.</p>
-    </details>
+  </section>
+
+  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 15б. ЧОМУ САМЕ Я ==================== -->
+  <section class="sec">
+    <h2>Чому саме я</h2>
+    <p class="lead">Я бачу одну й ту саму історію в кожної людини, яка приходить до мене з бажанням малювати. Колись у дитинстві хтось сказав їй, що нічого не вийде. Учителька, батьки, хтось із родини. Людина повірила і не бралася за пастель тридцять років.</p>
+    <p class="lead">Мене це дратує більше за все інше в цій професії. Тому я зібрала свій спосіб малювати атмосферний пейзаж у пʼять уроків, де показаний кожен штрих.</p>
+    <p class="pull">Я не обіцяю, що ви станете художником за один вечір</p>
+    <p class="lead">Я обіцяю, що після цих уроків чистий аркуш перестане вас лякати, а на стіні висітиме картина, яку ви намалювали своїми руками.</p>
+  </section>
+
+  <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
+
+  <!-- ==================== 16. РОБОТИ ОЛЕНИ ==================== -->
+  <section class="sec sec-2">
+    <h2>Мої роботи</h2>
+    <div class="rail">
+      <div class="work"><div class="ph">Робота Олени<br>1</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>2</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>3</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>4</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>5</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>6</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>7</div></div>
+      <div class="work"><div class="ph">Робота Олени<br>8</div></div>
+    </div>
+    <p class="lead">Ви не будете малювати жодну з цих картин. На міні-курсі ми робимо одну конкретну роботу, простішу за всі, що ви бачите тут. Але складається вона з тих самих штрихів.</p>
   </section>
 
   <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
   <!-- ==================== 4. ЧОМУ ПАСТЕЛЬ ==================== -->
   <section class="sec">
-    <h2>Пастель — це крейда, папір і ваші руки</h2>
+    <h2>Все, що вам знадобиться для написання власної картини</h2>
+    <p class="lead">Пастель, вона ж крейда та аркуш паперу.</p>
 
     <div class="plate" style="margin-top:26px">
       <div class="sheet"><img src="assets/process2.jpg" alt="Рука кладе колір боковою стороною пастельної крейди на аркуш" width="800" height="730" loading="lazy" decoding="async"></div>
@@ -498,7 +533,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
       <li><span class="n"><img class="ic" src="assets/el-chalk-1.webp" width="300" height="210" alt="Кінчик пальця з пігментом" loading="lazy" decoding="async"></span><div><h3>Між вами і папером немає інструмента</h3><p>Колір кладеться боковою стороною крейди й розтирається пальцем. Пензлі, вода, палітра і розчинники тут не потрібні взагалі.</p></div></li>
       <li><span class="n"><img class="ic" src="assets/el-chalk-2.webp" width="285" height="244" alt="Два мазки, що змішуються" loading="lazy" decoding="async"></span><div><h3>Кольори змішуються прямо на аркуші</h3><p>Не треба вгадувати пропорції на палітрі й розводити фарбу до потрібної густоти. Поклали один колір поверх іншого, провели пальцем — і отримали відтінок.</p></div></li>
       <li><span class="n"><img class="ic" src="assets/el-chalk-3.webp" width="248" height="259" alt="Перекреслений годинник" loading="lazy" decoding="async"></span><div><h3>Нічого не сохне</h3><p>Немає шарів, між якими треба чекати. Робота починається і закінчується за один сеанс.</p></div></li>
-      <li><span class="n"><img class="ic" src="assets/el-chalk-4.webp" width="208" height="276" alt="Чиста долоня" loading="lazy" decoding="async"></span><div><h3>Нічого не треба мити</h3><p>Пастель не пахне і не тече. Склали крейди в коробку — і за дві хвилини стіл вільний.</p></div></li>
+      <li><span class="n"><img class="ic" src="assets/el-chalk-4.webp" width="208" height="276" alt="Чиста долоня" loading="lazy" decoding="async"></span><div><h3>Нічого не треба драїти та відмивати</h3><p>Пастель не пахне і не тече. Склали крейди в коробку — і за дві хвилини стіл вільний та чистий. Для очищення рук достатньо вологої серветки та води.</p></div></li>
       <!-- [?] підтвердити в Олени: 600 грн -->
       <li><span class="n"><img class="ic" src="assets/el-chalk-5.webp" width="278" height="225" alt="Стопка монет" loading="lazy" decoding="async"></span><div><h3>Стартовий набір коштує близько 600 грн</h3><p>Крейди вистачить на десятки робіт, а другий аркуш паперу коштує 30 гривень.</p></div></li>
     </ul>
@@ -512,12 +547,12 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
     <div class="objrow rev">
       <div class="objart"><img src="assets/el-paper.webp" width="524" height="548" alt="Стос тонованого паперу для пастелі: сірий, блакитний, пісочний" loading="lazy" decoding="async"></div>
       <div class="objtx">
-        <p class="lead">Найчастіша причина, чому набір для малювання лежить у шафі роками: людина боїться зробити перший штрих на чистому білому аркуші. Поки він чистий — усе ще можливо. Щойно зʼявиться перша лінія, стане видно, що вона крива.</p>
+        <p class="lead">Найчастіша причина, чому набір для малювання лежить у шафі роками: людина боїться зробити перший штрих на чистому білому аркуші.</p>
       </div>
     </div>
 
     <p class="pull">Пастель працює на кольоровому папері</p>
-    <p class="lead">Це не декоративна дрібниця, а <b>частина методу</b>.</p>
+    <p class="lead">Саме це дозволяє не боятись зробити той самий перший штрих.</p>
 
     <ul class="rows">
       <li><span class="n">01</span><div><h3>Фон уже заданий за вас</h3><p>Ви починаєте не з порожнечі, а з сірого, блакитного або пісочного аркуша, який сам по собі працює як колір неба або як тон поля. Частина роботи зроблена ще до першого штриха.</p></div></li>
@@ -531,14 +566,40 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   <!-- ==================== 6. ДЛЯ КОГО ==================== -->
   <section class="sec">
     <h2>Цей міні-курс для вас, якщо ви:</h2>
-    <ul class="rows icons">
-      <li><span class="n"><img class="ic" src="assets/el-who-1.webp" width="283" height="164" alt="Олівець" loading="lazy" decoding="async"></span><div><h3>Ніколи не малювали нічим, крім олівця</h3><p>Не знаєте, з чого почати і що взагалі купувати, і не впевнені, що маєте право називати це малюванням.</p></div></li>
-      <li><span class="n"><img class="ic" src="assets/el-who-2.webp" width="251" height="244" alt="Шкільний зошит" loading="lazy" decoding="async"></span><div><h3>Малювали в школі, а потім кинули</h3><p>Колись вам це подобалось. Потім хтось сказав, що виходить не дуже. Минуло тридцять років, а фраза досі памʼятається дослівно.</p></div></li>
-      <li><span class="n"><img class="ic" src="assets/el-who-3.webp" width="278" height="233" alt="Закрита коробка з пастеллю" loading="lazy" decoding="async"></span><div><h3>Купили матеріали — і вони лежать</h3><p>Був порив: замовили набір, папір. Дійшло до того, щоб розкласти все на столі, — і на цьому зупинилось. Не через лінь, а тому що незрозуміло, з чого починати.</p></div></li>
-      <li><span class="n"><img class="ic" src="assets/el-who-4.webp" width="282" height="189" alt="Кювета з фарбою" loading="lazy" decoding="async"></span><div><h3>Пробували фарби — і розчарувались</h3><p>Вода розтеклася не туди, кольори змішались у сіре, аркуш пішов хвилями. Ви вирішили, що малювання — не ваше.</p></div></li>
-      <li><span class="n"><img class="ic" src="assets/el-who-5.webp" width="248" height="264" alt="Картина в рамці на стіні" loading="lazy" decoding="async"></span><div><h3>Хочете картину, яку зробили самі</h3><p>Не постер із маркетплейсу, а роботу, про яку можна сказати: це моє. Або подарунок близькій людині, який ніде більше не купиш.</p></div></li>
-      <li><span class="n"><img class="ic" src="assets/el-who-6.webp" width="231" height="208" alt="Чашка чаю" loading="lazy" decoding="async"></span><div><h3>Хочете годину тиші в голові</h3><p>Не медитацію і не курс із психології. Просто заняття, під час якого думки про роботу, новини й побут відступають самі — бо руки зайняті, а очі стежать за кольором.</p></div></li>
-    </ul>
+
+    <div class="rail">
+      <article class="pcard">
+        <img src="assets/el-who-1.webp" width="283" height="164" alt="Олівець" loading="lazy" decoding="async">
+        <h3>Ніколи не малювали нічим, крім олівця</h3>
+        <p>Не знаєте, з чого почати і що взагалі купувати, і не впевнені, що маєте право називати це малюванням.</p>
+      </article>
+      <article class="pcard">
+        <img src="assets/el-who-2.webp" width="251" height="244" alt="Шкільний зошит" loading="lazy" decoding="async">
+        <h3>Малювали в школі, а потім кинули</h3>
+        <p>Колись вам це подобалось. Потім хтось сказав, що виходить не дуже. Минуло тридцять років, а фраза досі памʼятається дослівно.</p>
+      </article>
+      <article class="pcard">
+        <img src="assets/el-who-3.webp" width="278" height="233" alt="Закрита коробка з пастеллю" loading="lazy" decoding="async">
+        <h3>Купили матеріали — і вони лежать</h3>
+        <p>Був порив: замовили набір, папір. Дійшло до того, щоб розкласти все на столі, — і на цьому зупинилось. Не через лінь, а тому що незрозуміло, з чого починати.</p>
+      </article>
+      <article class="pcard">
+        <img src="assets/el-who-4.webp" width="282" height="189" alt="Кювета з фарбою" loading="lazy" decoding="async">
+        <h3>Пробували фарби — і розчарувались</h3>
+        <p>Вода розтеклася не туди, кольори змішались у сіре, аркуш пішов хвилями. Ви вирішили, що малювання — не ваше.</p>
+      </article>
+      <article class="pcard">
+        <img src="assets/el-who-5.webp" width="248" height="264" alt="Картина в рамці на стіні" loading="lazy" decoding="async">
+        <h3>Хочете картину, яку зробили самі</h3>
+        <p>Не постер із маркетплейсу, а роботу, про яку можна сказати: це моє. Або подарунок близькій людині, який ніде більше не купиш.</p>
+      </article>
+      <article class="pcard">
+        <img src="assets/el-who-6.webp" width="231" height="208" alt="Чашка чаю" loading="lazy" decoding="async">
+        <h3>Хочете годину тиші в голові</h3>
+        <p>Не медитацію і не курс із психології. Просто заняття, під час якого думки про роботу, новини й побут відступають самі — бо руки зайняті, а очі стежать за кольором.</p>
+      </article>
+    </div>
+
     <p class="note" style="margin-top:26px">Якщо впізнали себе хоча б в одному пункті — ця картина цілком вам під силу.</p>
   </section>
 
@@ -771,11 +832,6 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
         <span class="tx"><h3>Клячка</h3><p>Мʼяка гумка, якою знімають зайвий шар пастелі.</p></span>
         <span class="cost">50<i>близько, грн</i></span>
       </li>
-      <li>
-        <span class="thumb"><img class="el dash" src="assets/el-dash-5.webp" width="240" height="65" alt="" aria-hidden="true" loading="lazy" decoding="async"></span>
-        <span class="tx"><h3>Ваші пальці</h3><p>Основний інструмент розтушовки. Пензлі, вода, палітра й розчинники тут не потрібні взагалі.</p></span>
-        <span class="cost">0<i>безкоштовно</i></span>
-      </li>
     </ul>
 
     <div class="total"><span class="v">≈600 грн</span><span class="l">стартовий набір — і це все, що потрібно для роботи</span></div>
@@ -815,26 +871,8 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
 
   <div class="divider" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
 
-<!-- ==================== 16. РОБОТИ ОЛЕНИ ==================== -->
-  <section class="sec sec-2">
-    <h2>Мої роботи</h2>
-    <div class="rail">
-      <div class="work"><div class="ph">Робота Олени<br>1</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>2</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>3</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>4</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>5</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>6</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>7</div></div>
-      <div class="work"><div class="ph">Робота Олени<br>8</div></div>
-    </div>
-    <p class="lead">Ви не будете малювати жодну з цих картин. На міні-курсі ми робимо одну конкретну роботу, простішу за всі, що ви бачите тут. Але складається вона з тих самих штрихів.</p>
-  </section>
-
-  <div class="divider flip" aria-hidden="true"><img class="el" src="assets/el-divider.webp" width="1400" height="130" alt="" loading="lazy" decoding="async"></div>
-
   <!-- ==================== 17. РОБОТА ПІД СКЛОМ ==================== -->
-  <section class="sec">
+  <section class="sec sec-2">
     <h2>Готову роботу треба закрити склом — і про це варто сказати чесно</h2>
     <p class="lead">Пастель живе на папері, тому закінчену картину закривають склом: так вона не осиплеться і не зітреться. Це єдиний крок, якого немає в живописі на полотні, і я не буду вдавати, що його не існує.</p>
     <p class="lead">Хороша новина в тому, що йти в багетну майстерню й чекати кілька днів <b>не обовʼязково</b>.</p>
@@ -878,7 +916,7 @@ h2{margin:0;font-weight:900;text-transform:uppercase;font-size:clamp(1.55rem,6.8
   </section>
 
   <!-- ==================== 19. FAQ ==================== -->
-  <section class="sec sec-2">
+  <section class="sec">
     <h2>Часті запитання</h2>
     <div class="acc faq">
       <details>
